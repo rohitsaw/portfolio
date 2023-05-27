@@ -1,0 +1,52 @@
+.contactContainer {
+  margin-top: 30px;
+}
+
+.contactTitle {
+  font-weight: 700;
+  font-size: 45px;
+  width: 80%;
+  color: #27272a;
+}
+
+.contactSubTitle {
+  color: #65656d;
+  font-size: 16px;
+  line-height: 28px;
+  width: 80%;
+  margin-top: 35px;
+}
+
+.contactsListWrapper {
+  padding-top: 35px;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.contactList{
+  display: flex;
+  flex-direction: column;
+}
+
+.linkWrapper{
+  display: flex;
+  flex-direction: row;
+}
+
+.contactItem {
+  padding-bottom: 20px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #65656d;
+  text-decoration: none;
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  column-gap: 12px;
+}
+
+.contactItem:hover{
+  color : #14b8a6
+}

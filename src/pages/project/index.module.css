@@ -1,0 +1,27 @@
+.projectsContainer {
+  margin-top: 30px;
+}
+
+.projectsTitle {
+  color: #27272a;
+  font-size: 45px;
+  font-weight: 700;
+  width: 80%;
+}
+
+.projectsSubTitle {
+  color: #65656d;
+  font-size: 16px;
+  line-height: 28px;
+  width: 80%;
+  margin-top: 35px;
+  margin-bottom: 35px;
+}
+
+.projectsList {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  column-gap: 20px;
+  row-gap: 40px;
+}

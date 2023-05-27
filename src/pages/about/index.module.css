@@ -1,0 +1,108 @@
+.pageContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+}
+
+.logoContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  max-width: 20%;
+}
+
+img {
+  width: 100%;
+  height: 100%;
+  opacity: 0.8;
+}
+
+img:hover {
+  opacity: 1;
+  transition: background-color 0.3s ease-in-out;
+  background: #fafafa;
+  cursor: pointer;
+}
+
+.cardContainer {
+  max-width: 60%;
+  min-width: 280px;
+  opacity: 0.8;
+  padding-top: 22px;
+  padding-bottom: 16px;
+
+  padding-left: 32px;
+  padding-right: 32px;
+
+  border-radius: 20px;
+  outline: 2px solid #f4f4f5;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.cardContainer:hover {
+  background: #fafafa;
+  opacity: 1;
+  transition: background-color 0.3s ease-in-out;
+  cursor: pointer;
+}
+
+.cardTitle {
+  color: #27272a;
+  font-weight: 650;
+
+  display: flex;
+  flex-direction: row;
+  justify-self: flex-start;
+  column-gap: 14px;
+  align-items: center;
+}
+
+.cardContent {
+  margin-top: 16px;
+  font-size: 22px;
+  color: #65656d;
+}
+
+.navLink {
+  text-decoration: none;
+  color: #65656d;
+}
+
+.navLinkHover {
+  text-decoration: none;
+  color: #14b8a6;
+}
+
+.cardContentList {
+  list-style: none;
+  margin-bottom: 0px;
+  padding-left: 0px;
+
+  display: flex;
+  flex-direction: column;
+  row-gap: 16px;
+}
+
+.item1 {
+  font-size: 18px;
+  line-height: 22px;
+  font-weight: 700;
+  color: #27272a;
+}
+
+.item2 {
+  font-size: 16px;
+  line-height: 20px;
+  font-weight: 600;
+  color: #65656d;
+}
+
+.item3 {
+  font-size: 14px;
+  line-height: 18px;
+  font-weight: 500;
+  color: #acacb4;
+}

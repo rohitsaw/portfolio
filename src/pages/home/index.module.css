@@ -1,0 +1,53 @@
+.homeContainer {
+  margin-top: 30px;
+  display: flex;
+  flex-direction: row;
+}
+
+.title {
+  font-weight: 700;
+  font-size: 45px;
+  color: #27272a;
+  margin-bottom: 25px;
+}
+
+.body {
+  color: #65656d;
+  font-size: 16px;
+  line-height: 28px;
+}
+
+.imageContainer {
+  width: 500px;
+}
+
+.socialLinks {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  display: flex;
+  flex-direction: row;
+  gap: 26px;
+  cursor: pointer;
+}
+
+a {
+  color: #65656d;
+}
+
+.socialLinks svg:not(:hover) {
+  transition: 1.4s;
+  transform: rotate(-360deg);
+}
+
+.socialLinks svg:hover {
+  color: #14b8a6;
+  transition: 1.4s;
+  transform: rotate(360deg);
+}
+
+@media only screen and (max-width: 720px) {
+  .homeContainer {
+    display: flex;
+    flex-direction: column-reverse;
+  }
+}

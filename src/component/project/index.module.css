@@ -1,0 +1,50 @@
+.projectContainer {
+  height: 200px;
+  width: 250px;
+  border-radius: 20px;
+  opacity: 0.8;
+  padding: 30px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.projectContainer:hover {
+  background: #fafafa;
+  opacity: 1;
+  transition: background-color 0.3s ease-in-out;
+  cursor: pointer;
+}
+
+.iconsContainer {
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  gap: 12px;
+  color: #65656d;
+  font-size: 18px;
+}
+
+.projectTitle {
+  font-size: 16px;
+  color: #27272a;
+  font-weight: 700;
+}
+
+.projectDescription {
+  color: #65656d;
+}
+
+.projectLinks {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.navLink {
+  color: #65656d;
+}
+.navLinkHover {
+  color: #14b8a6;
+}

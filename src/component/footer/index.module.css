@@ -1,0 +1,32 @@
+.footerContainer {
+  height: 10vh;
+}
+
+.footerBorder {
+  height: 2px;
+  margin-left: -3.5%;
+  margin-right: -3.5%;
+  background-color: #acacb4;
+}
+
+.navContainer {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  column-gap : 10%;
+  list-style: none;
+}
+
+.navItem {
+  font-size: 80%;
+  font-weight: 700;
+}
+
+.navLink {
+  color: #65656d;
+  text-decoration: none;
+}
+.navLink:hover {
+  color: #14b8a6;
+}
