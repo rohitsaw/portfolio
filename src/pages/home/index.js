@@ -38,27 +38,37 @@ const Home = () => {
             solving complex problems and learning new skills. I am passionate
             about creating high-quality code that follows best practices and
             industry standards. I am always looking for new challenges and
-            opportunities to grow as a developer
+            opportunities to grow as a developer.
+          </div>
+          <div className={styles.socialLinks}>
+            <a href={socialLinks.github} target="_blank" rel="noreferrer">
+              <FontAwesomeIcon icon={faGithub} size="2xl" />
+            </a>
+            <a
+              href={socialLinks.stackOverFlow}
+              target="_blank"
+              rel="noreferrer"
+            >
+              <FontAwesomeIcon icon={faStackOverflow} size="2xl" />
+            </a>
+            <a href={socialLinks.blog} target="_blank" rel="noreferrer">
+              <FontAwesomeIcon icon={faBlog} size="2xl" />
+            </a>
+            <a href={socialLinks.twitter} target="_blank" rel="noreferrer">
+              <FontAwesomeIcon icon={faTwitter} size="2xl" />
+            </a>
+            <a href={socialLinks.mail} target="_blank" rel="noreferrer">
+              <FontAwesomeIcon icon={faEnvelope} size="2xl" />
+            </a>
           </div>
         </div>
 
-        <div className={styles.imageContainer}>Image</div>
-      </div>
-      <div className={styles.socialLinks}>
-        <a href={socialLinks.github} target="_blank" rel="noreferrer">
-          <FontAwesomeIcon icon={faGithub} size="2xl" />
-        </a>
-        <a href={socialLinks.stackOverFlow} target="_blank" rel="noreferrer">
-          <FontAwesomeIcon icon={faStackOverflow} size="2xl" />
-        </a>
-        <a href={socialLinks.blog} target="_blank" rel="noreferrer">
-          <FontAwesomeIcon icon={faBlog} size="2xl" />
-        </a>
-        <a href={socialLinks.twitter} target="_blank" rel="noreferrer">
-          <FontAwesomeIcon icon={faTwitter} size="2xl" />
-        </a>
-        <a href={socialLinks.mail} target="_blank" rel="noreferrer">
-          <FontAwesomeIcon icon={faEnvelope} size="2xl" />
+        <a target="_blank" href="images/rohit.jpg">
+          <img
+            className={styles.img}
+            src="images/rohit.jpg"
+            alt="Rohit aka rsaw409 logo"
+          />
         </a>
       </div>
     </motion.div>

@@ -2,6 +2,7 @@
   margin-top: 30px;
   display: flex;
   flex-direction: row;
+  gap: 20px;
 }
 
 .title {
@@ -15,10 +16,7 @@
   color: #65656d;
   font-size: 16px;
   line-height: 28px;
-}
-
-.imageContainer {
-  width: 500px;
+  text-align: justify;
 }
 
 .socialLinks {
@@ -45,7 +43,21 @@ a {
   transform: rotate(360deg);
 }
 
-@media only screen and (max-width: 720px) {
+.img {
+  opacity: 1;
+  max-width: 100%;
+  height: auto;
+  border-radius: 12px;
+  border: 1px solid #ddd;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.img:hover {
+  box-shadow: 0 0 2px 1px rgba(0, 140, 186, 0.5);
+}
+
+@media only screen and (max-width: 992px) {
   .homeContainer {
     display: flex;
     flex-direction: column-reverse;
