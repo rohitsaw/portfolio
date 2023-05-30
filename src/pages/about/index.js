@@ -76,7 +76,7 @@ const About = () => {
     >
       <div className={styles.pageContainer}>
         <div className={styles.logoContainer}>
-          <img src={codeLogo} />
+          <img src={codeLogo} alt="coder logo"/>
         </div>
 
         <div
@@ -104,6 +104,7 @@ const About = () => {
                   hover.about ? styles.navLinkHover : styles.navLink
                 }`}
                 target="_blank"
+                rel="noreferrer"
                 href="http://google.com/search?q=user rsaw409"
               >
                 {` rsaw409 `}
