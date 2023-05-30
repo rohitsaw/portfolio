@@ -160,6 +160,43 @@ const About = () => {
           className={styles.cardContainer}
           onMouseEnter={() =>
             setHover((prevState) => {
+              return { ...prevState, skill: true };
+            })
+          }
+          onMouseLeave={() =>
+            setHover((prevState) => {
+              return { ...prevState, skill: false };
+            })
+          }
+        >
+          <div className={styles.cardTitle}>
+            <FontAwesomeIcon icon={faCog} /> <span>Skills</span>
+          </div>
+
+          <ul className={styles.cardContentList}>
+            {Object.keys(skills).map((eachSkill) => (
+              <li>
+                <span style={{ display: "inline-block" }}>
+                  <span className={styles.item1}>{eachSkill}: </span>
+                  <span
+                    className={styles.item2}
+                    style={{
+                      wordWrap: "breakWord",
+                      textAlign: "right",
+                    }}
+                  >
+                    {skills[eachSkill].join(", ")}
+                  </span>
+                </span>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div
+          className={styles.cardContainer}
+          onMouseEnter={() =>
+            setHover((prevState) => {
               return { ...prevState, education: true };
             })
           }
@@ -198,44 +235,6 @@ const About = () => {
                   />
                 )}
               </div>
-            ))}
-          </ul>
-        </div>
-
-        <div
-          className={styles.cardContainer}
-          style={{ maxWidth: "25%" }}
-          onMouseEnter={() =>
-            setHover((prevState) => {
-              return { ...prevState, skill: true };
-            })
-          }
-          onMouseLeave={() =>
-            setHover((prevState) => {
-              return { ...prevState, skill: false };
-            })
-          }
-        >
-          <div className={styles.cardTitle}>
-            <FontAwesomeIcon icon={faCog} /> <span>Skills</span>
-          </div>
-
-          <ul className={styles.cardContentList}>
-            {Object.keys(skills).map((eachSkill) => (
-              <li>
-                <span style={{ display: "inline-block" }}>
-                  <span className={styles.item1}>{eachSkill}: </span>
-                  <span
-                    className={styles.item2}
-                    style={{
-                      wordWrap: "breakWord",
-                      textAlign: "right",
-                    }}
-                  >
-                    {skills[eachSkill].join(", ")}
-                  </span>
-                </span>
-              </li>
             ))}
           </ul>
         </div>

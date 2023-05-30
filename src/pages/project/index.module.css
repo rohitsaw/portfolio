@@ -16,12 +16,24 @@
   width: 80%;
   margin-top: 35px;
   margin-bottom: 35px;
+
+  text-align: justify;
 }
 
 .projectsList {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  column-gap: 20px;
-  row-gap: 40px;
+  gap: 20px;
+
 }
+
+@media only screen and (max-width: 991px) {
+  .projectsTitle {
+    width: 100%;
+  }
+  .projectsSubTitle{
+    width: 100%;
+  }
+}
+

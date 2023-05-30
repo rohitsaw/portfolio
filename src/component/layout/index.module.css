@@ -8,14 +8,15 @@
   position: fixed;
   top: 3vh;
   z-index: 999;
+
+  height: 40px;
+  width: 380px;
 }
 
 .navBackGround {
   border-radius: 40px;
-  height: 40px;
-  width: 380px;
-  padding-left: 0px;
-  padding-right: 0px;
+  height: 100%;
+  width: 100%;
   background: #fff;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
@@ -46,4 +47,10 @@
 .navItem {
   font-size: 80%;
   font-weight: 700;
+}
+
+@media only screen and (max-width: 600px) {
+  .navbar {
+    width: 90%;
+  }
 }
