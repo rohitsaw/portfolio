@@ -1,5 +1,5 @@
 .homeContainer {
-  margin-top: 30px;
+  /* margin-top: 30px; */
   display: flex;
   flex-direction: row;
   gap: 20px;
@@ -61,5 +61,16 @@ a {
   .homeContainer {
     display: flex;
     flex-direction: column-reverse;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .title {
+    font-size: 35px;
+  }
+
+  .body {
+    font-size: 14px;
+    line-height: 24px;
   }
 }

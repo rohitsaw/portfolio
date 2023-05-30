@@ -1,5 +1,5 @@
 .contactContainer {
-  margin-top: 30px;
+  /* margin-top: 30px; */
 }
 
 .contactTitle {
@@ -60,5 +60,20 @@
 
   .contactSubTitle {
     width: 100%;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .contactTitle {
+    font-size: 35px;
+  }
+
+  .contactSubTitle {
+    font-size: 14px;
+    line-height: 26px;
+  }
+
+  .contactItem {
+    font-size: 12px;
   }
 }

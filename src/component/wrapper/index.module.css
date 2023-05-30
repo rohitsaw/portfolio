@@ -10,7 +10,7 @@
   padding-right: 3%;
   max-width: 90%;
   background-color: white;
-  padding-top: 120px;
+  padding-top: 150px;
 }
 
 .footerWrapper {
@@ -21,4 +21,10 @@
   max-width: 90%;
   background-color: white;
   padding-top: 80px;
+}
+
+@media only screen and (max-width: 600px) {
+  .contentWrapper {
+    padding-top: 120px;
+  }
 }

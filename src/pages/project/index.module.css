@@ -1,5 +1,5 @@
 .projectsContainer {
-  margin-top: 30px;
+  /* margin-top: 30px; */
 }
 
 .projectsTitle {
@@ -25,15 +25,22 @@
   flex-direction: row;
   flex-wrap: wrap;
   gap: 20px;
-
 }
 
 @media only screen and (max-width: 991px) {
   .projectsTitle {
     width: 100%;
   }
-  .projectsSubTitle{
+  .projectsSubTitle {
     width: 100%;
   }
 }
 
+@media only screen and (max-width: 600px) {
+  .projectsTitle {
+    font-size: 35px;
+  }
+  .projectsSubTitle {
+    font-size: 14px;
+  }
+}
