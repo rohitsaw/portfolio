@@ -25,6 +25,14 @@
 
 @media only screen and (max-width: 600px) {
   .contentWrapper {
+    margin-left: 0px;
+    margin-right: 0px;
+    max-width: 100%;
     padding-top: 120px;
+  }
+  .footerWrapper {
+    margin-left: 0px;
+    margin-right: 0px;
+    max-width: 100%;
   }
 }

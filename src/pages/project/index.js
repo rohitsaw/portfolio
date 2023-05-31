@@ -10,7 +10,7 @@ import {
 import { faLink } from "@fortawesome/free-solid-svg-icons";
 import { ReactComponent as FlutterLogo } from "../../icons/Google-flutter-logo.svg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { animate, motion } from "framer-motion";
+import { motion } from "framer-motion";
 
 const Projects = () => {
   const projects = [
