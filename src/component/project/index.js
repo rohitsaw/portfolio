@@ -15,15 +15,28 @@ const Project = ({ project }) => {
       <div className={styles.projectTitle}>{project.title}</div>
       <div className={styles.projectDescription}>{project.description}</div>
       <div className={styles.projectLinks}>
-        {project.links.map((link) => (
-          <NavLink
-            className={`${hover ? styles.navLinkHover : styles.navLink}`}
-            to={link.url}
-            target="_blank"
-          >
-            {link.getIcon()}
-          </NavLink>
-        ))}
+        {project.links.map((link, index) =>
+          index == 1 ? (
+            <>
+              <div style={{ flexGrow: 3 }}></div>
+              <NavLink
+                className={`${hover ? styles.navLinkHover : styles.navLink}`}
+                to={link.url}
+                target="_blank"
+              >
+                {link.getIcon()}
+              </NavLink>
+            </>
+          ) : (
+            <NavLink
+              className={`${hover ? styles.navLinkHover : styles.navLink}`}
+              to={link.url}
+              target="_blank"
+            >
+              {link.getIcon()}
+            </NavLink>
+          )
+        )}
       </div>
     </div>
   );

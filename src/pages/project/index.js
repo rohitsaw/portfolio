@@ -3,11 +3,12 @@ import Project from "../../component/project/index.js";
 import styles from "./index.module.css";
 import {
   faJs,
+  faNode,
   faReact,
   faGithub,
   faAndroid,
 } from "@fortawesome/free-brands-svg-icons";
-import { faLink } from "@fortawesome/free-solid-svg-icons";
+import { faLink, faExternalLink } from "@fortawesome/free-solid-svg-icons";
 import { ReactComponent as FlutterLogo } from "../../icons/Google-flutter-logo.svg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { motion } from "framer-motion";
@@ -18,7 +19,11 @@ const Projects = () => {
       id: 1,
       getLogo: () => (
         <>
-          <div>React</div>
+          <FontAwesomeIcon
+            icon={faAndroid}
+            style={{ color: "#9FC036" }}
+            size="xl"
+          />
           <FontAwesomeIcon
             icon={faReact}
             style={{ color: "#5ED2F3" }}
@@ -35,6 +40,10 @@ const Projects = () => {
           url: "https://github.com/rohitsaw/minesweeper",
         },
         {
+          getIcon: () => <FontAwesomeIcon icon={faExternalLink} size="xl" />,
+          url: "https://play.google.com/store/apps/details?id=developer.rohitsaw.minesweeper",
+        },
+        {
           getIcon: () => <FontAwesomeIcon icon={faLink} size="xl" />,
           url: "https://minesweeper-60xh.onrender.com/",
         },
@@ -43,6 +52,37 @@ const Projects = () => {
 
     {
       id: 2,
+      getLogo: () => (
+        <>
+          <FontAwesomeIcon
+            icon={faNode}
+            style={{ color: "#57A745" }}
+            size="2xl"
+          />
+          <FontAwesomeIcon
+            icon={faReact}
+            style={{ color: "#5ED2F3" }}
+            size="xl"
+          />
+        </>
+      ),
+      title: "TicToe Multiplayer",
+      description:
+        "Multiplayer tictoe game made with React.js, Node.js and Socket.io",
+      links: [
+        {
+          getIcon: () => <FontAwesomeIcon icon={faGithub} size="xl" />,
+          url: "https://github.com/rohitsaw/tictoe-multiplayer",
+        },
+        {
+          getIcon: () => <FontAwesomeIcon icon={faLink} size="xl" />,
+          url: "https://tictoe-rsaw409.onrender.com/",
+        },
+      ],
+    },
+
+    {
+      id: 3,
       getLogo: () => (
         <>
           <FontAwesomeIcon icon={faJs} style={{ color: "#EFD81A" }} size="xl" />
@@ -60,33 +100,6 @@ const Projects = () => {
         {
           getIcon: () => <FontAwesomeIcon icon={faLink} size="xl" />,
           url: "https://rohitsaw.github.io/#/",
-        },
-      ],
-    },
-
-    {
-      id: 3,
-      getLogo: () => (
-        <>
-          <FontAwesomeIcon
-            icon={faAndroid}
-            style={{ color: "#9FC036" }}
-            size="xl"
-          />
-          <FlutterLogo height={22} />
-        </>
-      ),
-      title: "Expense Tracker",
-      description:
-        "App to Manage Expenses in custom categories and visualize data in Meaningful Charts ",
-      links: [
-        {
-          getIcon: () => <FontAwesomeIcon icon={faGithub} size="xl" />,
-          url: "https://github.com/rohitsaw/Expense-Tracker",
-        },
-        {
-          getIcon: () => <FontAwesomeIcon icon={faLink} size="xl" />,
-          url: "https://play.google.com/store/apps/details?id=com.rohitsaw.personal_expenses",
         },
       ],
     },
@@ -112,8 +125,34 @@ const Projects = () => {
           url: "https://github.com/rohitsaw/codelist",
         },
         {
-          getIcon: () => <FontAwesomeIcon icon={faLink} size="xl" />,
+          getIcon: () => <FontAwesomeIcon icon={faExternalLink} size="xl" />,
           url: "https://play.google.com/store/apps/details?id=developer.rohitsaw.codelist",
+        },
+      ],
+    },
+    {
+      id: 5,
+      getLogo: () => (
+        <>
+          <FontAwesomeIcon
+            icon={faAndroid}
+            style={{ color: "#9FC036" }}
+            size="xl"
+          />
+          <FlutterLogo height={22} />
+        </>
+      ),
+      title: "Expense Tracker",
+      description:
+        "App to Manage Expenses in custom categories and visualize data in Meaningful Charts ",
+      links: [
+        {
+          getIcon: () => <FontAwesomeIcon icon={faGithub} size="xl" />,
+          url: "https://github.com/rohitsaw/Expense-Tracker",
+        },
+        {
+          getIcon: () => <FontAwesomeIcon icon={faExternalLink} size="xl" />,
+          url: "https://play.google.com/store/apps/details?id=com.rohitsaw.personal_expenses",
         },
       ],
     },
