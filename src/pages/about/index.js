@@ -76,7 +76,7 @@ const About = () => {
     >
       <div className={styles.pageContainer}>
         <div className={styles.logoContainer}>
-          <img src={codeLogo} alt="coder logo"/>
+          <img src={codeLogo} alt="coder logo" />
         </div>
 
         <div
@@ -110,9 +110,12 @@ const About = () => {
                 {` rsaw409 `}
               </a>
             </span>
-            as my nickname across sites. I'm FullStack developer having good
-            command over Data Structure and Algorithm and I'm always curious to
-            learn more when it comes to new technologies and creative coding.
+            as my nickname across sites. I'm Committed to delivering efficient
+            and maintainable code that meets project objectives and exceeds
+            client expectations. Constantly seeking opportunities to leverage
+            data structures and algorithms to drive innovation and improve
+            application performance. Dedicated to applying best practices and
+            industry standards to create robust and scalable software solutions.
           </div>
         </div>
 

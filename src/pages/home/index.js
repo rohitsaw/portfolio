@@ -32,34 +32,18 @@ const Home = () => {
           </div>
 
           <div className={styles.body}>
-            I am a FullStack developer with expertise in Node.js and React.js. I
-            have experience in building scalable, secure and reliable web
-            applications using various frameworks and technologies. I enjoy
-            solving complex problems and learning new skills. I am passionate
-            about creating high-quality code that follows best practices and
-            industry standards. I am always looking for new challenges and
-            opportunities to grow as a developer.
-          </div>
-          <div className={styles.socialLinks}>
-            <a href={socialLinks.github} target="_blank" rel="noreferrer">
-              <FontAwesomeIcon icon={faGithub} size="2xl" />
-            </a>
-            <a
-              href={socialLinks.stackOverFlow}
-              target="_blank"
-              rel="noreferrer"
-            >
-              <FontAwesomeIcon icon={faStackOverflow} size="2xl" />
-            </a>
-            <a href={socialLinks.blog} target="_blank" rel="noreferrer">
-              <FontAwesomeIcon icon={faBlog} size="2xl" />
-            </a>
-            <a href={socialLinks.twitter} target="_blank" rel="noreferrer">
-              <FontAwesomeIcon icon={faTwitter} size="2xl" />
-            </a>
-            <a href={socialLinks.mail} target="_blank" rel="noreferrer">
-              <FontAwesomeIcon icon={faEnvelope} size="2xl" />
-            </a>
+            I'm Highly skilled and motivated full-stack software developer with
+            2 years of industry experience. Proficient in developing robust and
+            scalable web applications, combining expertise in both front-end and
+            back-end technologies. Adept at analyzing user requirements and
+            translating them into functional code, ensuring optimal performance
+            and user experience. Strong knowledge of HTML, CSS, JavaScript, and
+            modern frameworks like React and Node.js. <br />
+            Additionally, possess a solid foundation in data structures and
+            algorithms, leveraging this expertise to design efficient and
+            optimized solutions. Experienced in implementing algorithms and
+            leveraging data structures to solve complex problems, enhancing
+            application performance and scalability.
           </div>
         </div>
 
@@ -69,6 +53,32 @@ const Home = () => {
             src="images/rohit.jpg"
             alt="Rohit aka rsaw409 logo"
           />
+        </a>
+      </div>
+      <div className={styles.body}>
+        Experienced in designing and implementing RESTful APIs using Node.js and
+        Express, with a solid understanding of database management systems such
+        as SQL and MongoDB. Demonstrated ability to work effectively in agile
+        environments, collaborating with cross-functional teams to deliver
+        high-quality software solutions. Proactive problem solver with a passion
+        for learning and staying updated with the latest industry trends and
+        technologies.
+      </div>
+      <div className={styles.socialLinks}>
+        <a href={socialLinks.github} target="_blank" rel="noreferrer">
+          <FontAwesomeIcon icon={faGithub} size="2xl" />
+        </a>
+        <a href={socialLinks.stackOverFlow} target="_blank" rel="noreferrer">
+          <FontAwesomeIcon icon={faStackOverflow} size="2xl" />
+        </a>
+        <a href={socialLinks.blog} target="_blank" rel="noreferrer">
+          <FontAwesomeIcon icon={faBlog} size="2xl" />
+        </a>
+        <a href={socialLinks.twitter} target="_blank" rel="noreferrer">
+          <FontAwesomeIcon icon={faTwitter} size="2xl" />
+        </a>
+        <a href={socialLinks.mail} target="_blank" rel="noreferrer">
+          <FontAwesomeIcon icon={faEnvelope} size="2xl" />
         </a>
       </div>
     </motion.div>
