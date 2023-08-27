@@ -16,6 +16,32 @@ import { motion } from "framer-motion";
 const Projects = () => {
   const projects = [
     {
+      id: 6,
+      getLogo: () => (
+        <>
+          <FontAwesomeIcon
+            icon={faReact}
+            style={{ color: "#5ED2F3" }}
+            size="xl"
+          />
+        </>
+      ),
+      title: "Movie Browser",
+      description:
+        "With Movie Browser, you can easily browse a vast movie database, search for movies with support of filter and sort.",
+      links: [
+        {
+          getIcon: () => <FontAwesomeIcon icon={faGithub} size="xl" />,
+          url: "https://github.com/rohitsaw/GSIV23_ROHIT_SAW",
+        },
+        {
+          getIcon: () => <FontAwesomeIcon icon={faLink} size="xl" />,
+          url: "https://movie-browser-ig5z.onrender.com/",
+        },
+      ],
+    },
+
+    {
       id: 1,
       getLogo: () => (
         <>
