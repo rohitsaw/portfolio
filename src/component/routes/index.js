@@ -7,8 +7,19 @@ import Home from "../../pages/home/index";
 import Projects from "../../pages/project/index";
 
 import { AnimatePresence } from "framer-motion";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+
+import { getAllCertificates, getAllProjects } from "../../redux/action.js";
 
 const AnimateRoutes = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getAllCertificates());
+    dispatch(getAllProjects());
+  }, []);
+
   const location = useLocation();
 
   return (
