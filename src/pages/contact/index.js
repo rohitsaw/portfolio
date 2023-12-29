@@ -5,26 +5,33 @@ import styles from "./index.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { NavLink } from "react-router-dom";
 import { motion } from "framer-motion";
+import { useSelector } from "react-redux";
 
 const Contact = () => {
+  const { email, linkedin_url, github_url } = useSelector((state) => ({
+    email: state.user?.user_email,
+    linkedin_url: state.user?.linkedin_url,
+    github_url: state.user?.github_url,
+  }));
+
   const contacts = [
     {
       id: 1,
-      title: "developer.rohitsaw@gmail.com",
+      title: email,
       getLogo: () => <FontAwesomeIcon icon={faEnvelope} size="lg" />,
-      url: "mailto:developer.rohitsaw@gmail.com",
+      url: `mailto:${email}`,
     },
     {
       id: 2,
       title: "Connect on LinkedIn",
       getLogo: () => <FontAwesomeIcon icon={faLinkedin} size="lg" />,
-      url: "https://www.linkedin.com/in/rsaw409/",
+      url: linkedin_url,
     },
     {
       id: 3,
       title: "Follow on Github",
       getLogo: () => <FontAwesomeIcon icon={faGithub} size="lg" />,
-      url: "https://github.com/rohitsaw",
+      url: github_url,
     },
   ];
 

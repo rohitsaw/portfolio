@@ -6,17 +6,26 @@ import {
   faStackOverflow,
   faTwitter,
   faGithub,
+  faLinkedin,
 } from "@fortawesome/free-brands-svg-icons";
 import { faEnvelope, faBlog } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useSelector } from "react-redux";
 
 const Home = () => {
+  const { email, linkedin_url, github_url } = useSelector((state) => ({
+    email: state.user?.user_email,
+    linkedin_url: state.user?.linkedin_url,
+    github_url: state.user?.github_url,
+  }));
+
   const socialLinks = {
-    github: "https://github.com/rohitsaw",
+    github: github_url,
+    linkedin: linkedin_url,
     stackOverFlow: "https://stackoverflow.com/users/11141059/rohit-saw",
     blog: "https://hashnode.com/@rsaw409",
     twitter: "https://twitter.com/rsaw409",
-    mail: "mailto:developer.rohitsaw@gmail.com",
+    mail: `mailto:${email}`,
   };
 
   return (
@@ -67,6 +76,9 @@ const Home = () => {
       <div className={styles.socialLinks}>
         <a href={socialLinks.github} target="_blank" rel="noreferrer">
           <FontAwesomeIcon icon={faGithub} size="2xl" />
+        </a>
+        <a href={socialLinks.linkedin} target="_blank" rel="noreferrer">
+          <FontAwesomeIcon icon={faLinkedin} size="2xl" />
         </a>
         <a href={socialLinks.stackOverFlow} target="_blank" rel="noreferrer">
           <FontAwesomeIcon icon={faStackOverflow} size="2xl" />
