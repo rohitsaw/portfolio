@@ -10,16 +10,26 @@ import {
   faCog,
   faGraduationCap,
   faExternalLink,
+  faCertificate,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { motion } from "framer-motion";
 
+import { useSelector } from "react-redux";
+import CircularProgress from "@mui/material/CircularProgress";
+
 const About = () => {
+  let { isCertificatesLoading, certificates } = useSelector((state) => ({
+    isCertificatesLoading: state.isCertificatesLoading,
+    certificates: state.certificates,
+  }));
+
   const [hover, setHover] = useState({
     about: false,
     education: false,
     work: false,
     skill: false,
+    certificates: false,
   });
 
   const workExperiences = [
@@ -123,47 +133,6 @@ const About = () => {
           className={styles.cardContainer}
           onMouseEnter={() =>
             setHover((prevState) => {
-              return { ...prevState, work: true };
-            })
-          }
-          onMouseLeave={() =>
-            setHover((prevState) => {
-              return { ...prevState, work: false };
-            })
-          }
-        >
-          <div className={styles.cardTitle}>
-            <FontAwesomeIcon icon={faBriefcase} /> <span>Work</span>
-          </div>
-          <ul className={styles.cardContentList}>
-            {workExperiences.map((each) => (
-              <div
-                style={{
-                  display: "flex",
-                  flexDirection: "row",
-                  justifyContent: "space-between",
-                }}
-              >
-                <li key={each.id}>
-                  <div className={styles.item1}>{each.companyName}</div>
-                  <div className={styles.item2}>{each.designation}</div>
-                  <div className={styles.item3}>{each.date}</div>
-                </li>
-                {hover.work && (
-                  <FontAwesomeIcon
-                    icon={faExternalLink}
-                    className={styles.navLinkHover}
-                  />
-                )}
-              </div>
-            ))}
-          </ul>
-        </div>
-
-        <div
-          className={styles.cardContainer}
-          onMouseEnter={() =>
-            setHover((prevState) => {
               return { ...prevState, skill: true };
             })
           }
@@ -240,6 +209,112 @@ const About = () => {
                 )}
               </div>
             ))}
+          </ul>
+        </div>
+
+        <div
+          className={styles.cardContainer}
+          onMouseEnter={() =>
+            setHover((prevState) => {
+              return { ...prevState, work: true };
+            })
+          }
+          onMouseLeave={() =>
+            setHover((prevState) => {
+              return { ...prevState, work: false };
+            })
+          }
+        >
+          <div className={styles.cardTitle}>
+            <FontAwesomeIcon icon={faBriefcase} /> <span>Work</span>
+          </div>
+          <ul className={styles.cardContentList}>
+            {workExperiences.map((each) => (
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "row",
+                  justifyContent: "space-between",
+                }}
+              >
+                <li key={each.id}>
+                  <div className={styles.item1}>{each.companyName}</div>
+                  <div className={styles.item2}>{each.designation}</div>
+                  <div className={styles.item3}>{each.date}</div>
+                </li>
+                {hover.work && (
+                  <FontAwesomeIcon
+                    icon={faExternalLink}
+                    className={styles.navLinkHover}
+                  />
+                )}
+              </div>
+            ))}
+          </ul>
+        </div>
+
+        <div
+          className={styles.cardContainer}
+          onMouseEnter={() =>
+            setHover((prevState) => {
+              return { ...prevState, certificates: true };
+            })
+          }
+          onMouseLeave={() =>
+            setHover((prevState) => {
+              return { ...prevState, certificates: false };
+            })
+          }
+        >
+          <div className={styles.cardTitle}>
+            <FontAwesomeIcon icon={faCertificate} /> <span>Certificates</span>
+          </div>
+          <ul className={styles.cardContentList}>
+            {isCertificatesLoading ? (
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "center",
+                }}
+              >
+                <CircularProgress />
+              </div>
+            ) : (
+              certificates.map((each) => (
+                <div
+                  style={{
+                    display: "flex",
+                    flexDirection: "row",
+                    justifyContent: "space-between",
+                  }}
+                >
+                  <li key={each.id}>
+                    <div className={styles.item2}>{each.certificates_name}</div>
+
+                    <div className={styles.item3}>
+                      Certified By - {each.certification_authority}
+                    </div>
+                    <div className={styles.item3}>
+                      Certification Date -{" "}
+                      {new Date(each.certification_date).toLocaleDateString()}
+                    </div>
+                  </li>
+                  {hover.certificates && (
+                    <a
+                      href={each.verification_url}
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      <FontAwesomeIcon
+                        icon={faExternalLink}
+                        className={styles.navLinkHover}
+                        onClick={() => each.verification_url}
+                      />
+                    </a>
+                  )}
+                </div>
+              ))
+            )}
           </ul>
         </div>
       </div>
