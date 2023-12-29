@@ -17,14 +17,26 @@ import { motion } from "framer-motion";
 
 import { useSelector } from "react-redux";
 import CircularProgress from "@mui/material/CircularProgress";
+import dayjs from "dayjs";
 
 const About = () => {
-  let { isCertificatesLoading, certificates } = useSelector((state) => ({
+  let {
+    isCertificatesLoading,
+    certificates,
+    isEducationLoading,
+    educations,
+    isWorkExperiencesLoading,
+    workExperiences,
+    isSkillsLoading,
+    skills,
+    isUserLoading,
+    about,
+  } = useSelector((state) => ({
     isCertificatesLoading: state.isCertificatesLoading,
     certificates: state.certificates,
 
     isEducationLoading: state.isEducationLoading,
-    educations: state.education,
+    educations: state.educations,
 
     isSkillsLoading: state.isSkillsLoading,
     skills: state.skills,
@@ -33,7 +45,7 @@ const About = () => {
     workExperiences: state.workExperiences,
 
     isUserLoading: state.isUserLoading,
-    user: state.user,
+    about: state.user?.about,
   }));
 
   const [hover, setHover] = useState({
@@ -43,52 +55,6 @@ const About = () => {
     skill: false,
     certificates: false,
   });
-
-  const workExperiences = [
-    {
-      id: 1,
-      designation: "Specialist Programmer",
-      companyName: "Infosys Limited",
-      date: "08/2021 - Present",
-    },
-    {
-      id: 2,
-      designation: "Flutter Developer Intern",
-      companyName: "Applore Technologies",
-      date: "04/2021 - 06/2021",
-    },
-    {
-      id: 3,
-      designation: "Python Developer Intern",
-      companyName: "Cppsecrets.com",
-      date: "02/2019 - 04/2019",
-    },
-  ];
-
-  const educations = [
-    {
-      id: 1,
-      collegeName: "Haldia Institute of Technology",
-      courseName: "B.Tech in IT",
-      date: "08/2017 - 07/2021",
-      grade: "CGPA - 8.8",
-    },
-  ];
-
-  const skills = {
-    Frontend: [
-      "React.js",
-      "Redux.js",
-      "Html",
-      "Css",
-      "Javascript",
-      "Rechart",
-      "MUI",
-    ],
-    Backend: ["Node.js", "Express.js", "Kafka", "Redis"],
-    DB: ["Postgres", "Sequelize"],
-    Misc: ["Git", "Github", "Microservices", "Flutter", "Dart"],
-  };
 
   return (
     <motion.div
@@ -101,6 +67,7 @@ const About = () => {
           <img src={codeLogo} alt="coder logo" />
         </div>
 
+        {/* About Card */}
         <div
           className={styles.cardContainer}
           onMouseEnter={() =>
@@ -119,28 +86,42 @@ const About = () => {
           </div>
 
           <div className={styles.cardContent}>
-            Hey, my name is Rohit Saw and I use
-            <span>
-              <a
-                className={`${
-                  hover.about ? styles.navLinkHover : styles.navLink
-                }`}
-                target="_blank"
-                rel="noreferrer"
-                href="http://google.com/search?q=user rsaw409"
+            {isUserLoading ? (
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "center",
+                }}
               >
-                {` rsaw409 `}
-              </a>
-            </span>
-            as my nickname across sites. I'm Committed to delivering efficient
-            and maintainable code that meets project objectives and exceeds
-            client expectations. Constantly seeking opportunities to leverage
-            data structures and algorithms to drive innovation and improve
-            application performance. Dedicated to applying best practices and
-            industry standards to create robust and scalable software solutions.
+                <CircularProgress />
+              </div>
+            ) : (
+              about.split(" ").map((part) =>
+                part.at(0) === "*" && part.at(-1) === "*" ? (
+                  <span>
+                    <a
+                      className={`${
+                        hover.about ? styles.navLinkHover : styles.navLink
+                      }`}
+                      target="_blank"
+                      rel="noreferrer"
+                      href={`http://google.com/search?q=user ${part.slice(
+                        1,
+                        -1
+                      )}`}
+                    >
+                      {part.slice(1, -1) + " "}
+                    </a>
+                  </span>
+                ) : (
+                  part + " "
+                )
+              )
+            )}
           </div>
         </div>
 
+        {/* Skills Card */}
         <div
           className={styles.cardContainer}
           onMouseEnter={() =>
@@ -159,25 +140,39 @@ const About = () => {
           </div>
 
           <ul className={styles.cardContentList}>
-            {Object.keys(skills).map((eachSkill) => (
-              <li>
-                <span style={{ display: "inline-block" }}>
-                  <span className={styles.item1}>{eachSkill}: </span>
-                  <span
-                    className={styles.item2}
-                    style={{
-                      wordWrap: "breakWord",
-                      textAlign: "right",
-                    }}
-                  >
-                    {skills[eachSkill].join(", ")}
+            {isSkillsLoading ? (
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "center",
+                }}
+              >
+                <CircularProgress />
+              </div>
+            ) : (
+              skills.map((eachSkill) => (
+                <li>
+                  <span style={{ display: "inline-block" }}>
+                    <span className={styles.item1}>
+                      {eachSkill.skill_category}:{" "}
+                    </span>
+                    <span
+                      className={styles.item2}
+                      style={{
+                        wordWrap: "breakWord",
+                        textAlign: "right",
+                      }}
+                    >
+                      {eachSkill.skills.join(", ")}
+                    </span>
                   </span>
-                </span>
-              </li>
-            ))}
+                </li>
+              ))
+            )}
           </ul>
         </div>
 
+        {/* Education card */}
         <div
           className={styles.cardContainer}
           onMouseEnter={() =>
@@ -195,35 +190,53 @@ const About = () => {
             <FontAwesomeIcon icon={faGraduationCap} /> <span>Education</span>
           </div>
           <ul className={styles.cardContentList}>
-            {educations.map((each) => (
+            {isEducationLoading ? (
               <div
                 style={{
                   display: "flex",
                   flexDirection: "row",
-                  justifyContent: "space-between",
+                  justifyContent: "center",
                 }}
               >
-                <li key={each.id}>
-                  <div className={styles.item1}>{each.courseName}</div>
-                  <div className={styles.item2}>{each.collegeName}</div>
-                  <div
-                    style={{ display: "flex", justifyContent: "space-between" }}
-                  >
-                    <div className={styles.item3}>{each.date}</div>
-                    <div className={styles.item3}>{each.grade}</div>
-                  </div>
-                </li>
-                {hover.education && (
-                  <FontAwesomeIcon
-                    icon={faExternalLink}
-                    className={styles.navLinkHover}
-                  />
-                )}
+                <CircularProgress />
               </div>
-            ))}
+            ) : (
+              educations.map((each) => (
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                  }}
+                >
+                  <li key={each.id}>
+                    <div className={styles.item1}>{each.degree_name}</div>
+                    <div className={styles.item2}>{each.institute_name}</div>
+                    <div
+                      style={{
+                        display: "flex",
+                        justifyContent: "space-between",
+                      }}
+                    >
+                      <div className={styles.item3}>
+                        {`${dayjs(each.start_date).format("MM/YYYY")} -
+                          ${dayjs(each.end_date).format("MM/YYYY")}`}
+                      </div>
+                      <div className={styles.item3}>{each.score}</div>
+                    </div>
+                  </li>
+                  {hover.education && (
+                    <FontAwesomeIcon
+                      icon={faExternalLink}
+                      className={styles.navLinkHover}
+                    />
+                  )}
+                </div>
+              ))
+            )}
           </ul>
         </div>
 
+        {/* Work Experience Card */}
         <div
           className={styles.cardContainer}
           onMouseEnter={() =>
@@ -241,30 +254,48 @@ const About = () => {
             <FontAwesomeIcon icon={faBriefcase} /> <span>Work</span>
           </div>
           <ul className={styles.cardContentList}>
-            {workExperiences.map((each) => (
+            {isWorkExperiencesLoading ? (
               <div
                 style={{
                   display: "flex",
-                  flexDirection: "row",
-                  justifyContent: "space-between",
+                  justifyContent: "center",
                 }}
               >
-                <li key={each.id}>
-                  <div className={styles.item1}>{each.companyName}</div>
-                  <div className={styles.item2}>{each.designation}</div>
-                  <div className={styles.item3}>{each.date}</div>
-                </li>
-                {hover.work && (
-                  <FontAwesomeIcon
-                    icon={faExternalLink}
-                    className={styles.navLinkHover}
-                  />
-                )}
+                <CircularProgress />
               </div>
-            ))}
+            ) : (
+              workExperiences.map((each) => (
+                <div
+                  style={{
+                    display: "flex",
+                    flexDirection: "row",
+                    justifyContent: "space-between",
+                  }}
+                >
+                  <li key={each.id}>
+                    <div className={styles.item1}>{each.company_name}</div>
+                    <div className={styles.item2}>{each.designation}</div>
+                    <div className={styles.item3}>{`${dayjs(
+                      each.start_date
+                    ).format("MM/YYYY")} - ${
+                      each.end_date
+                        ? dayjs(each.end_date).format("MM/YYYY")
+                        : "Present"
+                    }`}</div>
+                  </li>
+                  {hover.work && (
+                    <FontAwesomeIcon
+                      icon={faExternalLink}
+                      className={styles.navLinkHover}
+                    />
+                  )}
+                </div>
+              ))
+            )}
           </ul>
         </div>
 
+        {/* Certificates Card */}
         <div
           className={styles.cardContainer}
           onMouseEnter={() =>
@@ -335,3 +366,69 @@ const About = () => {
 };
 
 export default Wrapper(About);
+
+/* Hey, my name is Rohit Saw and I use */
+/* <span>
+              <a
+                className={`${
+                  hover.about ? styles.navLinkHover : styles.navLink
+                }`}
+                target="_blank"
+                rel="noreferrer"
+                href="http://google.com/search?q=user rsaw409"
+              >
+                {` rsaw409 `}
+              </a>
+            </span>
+            as my nickname across sites. I'm Committed to delivering efficient
+            and maintainable code that meets project objectives and exceeds
+            client expectations. Constantly seeking opportunities to leverage
+            data structures and algorithms to drive innovation and improve
+            application performance. Dedicated to applying best practices and
+            industry standards to create robust and scalable software solutions. */
+
+// const workExperiences = [
+//   {
+//     id: 1,
+//     designation: "Specialist Programmer",
+//     company_name: "Infosys Limited",
+//     date: "08/2021 - Present",
+//   },
+//   {
+//     id: 2,
+//     designation: "Flutter Developer Intern",
+//     company_name: "Applore Technologies",
+//     date: "04/2021 - 06/2021",
+//   },
+//   {
+//     id: 3,
+//     designation: "Python Developer Intern",
+//     company_name: "Cppsecrets.com",
+//     date: "02/2019 - 04/2019",
+//   },
+// ];
+
+// const educations = [
+//   {
+//     id: 1,
+//     collegeName: "Haldia Institute of Technology",
+//     courseName: "B.Tech in IT",
+//     date: "08/2017 - 07/2021",
+//     grade: "CGPA - 8.8",
+//   },
+// ];
+
+// const skills = {
+//   Frontend: [
+//     "React.js",
+//     "Redux.js",
+//     "Html",
+//     "Css",
+//     "Javascript",
+//     "Rechart",
+//     "MUI",
+//   ],
+//   Backend: ["Node.js", "Express.js", "Kafka", "Redis"],
+//   DB: ["Postgres", "Sequelize"],
+//   Misc: ["Git", "Github", "Microservices", "Flutter", "Dart"],
+// };

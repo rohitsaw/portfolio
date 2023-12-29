@@ -69,7 +69,7 @@ const getUser = () => async (dispatch) => {
 
   dispatch({
     type: ACTIONS.USER_LOADED,
-    payload: user,
+    payload: user[0],
   });
 };
 
