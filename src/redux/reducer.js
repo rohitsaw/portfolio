@@ -4,6 +4,18 @@ const initialState = {
 
   certificates: [],
   isCertificatesLoading: true,
+
+  skills: [],
+  isSkillsLoading: true,
+
+  educations: [],
+  isEducationLoading: true,
+
+  workExperiences: [],
+  isWorkExperiencesLoading: true,
+
+  user: null,
+  isUserLoading: true,
 };
 
 export default (state = initialState, action) => {

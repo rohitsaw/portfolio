@@ -22,6 +22,18 @@ const About = () => {
   let { isCertificatesLoading, certificates } = useSelector((state) => ({
     isCertificatesLoading: state.isCertificatesLoading,
     certificates: state.certificates,
+
+    isEducationLoading: state.isEducationLoading,
+    educations: state.education,
+
+    isSkillsLoading: state.isSkillsLoading,
+    skills: state.skills,
+
+    isWorkExperiencesLoading: state.isWorkExperiencesLoading,
+    workExperiences: state.workExperiences,
+
+    isUserLoading: state.isUserLoading,
+    user: state.user,
   }));
 
   const [hover, setHover] = useState({

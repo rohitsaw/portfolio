@@ -10,7 +10,14 @@ import { AnimatePresence } from "framer-motion";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 
-import { getAllCertificates, getAllProjects } from "../../redux/action.js";
+import {
+  getAllCertificates,
+  getAllProjects,
+  getAllSkills,
+  getAllEducations,
+  getUser,
+  getAllExperiences,
+} from "../../redux/action.js";
 
 const AnimateRoutes = () => {
   const dispatch = useDispatch();
@@ -18,6 +25,10 @@ const AnimateRoutes = () => {
   useEffect(() => {
     dispatch(getAllCertificates());
     dispatch(getAllProjects());
+    dispatch(getAllSkills());
+    dispatch(getAllEducations());
+    dispatch(getUser());
+    dispatch(getAllExperiences());
   }, []);
 
   const location = useLocation();
