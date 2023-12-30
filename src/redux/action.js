@@ -73,7 +73,7 @@ const getUser = () => async (dispatch) => {
   });
 };
 
-const getAllExperiences = () => async (dispatch, getState) => {
+const getAllExperiences = () => async (dispatch) => {
   dispatch({
     type: ACTIONS.LOADING_WORKEXPERIENCES,
   });
@@ -86,6 +86,13 @@ const getAllExperiences = () => async (dispatch, getState) => {
   });
 };
 
+const setAccessToken = (acccess_token) => async (dispatch) => {
+  dispatch({
+    type: ACTIONS.SET_ACCESS_TOKEN,
+    payload: acccess_token,
+  });
+};
+
 export {
   getAllProjects,
   getAllCertificates,
@@ -93,4 +100,5 @@ export {
   getAllEducations,
   getUser,
   getAllExperiences,
+  setAccessToken,
 };

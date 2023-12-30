@@ -18,6 +18,8 @@ const initialState = {
 
   user: null,
   isUserLoading: true,
+
+  acccess_token: null,
 };
 
 export default (state = initialState, action) => {
@@ -103,6 +105,13 @@ export default (state = initialState, action) => {
         ...state,
         user: action.payload,
         isUserLoading: false,
+      };
+    }
+
+    case ACTIONS.SET_ACCESS_TOKEN: {
+      return {
+        ...state,
+        acccess_token: action.payload,
       };
     }
 

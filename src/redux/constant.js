@@ -16,6 +16,8 @@ const ACTIONS = Object.freeze({
 
   LOADING_USER: "LOADING_USER",
   USER_LOADED: "USER_LOADED",
+
+  SET_ACCESS_TOKEN: "SET_ACCESS_TOKEN",
 });
 
 export { ACTIONS };
