@@ -13,18 +13,28 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useSelector } from "react-redux";
 
 const Home = () => {
-  const { email, linkedin_url, github_url } = useSelector((state) => ({
+  const {
+    email,
+    linkedin_url,
+    github_url,
+    blog_url,
+    twitter_url,
+    stackoverflow_url,
+  } = useSelector((state) => ({
     email: state.user?.user_email,
     linkedin_url: state.user?.linkedin_url,
     github_url: state.user?.github_url,
+    blog_url: state.user?.blog_url,
+    twitter_url: state.user?.twitter_url,
+    stackoverflow_url: state.user?.stackoverflow_url,
   }));
 
   const socialLinks = {
     github: github_url,
     linkedin: linkedin_url,
-    stackOverFlow: "https://stackoverflow.com/users/11141059/rohit-saw",
-    blog: "https://hashnode.com/@rsaw409",
-    twitter: "https://twitter.com/rsaw409",
+    stackOverFlow: stackoverflow_url,
+    blog: blog_url,
+    twitter: twitter_url,
     mail: `mailto:${email}`,
   };
 

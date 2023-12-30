@@ -1,0 +1,21 @@
+.profile {
+  position: fixed;
+  top: 3vh;
+  right: 9%;
+  transform: translate(-9%, 0);
+
+  margin-left: 8%;
+  margin-right: 8%;
+}
+
+@media only screen and (max-width: 600px) {
+  .profile {
+    position: fixed;
+    top: 1vh;
+
+    left: 50%;
+    transform: translate(-50%, 0);
+
+    padding-bottom: 30px;
+  }
+}

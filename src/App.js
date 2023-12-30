@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import Profile from "./component/profile";
 import GoogleButton from "react-google-button";
+import styles from "./app.module.css";
 
 function App() {
   const [profile, setProfile] = useState(null);
@@ -48,14 +49,7 @@ function App() {
 
   return (
     <div className="App">
-      <div
-        style={{
-          position: "fixed",
-          top: "10px",
-          right: "9%",
-          border: "0px",
-        }}
-      >
+      <div className={styles.profile}>
         {profile ? (
           <Profile
             picture={profile.picture}
