@@ -13,13 +13,13 @@
   max-width: 20%;
 }
 
-img {
+.img {
   width: 100%;
   height: auto;
   opacity: 0.8;
 }
 
-img:hover {
+.img:hover {
   opacity: 1;
   transition: background-color 0.3s ease-in-out;
   background: #fafafa;

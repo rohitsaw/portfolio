@@ -86,13 +86,6 @@ const getAllExperiences = () => async (dispatch) => {
   });
 };
 
-const setAccessToken = (acccess_token) => async (dispatch) => {
-  dispatch({
-    type: ACTIONS.SET_ACCESS_TOKEN,
-    payload: acccess_token,
-  });
-};
-
 export {
   getAllProjects,
   getAllCertificates,
@@ -100,5 +93,4 @@ export {
   getAllEducations,
   getUser,
   getAllExperiences,
-  setAccessToken,
 };

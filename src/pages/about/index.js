@@ -64,7 +64,7 @@ const About = () => {
     >
       <div className={styles.pageContainer}>
         <div className={styles.logoContainer}>
-          <img src={codeLogo} alt="coder logo" />
+          <img className={styles.img} src={codeLogo} alt="coder logo" />
         </div>
 
         {/* About Card */}
