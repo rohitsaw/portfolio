@@ -58,17 +58,24 @@ const About = () => {
 
   return (
     <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
+      initial={{ opacity: 0, scale: 0.5 }}
+      animate={{ opacity: 1, scale: 1 }}
+      transition={{ duration: 0.5 }}
     >
       <div className={styles.pageContainer}>
-        <div className={styles.logoContainer}>
+        <motion.div
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.9 }}
+
+          className={styles.logoContainer}
+        >
           <img className={styles.img} src={codeLogo} alt="coder logo" />
-        </div>
+        </motion.div>
 
         {/* About Card */}
-        <div
+        <motion.div
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.9 }}
           className={styles.cardContainer}
           onMouseEnter={() =>
             setHover((prevState) => {
@@ -119,10 +126,12 @@ const About = () => {
               )
             )}
           </div>
-        </div>
+        </motion.div>
 
         {/* Skills Card */}
-        <div
+        <motion.div
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.9 }}
           className={styles.cardContainer}
           onMouseEnter={() =>
             setHover((prevState) => {
@@ -170,10 +179,12 @@ const About = () => {
               ))
             )}
           </ul>
-        </div>
+        </motion.div>
 
         {/* Education card */}
-        <div
+        <motion.div
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.9 }}
           className={styles.cardContainer}
           onMouseEnter={() =>
             setHover((prevState) => {
@@ -234,10 +245,12 @@ const About = () => {
               ))
             )}
           </ul>
-        </div>
+        </motion.div>
 
         {/* Work Experience Card */}
-        <div
+        <motion.div
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.9 }}
           className={styles.cardContainer}
           onMouseEnter={() =>
             setHover((prevState) => {
@@ -293,10 +306,12 @@ const About = () => {
               ))
             )}
           </ul>
-        </div>
+        </motion.div>
 
         {/* Certificates Card */}
-        <div
+        <motion.div
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.9 }}
           className={styles.cardContainer}
           onMouseEnter={() =>
             setHover((prevState) => {
@@ -359,7 +374,7 @@ const About = () => {
               ))
             )}
           </ul>
-        </div>
+        </motion.div>
       </div>
     </motion.div>
   );
