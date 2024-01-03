@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, forwardRef } from "react";
 import Box from "@mui/material/Box";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
@@ -8,7 +8,18 @@ import Avatar from "@mui/material/Avatar";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 
-const Profile = ({ picture, name, email, logOutFn }) => {
+import LogoutIcon from "@mui/icons-material/Logout";
+import PersonIcon from "@mui/icons-material/Person";
+import { Divider } from "@mui/material";
+
+const Profile = ({
+  picture,
+  first_name,
+  last_name,
+  email,
+  logOutFn,
+  setOpenSnackBar,
+}) => {
   const [anchorElUser, setAnchorElUser] = useState(null);
 
   const handleOpenUserMenu = (event) => {
@@ -28,7 +39,10 @@ const Profile = ({ picture, name, email, logOutFn }) => {
     <Box>
       <Tooltip title="Open Profile">
         <IconButton onClick={handleOpenUserMenu}>
-          <Avatar alt="Profile Picture" src={picture} />
+          <Avatar
+            sx={{ bgcolor: "#14b8a6" }}
+            alt="Profile name initials"
+          >{`${first_name[0]}${last_name[0]}`}</Avatar>
         </IconButton>
       </Tooltip>
       <Menu
@@ -37,14 +51,40 @@ const Profile = ({ picture, name, email, logOutFn }) => {
         open={Boolean(anchorElUser)}
         onClose={handleCloseUserMenu}
       >
-        <MenuItem key={name}>
-          <Typography textAlign="center">{name}</Typography>
+        <MenuItem key={"profile"}>
+          <Avatar alt="Profile Picture" src={picture} />
+          <Box sx={{ marginLeft: "12px" }}>
+            <Typography variant="h6" sx={{ letterSpacing: 0 }}>
+              Hi {first_name}!
+            </Typography>
+            <Typography variant="subtitle2" sx={{ color: "#65656d" }}>
+              {email}
+            </Typography>
+          </Box>
         </MenuItem>
-        <MenuItem key={email}>
-          <Typography textAlign="center">{email}</Typography>
+        <Divider />
+        <MenuItem onClick={() => setOpenSnackBar(true)}>
+          <PersonIcon
+            sx={{
+              fontSize: "18px",
+              paddingLeft: "8px",
+              color: "#65656d",
+              opacity: 0.8,
+            }}
+          />
+          <Box sx={{ marginLeft: "18px", color: "#65656d" }}>Edit Profile</Box>
         </MenuItem>
+        <Divider />
         <MenuItem key={"Logout"} onClick={handleLogOut}>
-          <Typography textAlign="center">Logout</Typography>
+          <LogoutIcon
+            sx={{
+              fontSize: "18px",
+              paddingLeft: "8px",
+              color: "#65656d",
+              opacity: 0.8,
+            }}
+          />
+          <Box sx={{ marginLeft: "18px", color: "#65656d" }}>Log out</Box>
         </MenuItem>
       </Menu>
     </Box>
