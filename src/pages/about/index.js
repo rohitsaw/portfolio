@@ -66,7 +66,6 @@ const About = () => {
         <motion.div
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
-
           className={styles.logoContainer}
         >
           <img className={styles.img} src={codeLogo} alt="coder logo" />
