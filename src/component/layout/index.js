@@ -3,6 +3,7 @@ import { useLocation } from "react-router-dom";
 
 import { Outlet, NavLink } from "react-router-dom";
 import Footer from "../footer";
+
 import styles from "./index.module.css";
 
 const Layout = () => {

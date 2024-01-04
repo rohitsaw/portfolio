@@ -50,19 +50,23 @@
 }
 
 .contentBackground {
-  min-height: 100vh;
+  /* min-height: 100vh; */
   background-color: #f1f1f1;
 }
 
 .contentWrapper {
+  background-color: white;
+
+  max-width: 90%;
+
   margin-left: 8%;
   margin-right: 8%;
-  padding-left: 3%;
-  padding-right: 3%;
-  max-width: 90%;
-  background-color: white;
+
+  padding-left: 3vw;
+  padding-right: 3vw;
+
   padding-top: 150px;
-  padding-bottom: auto;
+  padding-bottom: 150px;
 }
 
 .footerWrapper {
@@ -82,9 +86,11 @@
   }
 
   .contentWrapper {
+    max-width: 100%;
+    
     margin-left: 0px;
     margin-right: 0px;
-    max-width: 100%;
+   
     padding-top: 120px;
   }
 
