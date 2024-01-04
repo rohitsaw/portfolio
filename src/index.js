@@ -1,11 +1,13 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import "./index.css";
-import App from "./App";
-import reportWebVitals from "./reportWebVitals";
-import { GoogleOAuthProvider } from "@react-oauth/google";
-import store from "../src/redux/store.js";
 import { Provider } from "react-redux";
+import { GoogleOAuthProvider } from "@react-oauth/google";
+
+import App from "./App";
+import store from "../src/redux/store.js";
+import reportWebVitals from "./reportWebVitals";
+
+import "./index.css";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(

@@ -1,8 +1,4 @@
 import React, { useState } from "react";
-import styles from "./index.module.css";
-import coderLogo from "../../icons/coder.png";
-import placeHolderCoderLogo from "../../icons/coder.jpg";
-
 import {
   faBriefcase,
   faUserCircle,
@@ -13,10 +9,14 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { motion } from "framer-motion";
-
 import { useSelector } from "react-redux";
 import CircularProgress from "@mui/material/CircularProgress";
 import dayjs from "dayjs";
+
+import coderLogo from "../../icons/coder.png";
+import placeHolderCoderLogo from "../../icons/coder.jpg";
+
+import styles from "./index.module.css";
 
 const About = () => {
   let {
@@ -70,7 +70,7 @@ const About = () => {
           <img
             className={styles.img}
             src={coderLogo}
-            PlaceholderSrc={placeHolderCoderLogo}
+            placeholderSrc={placeHolderCoderLogo}
             alt="coder logo"
           />
         </motion.div>
@@ -163,7 +163,7 @@ const About = () => {
               </div>
             ) : (
               skills.map((eachSkill) => (
-                <li>
+                <li key={eachSkill.skill_category}>
                   <span style={{ display: "inline-block" }}>
                     <span className={styles.item1}>
                       {eachSkill.skill_category}:{" "}
@@ -217,6 +217,7 @@ const About = () => {
             ) : (
               educations.map((each) => (
                 <div
+                  key={each.id}
                   style={{
                     display: "flex",
                     justifyContent: "space-between",
@@ -282,6 +283,7 @@ const About = () => {
             ) : (
               workExperiences.map((each) => (
                 <div
+                  key={each.id}
                   style={{
                     display: "flex",
                     flexDirection: "row",
@@ -343,6 +345,7 @@ const About = () => {
             ) : (
               certificates.map((each) => (
                 <div
+                  key={each.id}
                   style={{
                     display: "flex",
                     flexDirection: "row",

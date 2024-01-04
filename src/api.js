@@ -42,6 +42,18 @@ const getExperiences = async () => {
   return experiences;
 };
 
+const getProfileImage = async ({ access_token }) => {
+  const url = `https://www.googleapis.com/oauth2/v1/userinfo?access_token=${access_token}`;
+  const response = await fetch(url, {
+    headers: {
+      Authorization: `Bearer ${access_token}`,
+      Accept: "application/json",
+    },
+  });
+  const result = await response.json();
+  return result;
+};
+
 export {
   getProjects,
   getCertificates,
@@ -49,4 +61,5 @@ export {
   getEducations,
   getSkills,
   getExperiences,
+  getProfileImage,
 };

@@ -1,10 +1,12 @@
 import { faLinkedin, faGithub } from "@fortawesome/free-brands-svg-icons";
 import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
-import styles from "./index.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { NavLink } from "react-router-dom";
 import { motion } from "framer-motion";
 import { useSelector } from "react-redux";
+
+import styles from "./index.module.css";
+
 
 const Contact = () => {
   const { email, linkedin_url, github_url } = useSelector((state) => ({
@@ -52,7 +54,7 @@ const Contact = () => {
       <div className={styles.contactsListWrapper}>
         <div className={styles.contactList}>
           {contacts.map((contact) => (
-            <div className={styles.linkWrapper}>
+            <div className={styles.linkWrapper} key={contact.id}>
               <NavLink
                 to={contact.url}
                 target="_blank"

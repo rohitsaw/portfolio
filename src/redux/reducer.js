@@ -20,7 +20,7 @@ const initialState = {
   isUserLoading: true,
 };
 
-export default (state = initialState, action) => {
+const reducer = (state = initialState, action) => {
   switch (action.type) {
     case ACTIONS.LOADING_PROJECTS: {
       return {
@@ -110,3 +110,5 @@ export default (state = initialState, action) => {
       return state;
   }
 };
+
+export default reducer;

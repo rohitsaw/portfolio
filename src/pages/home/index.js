@@ -1,6 +1,4 @@
-import styles from "./index.module.css";
 import { motion } from "framer-motion";
-
 import {
   faStackOverflow,
   faTwitter,
@@ -10,6 +8,9 @@ import {
 import { faEnvelope, faBlog } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useSelector } from "react-redux";
+
+import styles from "./index.module.css";
+
 
 const Home = () => {
   const {

@@ -19,9 +19,9 @@ const Project = ({ project }) => {
       <div className={styles.projectDescription}>{project.description}</div>
       <div className={styles.projectLinks}>
         {project.links.map((link, index) =>
-          index == 1 ? (
+          index === 1 ? (
             <>
-              <div style={{ flexGrow: 3 }}></div>
+              <div key={link.url} style={{ flexGrow: 3 }}></div>
               <NavLink
                 className={`${hover ? styles.navLinkHover : styles.navLink}`}
                 to={link.url}
@@ -32,6 +32,7 @@ const Project = ({ project }) => {
             </>
           ) : (
             <NavLink
+              key={link.url}
               className={`${hover ? styles.navLinkHover : styles.navLink}`}
               to={link.url}
               target="_blank"
