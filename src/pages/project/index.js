@@ -14,6 +14,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { motion } from "framer-motion";
 import { useSelector } from "react-redux";
 import CircularProgress from "@mui/material/CircularProgress";
+import ArrowOutwardIcon from "@mui/icons-material/ArrowOutward";
+import ShopIcon from "@mui/icons-material/Shop";
+import GitHubIcon from "@mui/icons-material/GitHub";
 
 const Projects = () => {
   let { isProjectsLoading, projects } = useSelector((state) => ({
@@ -62,19 +65,19 @@ const transformProjects = (projects) => {
     const links = [];
     if (each.github_url) {
       links.push({
-        getIcon: () => <FontAwesomeIcon icon={faGithub} size="xl" />,
+        getIcon: () => <GitHubIcon />,
         url: each.github_url,
       });
     }
     if (each.play_store_url) {
       links.push({
-        getIcon: () => <FontAwesomeIcon icon={faExternalLink} size="xl" />,
+        getIcon: () => <ShopIcon />,
         url: each.play_store_url,
       });
     }
     if (each.web_url) {
       links.push({
-        getIcon: () => <FontAwesomeIcon icon={faLink} size="xl" />,
+        getIcon: () => <ArrowOutwardIcon />,
         url: each.web_url,
       });
     }

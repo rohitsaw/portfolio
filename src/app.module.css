@@ -12,10 +12,9 @@
   .profile {
     position: fixed;
     top: 1vh;
+    bottom: 2vh;
+    width: max-content;
 
-    left: 50%;
-    transform: translate(-50%, 0);
-
-    padding-bottom: 30px;
+    left: 6%;
   }
 }
