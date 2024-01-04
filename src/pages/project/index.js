@@ -1,4 +1,3 @@
-import Wrapper from "../../component/wrapper/index.js";
 import Project from "../../component/project/index.js";
 import styles from "./index.module.css";
 import {
@@ -124,4 +123,4 @@ const transformProjects = (projects) => {
   });
 };
 
-export default Wrapper(Projects);
+export default Projects;

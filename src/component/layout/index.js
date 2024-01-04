@@ -2,6 +2,7 @@ import React from "react";
 import { useLocation } from "react-router-dom";
 
 import { Outlet, NavLink } from "react-router-dom";
+import Footer from "../footer";
 import styles from "./index.module.css";
 
 const Layout = () => {
@@ -15,7 +16,7 @@ const Layout = () => {
   ];
 
   return (
-    <>
+    <div className={styles.contentBackground}>
       <div className={styles.navContainer}>
         <nav className={styles.navbar}>
           <div className={styles.navBackGround}>
@@ -38,8 +39,13 @@ const Layout = () => {
           </div>
         </nav>
       </div>
-      <Outlet />
-    </>
+      <div className={styles.contentWrapper}>
+        <Outlet />
+      </div>
+      <div className={styles.footerWrapper}>
+        <Footer />
+      </div>
+    </div>
   );
 };
 

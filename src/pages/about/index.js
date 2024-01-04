@@ -1,8 +1,7 @@
-import Wrapper from "../../component/wrapper/index.js";
 import React, { useState } from "react";
-
 import styles from "./index.module.css";
-import codeLogo from "../../icons/coder.png";
+import coderLogo from "../../icons/coder.png";
+import placeHolderCoderLogo from "../../icons/coder.jpg";
 
 import {
   faBriefcase,
@@ -68,7 +67,12 @@ const About = () => {
           whileTap={{ scale: 0.9 }}
           className={styles.logoContainer}
         >
-          <img className={styles.img} src={codeLogo} alt="coder logo" />
+          <img
+            className={styles.img}
+            src={coderLogo}
+            PlaceholderSrc={placeHolderCoderLogo}
+            alt="coder logo"
+          />
         </motion.div>
 
         {/* About Card */}
@@ -379,4 +383,4 @@ const About = () => {
   );
 };
 
-export default Wrapper(About);
+export default About;

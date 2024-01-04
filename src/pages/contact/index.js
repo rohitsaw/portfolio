@@ -1,4 +1,3 @@
-import Wrapper from "../../component/wrapper/index.js";
 import { faLinkedin, faGithub } from "@fortawesome/free-brands-svg-icons";
 import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import styles from "./index.module.css";
@@ -71,4 +70,4 @@ const Contact = () => {
   );
 };
 
-export default Wrapper(Contact);
+export default Contact;

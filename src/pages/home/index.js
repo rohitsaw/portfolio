@@ -1,4 +1,3 @@
-import Wrapper from "../../component/wrapper/index.js";
 import styles from "./index.module.css";
 import { motion } from "framer-motion";
 
@@ -107,4 +106,4 @@ const Home = () => {
   );
 };
 
-export default Wrapper(Home);
+export default Home;
