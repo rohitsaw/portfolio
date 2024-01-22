@@ -27,18 +27,16 @@ const Layout = () => {
                 const isActive = eachRoute.path === location.pathname;
                 return isActive ? (
                   <li key={index} className={styles.navItem}>
-                    <AnimatePresence mode="wait">
-                      <motion.div layout layoutId="selected">
-                        <Link
-                          key={eachRoute.path}
-                          to={eachRoute.path}
-                          data-active={isActive}
-                          className={styles.navLinkActive}
-                        >
-                          <span>{eachRoute.routeName}</span>
-                        </Link>
-                      </motion.div>
-                    </AnimatePresence>
+                    <motion.div layoutId="selected">
+                      <Link
+                        key={eachRoute.path}
+                        to={eachRoute.path}
+                        data-active={isActive}
+                        className={styles.navLinkActive}
+                      >
+                        <span>{eachRoute.routeName}</span>
+                      </Link>
+                    </motion.div>
                   </li>
                 ) : (
                   <li key={index} className={styles.navItem}>
