@@ -69,11 +69,10 @@
 
 .cardContent {
   margin-top: 16px;
-  font-size: 22px;
-  line-height: 28px;
-  color: #65656d;
+  font-size: 20px;
+  line-height: 22px;
 
-  text-align: justify;
+  color: #65656d;
 }
 
 .navLink {
@@ -103,18 +102,16 @@
   color: #27272a;
 }
 
-.item2 {
+.item10 {
   font-size: 16px;
-  line-height: 20px;
-  font-weight: 600;
-  color: #65656d;
+  line-height: 18px;
 }
 
 .item3 {
   font-size: 14px;
   line-height: 18px;
   font-weight: 500;
-  color: #acacb4;
+  color: #65656d;
 }
 
 @media only screen and (max-width: 600px) {
@@ -133,18 +130,13 @@
   }
 
   .cardContent {
-    font-size: 20px;
-    line-height: 24px;
+    font-size: 18px;
+    line-height: 20px;
   }
 
   .item1 {
     font-size: 16px;
     line-height: 20px;
-  }
-
-  .item2 {
-    font-size: 14px;
-    line-height: 18px;
   }
 
   .item3 {

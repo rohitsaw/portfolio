@@ -10,7 +10,9 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { motion } from "framer-motion";
 import { useSelector } from "react-redux";
+import { NavLink } from "react-router-dom";
 import CircularProgress from "@mui/material/CircularProgress";
+import ArrowOutwardIcon from "@mui/icons-material/ArrowOutward";
 import dayjs from "dayjs";
 
 import coderLogo from "../../icons/coder.png";
@@ -165,11 +167,11 @@ const About = () => {
               skills.map((eachSkill) => (
                 <li key={eachSkill.skill_category}>
                   <span style={{ display: "inline-block" }}>
-                    <span className={styles.item1}>
+                    <span className={styles.item10}>
                       {eachSkill.skill_category}:{" "}
                     </span>
                     <span
-                      className={styles.item2}
+                      className={styles.item3}
                       style={{
                         wordWrap: "breakWord",
                         textAlign: "right",
@@ -224,8 +226,8 @@ const About = () => {
                   }}
                 >
                   <li key={each.id}>
-                    <div className={styles.item1}>{each.degree_name}</div>
-                    <div className={styles.item2}>{each.institute_name}</div>
+                    <div className={styles.item10}>{each.degree_name}</div>
+                    <div className={styles.item3}>{each.institute_name}</div>
                     <div
                       style={{
                         display: "flex",
@@ -239,7 +241,7 @@ const About = () => {
                       <div className={styles.item3}>{each.score}</div>
                     </div>
                   </li>
-                  {hover.education && (
+                  {false && (
                     <FontAwesomeIcon
                       icon={faExternalLink}
                       className={styles.navLinkHover}
@@ -291,8 +293,8 @@ const About = () => {
                   }}
                 >
                   <li key={each.id}>
-                    <div className={styles.item1}>{each.company_name}</div>
-                    <div className={styles.item2}>{each.designation}</div>
+                    <div className={styles.item10}>{each.company_name}</div>
+                    <div className={styles.item3}>{each.designation}</div>
                     <div className={styles.item3}>{`${dayjs(
                       each.start_date
                     ).format("MM/YYYY")} - ${
@@ -301,7 +303,7 @@ const About = () => {
                         : "Present"
                     }`}</div>
                   </li>
-                  {hover.work && (
+                  {false && (
                     <FontAwesomeIcon
                       icon={faExternalLink}
                       className={styles.navLinkHover}
@@ -353,7 +355,7 @@ const About = () => {
                   }}
                 >
                   <li key={each.id}>
-                    <div className={styles.item2}>{each.certificates_name}</div>
+                    <div className={styles.item10}>{each.certificates_name}</div>
 
                     <div className={styles.item3}>
                       Certified By - {each.certification_authority}
@@ -363,19 +365,16 @@ const About = () => {
                       {new Date(each.certification_date).toLocaleDateString()}
                     </div>
                   </li>
-                  {hover.certificates && (
-                    <a
-                      href={each.verification_url}
+                  {
+                    <NavLink
+                      to={each.verification_url}
                       target="_blank"
                       rel="noreferrer"
+                      className={styles.navLinkHover}
                     >
-                      <FontAwesomeIcon
-                        icon={faExternalLink}
-                        className={styles.navLinkHover}
-                        onClick={() => each.verification_url}
-                      />
-                    </a>
-                  )}
+                      <ArrowOutwardIcon onClick={() => each.verification_url} />
+                    </NavLink>
+                  }
                 </div>
               ))
             )}
