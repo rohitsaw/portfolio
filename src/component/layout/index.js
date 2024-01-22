@@ -1,8 +1,9 @@
 import React from "react";
 import { useLocation } from "react-router-dom";
 
-import { Outlet, NavLink } from "react-router-dom";
+import { Outlet, NavLink, Link } from "react-router-dom";
 import Footer from "../footer";
+import { motion, AnimatePresence } from "framer-motion";
 
 import styles from "./index.module.css";
 
@@ -22,20 +23,36 @@ const Layout = () => {
         <nav className={styles.navbar}>
           <div className={styles.navBackGround}>
             <ul className={styles.navList}>
-              {routes.map((eachRoute, index) => (
-                <li key={index} className={styles.navItem}>
-                  <NavLink
-                    to={eachRoute.path}
-                    className={
-                      eachRoute.path === location.pathname
-                        ? styles.navLinkActive
-                        : styles.navLink
-                    }
-                  >
-                    {eachRoute.routeName}
-                  </NavLink>
-                </li>
-              ))}
+              {routes.map((eachRoute, index) => {
+                const isActive = eachRoute.path === location.pathname;
+                return isActive ? (
+                  <li key={index} className={styles.navItem}>
+                    <AnimatePresence mode="wait">
+                      <motion.div layout layoutId="selected">
+                        <Link
+                          key={eachRoute.path}
+                          to={eachRoute.path}
+                          data-active={isActive}
+                          className={styles.navLinkActive}
+                        >
+                          <span>{eachRoute.routeName}</span>
+                        </Link>
+                      </motion.div>
+                    </AnimatePresence>
+                  </li>
+                ) : (
+                  <li key={index} className={styles.navItem}>
+                    <Link
+                      key={eachRoute.path}
+                      to={eachRoute.path}
+                      data-active={isActive}
+                      className={styles.navLink}
+                    >
+                      <span>{eachRoute.routeName}</span>
+                    </Link>
+                  </li>
+                );
+              })}
             </ul>
           </div>
         </nav>
