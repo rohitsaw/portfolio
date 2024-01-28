@@ -177,7 +177,7 @@ const About = () => {
                         textAlign: "right",
                       }}
                     >
-                      {eachSkill.skills.join(", ")}
+                      {eachSkill.skills.map((e) => e.skill_name).join(", ")}
                     </span>
                   </span>
                 </li>
@@ -355,7 +355,9 @@ const About = () => {
                   }}
                 >
                   <li key={each.id}>
-                    <div className={styles.item10}>{each.certificates_name}</div>
+                    <div className={styles.item10}>
+                      {each.certificates_name}
+                    </div>
 
                     <div className={styles.item3}>
                       Certified By - {each.certification_authority}
