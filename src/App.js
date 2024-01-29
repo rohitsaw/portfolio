@@ -49,45 +49,45 @@ function App() {
   };
 
   return (
-    <div className="App">
-      <div className={styles.profile}>
-        {profile ? (
-          <Profile
-            picture={profile.picture}
-            first_name={profile.given_name}
-            last_name={profile.family_name}
-            email={profile.email}
-            logOutFn={handleLogOut}
-            setOpenSnackBar={setOpenSnackBar}
-          />
-        ) : (
-          <Button
-            variant="outlined"
-            startIcon={<GoogleIcon sx={{ fontSize: "32px" }} />}
-            onClick={() => login()}
-            sx={{ color: "#14b8a6" }}
-          >
-            Sign In
-          </Button>
-        )}
-      </div>
-      <BrowserRouter>
+    <BrowserRouter>
+      <div className="App">
+        <div className={styles.profile}>
+          {profile ? (
+            <Profile
+              picture={profile.picture}
+              first_name={profile.given_name}
+              last_name={profile.family_name}
+              email={profile.email}
+              logOutFn={handleLogOut}
+              setOpenSnackBar={setOpenSnackBar}
+            />
+          ) : (
+            <Button
+              variant="outlined"
+              startIcon={<GoogleIcon sx={{ fontSize: "32px" }} />}
+              onClick={() => login()}
+              sx={{ color: "#14b8a6" }}
+            >
+              Sign In
+            </Button>
+          )}
+        </div>
         <AnimateRoutes />
-      </BrowserRouter>
-      <Snackbar
-        open={openSnackBar}
-        autoHideDuration={6000}
-        onClose={() => setOpenSnackBar(false)}
-      >
-        <Alert
+        <Snackbar
+          open={openSnackBar}
+          autoHideDuration={6000}
           onClose={() => setOpenSnackBar(false)}
-          severity="error"
-          sx={{ width: "100%" }}
         >
-          You do not have permission to edit!
-        </Alert>
-      </Snackbar>
-    </div>
+          <Alert
+            onClose={() => setOpenSnackBar(false)}
+            severity="error"
+            sx={{ width: "100%" }}
+          >
+            You do not have permission to edit!
+          </Alert>
+        </Snackbar>
+      </div>
+    </BrowserRouter>
   );
 }
 

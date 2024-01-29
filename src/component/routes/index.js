@@ -5,6 +5,7 @@ import Contact from "../../pages/contact";
 import About from "../../pages/about/index";
 import Home from "../../pages/home/index";
 import Projects from "../../pages/project/index";
+import EditDetails from "../../pages/edit-details/index";
 
 import { AnimatePresence } from "framer-motion";
 import { useEffect } from "react";
@@ -42,6 +43,7 @@ const AnimateRoutes = () => {
           <Route path="projects" element={<Projects />} />
           <Route path="contacts" element={<Contact />} />
         </Route>
+        <Route path="/edit-details" element={<EditDetails />} />
         <Route path="*" element={<Navigate replace to="/" />} />
       </Routes>
     </AnimatePresence>

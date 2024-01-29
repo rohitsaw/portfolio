@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Box from "@mui/material/Box";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
@@ -22,6 +23,8 @@ const Profile = ({
 }) => {
   const [anchorElUser, setAnchorElUser] = useState(null);
 
+  const navigate = useNavigate();
+
   const handleOpenUserMenu = (event) => {
     setAnchorElUser(event.currentTarget);
   };
@@ -33,6 +36,16 @@ const Profile = ({
   const handleLogOut = () => {
     setAnchorElUser(null);
     logOutFn();
+  };
+
+  const goToEditPage = () => {
+    console.log("email", email);
+    if (email === "rsaw409@gmail.com") {
+      navigate("/edit-details");
+      handleCloseUserMenu();
+    } else {
+      setOpenSnackBar(true);
+    }
   };
 
   return (
@@ -63,7 +76,7 @@ const Profile = ({
           </Box>
         </MenuItem>
         <Divider />
-        <MenuItem onClick={() => setOpenSnackBar(true)}>
+        <MenuItem onClick={goToEditPage}>
           <PersonIcon
             sx={{
               fontSize: "18px",
