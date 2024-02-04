@@ -45,7 +45,9 @@ const addSkills = async (skill) => {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      Authorization: `Bearer ${localStorage.getItem("user")?.access_token}`,
+      Authorization: `Bearer ${
+        JSON.parse(localStorage.getItem("user") || "{}")?.access_token
+      }`,
     },
     body: JSON.stringify(skill),
   });
