@@ -11,15 +11,21 @@ import { getProfileImage } from "./api.js";
 import Profile from "./component/profile";
 
 import styles from "./app.module.css";
+import { useDispatch, useSelector } from "react-redux";
+import { setOpenSnackBar } from "../src/redux/action.js";
 
 const Alert = forwardRef(function Alert(props, ref) {
   return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
 });
 
 function App() {
+  const dispatch = useDispatch();
   const [profile, setProfile] = useState(null);
 
-  const [openSnackBar, setOpenSnackBar] = useState(false);
+  const { openSnackBar, snackBarMessage } = useSelector((state) => ({
+    openSnackBar: state.openSnackBar,
+    snackBarMessage: state.snackBarMessage,
+  }));
 
   useEffect(() => {
     // const user = localStorage.getItem("user");
@@ -48,6 +54,10 @@ function App() {
     localStorage.removeItem("profile");
   };
 
+  const handleSnackBar = (value, message) => {
+    dispatch(setOpenSnackBar(value, message));
+  };
+
   return (
     <BrowserRouter>
       <div className={styles.profile}>
@@ -58,7 +68,7 @@ function App() {
             last_name={profile.family_name}
             email={profile.email}
             logOutFn={handleLogOut}
-            setOpenSnackBar={setOpenSnackBar}
+            setOpenSnackBar={handleSnackBar}
           />
         ) : (
           <Button
@@ -71,18 +81,18 @@ function App() {
           </Button>
         )}
       </div>
-      <AnimateRoutes setOpenSnackBar={setOpenSnackBar} />
+      <AnimateRoutes setOpenSnackBar={handleSnackBar} />
       <Snackbar
         open={openSnackBar}
-        autoHideDuration={6000}
-        onClose={() => setOpenSnackBar(false)}
+        autoHideDuration={1000}
+        onClose={() => handleSnackBar(false, "")}
       >
         <Alert
-          onClose={() => setOpenSnackBar(false)}
+          onClose={() => handleSnackBar(false, "")}
           severity="error"
           sx={{ width: "100%" }}
         >
-          You do not have permission to edit!
+          {snackBarMessage}
         </Alert>
       </Snackbar>
     </BrowserRouter>

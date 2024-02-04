@@ -44,7 +44,7 @@ const Profile = ({
       navigate("/edit-details");
       handleCloseUserMenu();
     } else {
-      setOpenSnackBar(true);
+      setOpenSnackBar(true, "You do not have permission to edit!");
     }
   };
 

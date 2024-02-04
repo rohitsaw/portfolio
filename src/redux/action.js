@@ -102,7 +102,17 @@ const addDummySkill = (mui_id) => async (dispatch) => {
 };
 
 const addSkill = (new_row, old_row) => async (dispatch) => {
-  await addSkillInServer(new_row);
+  try {
+    await addSkillInServer(new_row);
+  } catch (error) {
+    dispatch({
+      type: ACTIONS.SHOW_SNACKBAR,
+      payload: {
+        value: true,
+        message: error?.message || "Something went wrong while saving skill",
+      },
+    });
+  }
   const skills = await getSkills();
   dispatch({
     type: ACTIONS.SKILLS_LOADED,
@@ -111,11 +121,32 @@ const addSkill = (new_row, old_row) => async (dispatch) => {
 };
 
 const deleteSkill = (row) => async (dispatch) => {
-  await deleteSkillInServer(row);
+  try {
+    await deleteSkillInServer(row);
+  } catch (error) {
+    dispatch({
+      type: ACTIONS.SHOW_SNACKBAR,
+      payload: {
+        value: true,
+        message:
+          error?.message || "Something went wrong while deleting this skill.",
+      },
+    });
+  }
   const skills = await getSkills();
   dispatch({
     type: ACTIONS.SKILLS_LOADED,
     payload: skills,
+  });
+};
+
+const setOpenSnackBar = (value, message) => async (dispatch) => {
+  dispatch({
+    type: ACTIONS.SHOW_SNACKBAR,
+    payload: {
+      value: value,
+      message: message,
+    },
   });
 };
 
@@ -128,5 +159,6 @@ export {
   getAllExperiences,
   addDummySkill,
   addSkill,
-  deleteSkill
+  deleteSkill,
+  setOpenSnackBar,
 };

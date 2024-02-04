@@ -51,7 +51,11 @@ const addSkills = async (skill) => {
     },
     body: JSON.stringify(skill),
   });
-  return response.json();
+  if (response.ok) {
+    return response.json();
+  } else {
+    return Promise.reject(response.json());
+  }
 };
 
 const deleteSkill = async (skill) => {
@@ -65,7 +69,11 @@ const deleteSkill = async (skill) => {
     },
     body: JSON.stringify(skill),
   });
-  return response.json();
+  if (response.ok) {
+    return response.json();
+  } else {
+    return Promise.reject(response.json());
+  }
 };
 
 const getExperiences = async () => {

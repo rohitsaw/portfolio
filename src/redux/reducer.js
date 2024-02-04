@@ -18,6 +18,9 @@ const initialState = {
 
   user: null,
   isUserLoading: true,
+
+  openSnackBar: false,
+  snackBarMessage: "",
 };
 
 const reducer = (state = initialState, action) => {
@@ -110,6 +113,14 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         skills: [...state.skills, action.payload],
+      };
+    }
+
+    case ACTIONS.SHOW_SNACKBAR: {
+      return {
+        ...state,
+        openSnackBar: action.payload.value,
+        snackBarMessage: action.payload.message,
       };
     }
 

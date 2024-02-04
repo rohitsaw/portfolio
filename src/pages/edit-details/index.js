@@ -5,9 +5,13 @@ import CircularProgressWithLabel from "../../component/circularprogessbarwithlab
 import FullFeaturedCrudGrid from "../../component/datatable.js";
 import { randomId } from "@mui/x-data-grid-generator";
 
-import { addDummySkill, addSkill, deleteSkill } from "../../redux/action.js";
+import {
+  addDummySkill,
+  addSkill,
+  deleteSkill
+} from "../../redux/action.js";
 
-const EditSkillDetails = ({ setOpenSnackBar }) => {
+const EditSkillDetails = () => {
   const dispatch = useDispatch();
   const { skills } = useSelector((state) => ({ skills: state.skills }));
 
@@ -21,6 +25,11 @@ const EditSkillDetails = ({ setOpenSnackBar }) => {
 
   const deleteRow = (row) => {
     dispatch(deleteSkill(row));
+  };
+
+  const handleError = (error) => {
+    console.log("error", error);
+    // dispatch(setOpenSnackBar(true, error?.message || "Something Went Wrong!"));
   };
 
   const skill_columns = [
@@ -63,9 +72,7 @@ const EditSkillDetails = ({ setOpenSnackBar }) => {
           setDummyRow={setDummyRow}
           columns={skill_columns}
           saveRowInServer={setRow}
-          onProcessRowUpdateError={(error) => {
-            console.log("error", error);
-          }}
+          onProcessRowUpdateError={handleError}
           deleteRowFromServer={deleteRow}
         />
       </div>

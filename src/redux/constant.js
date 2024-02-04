@@ -20,6 +20,8 @@ const ACTIONS = Object.freeze({
   USER_LOADED: "USER_LOADED",
 
   SET_ACCESS_TOKEN: "SET_ACCESS_TOKEN",
+
+  SHOW_SNACKBAR: "SHOW_SNACKBAR",
 });
 
 export { ACTIONS };
