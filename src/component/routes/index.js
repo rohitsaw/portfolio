@@ -20,7 +20,7 @@ import {
   getAllExperiences,
 } from "../../redux/action.js";
 
-const AnimateRoutes = () => {
+const AnimateRoutes = ({ setOpenSnackBar }) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -43,7 +43,10 @@ const AnimateRoutes = () => {
           <Route path="projects" element={<Projects />} />
           <Route path="contacts" element={<Contact />} />
         </Route>
-        <Route path="/edit-details" element={<EditDetails />} />
+        <Route
+          path="/edit-details"
+          element={<EditDetails setOpenSnackBar={setOpenSnackBar} />}
+        />
         <Route path="*" element={<Navigate replace to="/" />} />
       </Routes>
     </AnimatePresence>

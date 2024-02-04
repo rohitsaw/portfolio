@@ -1,4 +1,7 @@
-const base_url = "https://rsaw409-portfolio-backend.onrender.com";
+const base_url =
+  process.env.NODE_ENV === "production"
+    ? "https://rsaw409-portfolio-backend.onrender.com"
+    : "http://localhost:3000";
 
 const getProjects = async () => {
   const url = `${base_url}/projects`;
@@ -35,6 +38,35 @@ const getSkills = async () => {
   return skills;
 };
 
+const addSkills = async (skill) => {
+  const url = `${base_url}/skills`;
+
+  let response = await fetch(url, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${localStorage.getItem("user")?.access_token}`,
+    },
+    body: JSON.stringify(skill),
+  });
+  response = await response.json();
+  return { ...skill, id: response.id };
+};
+
+const deleteSkill = async (skill) => {
+  const url = `${base_url}/skills`;
+
+  let response = await fetch(url, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${localStorage.getItem("user")?.access_token}`,
+    },
+    body: JSON.stringify(skill),
+  });
+  return response.json();
+};
+
 const getExperiences = async () => {
   const url = `${base_url}/experiences`;
   const response = await fetch(url);
@@ -62,4 +94,6 @@ export {
   getSkills,
   getExperiences,
   getProfileImage,
+  addSkills,
+  deleteSkill,
 };
