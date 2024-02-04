@@ -54,7 +54,7 @@ const addSkills = async (skill) => {
   if (response.ok) {
     return response.json();
   } else {
-    return Promise.reject(response.json());
+    return Promise.reject(await response.json());
   }
 };
 
@@ -72,7 +72,7 @@ const deleteSkill = async (skill) => {
   if (response.ok) {
     return response.json();
   } else {
-    return Promise.reject(response.json());
+    return Promise.reject(await response.json());
   }
 };
 

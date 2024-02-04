@@ -129,7 +129,7 @@ const deleteSkill = (row) => async (dispatch) => {
       payload: {
         value: true,
         message:
-          error?.message || "Something went wrong while deleting this skill.",
+          error?.message || "Something went wrong while deleting skill.",
       },
     });
   }
