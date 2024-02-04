@@ -51,8 +51,7 @@ const addSkills = async (skill) => {
     },
     body: JSON.stringify(skill),
   });
-  response = await response.json();
-  return { ...skill, id: response.id };
+  return response.json();
 };
 
 const deleteSkill = async (skill) => {

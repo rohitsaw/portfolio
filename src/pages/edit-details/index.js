@@ -1,14 +1,27 @@
 import React from "react";
 import styles from "./index.module.css";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import CircularProgressWithLabel from "../../component/circularprogessbarwithlabel/index";
 import FullFeaturedCrudGrid from "../../component/datatable.js";
 import { randomId } from "@mui/x-data-grid-generator";
 
-import { addSkills, deleteSkill } from "../../api.js";
+import { addDummySkill, addSkill, deleteSkill } from "../../redux/action.js";
 
 const EditSkillDetails = ({ setOpenSnackBar }) => {
+  const dispatch = useDispatch();
   const { skills } = useSelector((state) => ({ skills: state.skills }));
+
+  const setRow = (new_row, original_row) => {
+    dispatch(addSkill(new_row));
+  };
+
+  const setDummyRow = (id) => {
+    dispatch(addDummySkill(id));
+  };
+
+  const deleteRow = (row) => {
+    dispatch(deleteSkill(row));
+  };
 
   const skill_columns = [
     { field: "mui_id", headerName: "ID", width: 70, align: "left" },
@@ -43,39 +56,21 @@ const EditSkillDetails = ({ setOpenSnackBar }) => {
     <div className={styles.container}>
       <div className={styles.skillContainer}>
         <FullFeaturedCrudGrid
-          initialRows={transformSkills(skills)}
-          initialColumns={skill_columns}
-          saveRowInServer={async (updatedRow, originalRow) => {
-            return addSkills(updatedRow);
-          }}
+          rows={skills.map((each) => {
+            if (each.hasOwnProperty("mui_id")) return each;
+            else return { ...each, mui_id: randomId() };
+          })}
+          setDummyRow={setDummyRow}
+          columns={skill_columns}
+          saveRowInServer={setRow}
           onProcessRowUpdateError={(error) => {
             console.log("error", error);
-            setOpenSnackBar(true);
           }}
-          deleteRowFromServer={(skill) => {
-            return deleteSkill(skill);
-          }}
+          deleteRowFromServer={deleteRow}
         />
       </div>
     </div>
   );
 };
-
-function transformSkills(skills) {
-  const tmp = [
-    ...skills.map((each) => {
-      return each.skills.map((skill) => {
-        const mui_id = randomId();
-        return {
-          ...skill,
-          mui_id: mui_id,
-          skill_category: each.skill_category,
-        };
-      });
-    }),
-  ];
-
-  return tmp.flat();
-}
 
 export default EditSkillDetails;

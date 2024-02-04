@@ -106,6 +106,13 @@ const reducer = (state = initialState, action) => {
       };
     }
 
+    case ACTIONS.ADD_DUMMY_SKILL: {
+      return {
+        ...state,
+        skills: [...state.skills, action.payload],
+      };
+    }
+
     default:
       return state;
   }

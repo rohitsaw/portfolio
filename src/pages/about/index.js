@@ -40,7 +40,7 @@ const About = () => {
     educations: state.educations,
 
     isSkillsLoading: state.isSkillsLoading,
-    skills: state.skills,
+    skills: transformSkills(state.skills),
 
     isWorkExperiencesLoading: state.isWorkExperiencesLoading,
     workExperiences: state.workExperiences,
@@ -56,6 +56,22 @@ const About = () => {
     skill: false,
     certificates: false,
   });
+
+  function transformSkills(skills) {
+    if (Array.isArray) {
+      let tmp = Object.groupBy(skills, ({ skill_category }) => skill_category);
+      return Object.keys(tmp).map((skill_category) => {
+        return {
+          skill_category: skill_category,
+          skills: tmp[skill_category],
+        };
+      });
+    } else {
+      return skills;
+    }
+  }
+
+  console.log("skills", skills);
 
   return (
     <motion.div
