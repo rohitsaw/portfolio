@@ -37,7 +37,7 @@ const Profile = ({
   const handleLogOut = () => {
     setUser(null);
     setAnchorElUser(null);
-    window.open("http://localhost:3000/logout", "_self");
+    window.open("https://rsaw409-portfolio-backend.onrender.com/logout", "_self");
   };
 
   const goToEditPage = () => {

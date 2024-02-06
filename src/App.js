@@ -22,7 +22,7 @@ function App() {
 
   useEffect(() => {
     const getUser = () => {
-      fetch("http://localhost:3000/login/success", {
+      fetch("https://rsaw409-portfolio-backend.onrender.com/login/success", {
         method: "GET",
         credentials: "include",
         headers: {
@@ -56,7 +56,7 @@ function App() {
   };
 
   const login = () => {
-    window.open("http://localhost:3000/google", "_self");
+    window.open("https://rsaw409-portfolio-backend.onrender.com/google", "_self");
   };
 
   return (
