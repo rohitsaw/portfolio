@@ -1,13 +1,11 @@
 import { BrowserRouter } from "react-router-dom";
-import { useGoogleLogin, googleLogout } from "@react-oauth/google";
-import { useEffect, useState, forwardRef } from "react";
+import { useState, forwardRef, useEffect } from "react";
 import MuiAlert from "@mui/material/Alert";
 import Snackbar from "@mui/material/Snackbar";
 import Button from "@mui/material/Button";
 import GoogleIcon from "@mui/icons-material/Google";
 
 import AnimateRoutes from "./component/routes";
-import { getProfileImage } from "./api.js";
 import Profile from "./component/profile";
 
 import styles from "./app.module.css";
@@ -20,54 +18,58 @@ const Alert = forwardRef(function Alert(props, ref) {
 
 function App() {
   const dispatch = useDispatch();
-  const [profile, setProfile] = useState(null);
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    const getUser = () => {
+      fetch("http://localhost:3000/login/success", {
+        method: "GET",
+        credentials: "include",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Credentials": true,
+        },
+      })
+        .then((response) => {
+          if (response.status === 200) return response.json();
+          throw new Error("authentication has been failed!");
+        })
+        .then((resObject) => {
+          console.log("user", resObject);
+          setUser(resObject.user);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    };
+    getUser();
+  }, []);
 
   const { openSnackBar, snackBarMessage } = useSelector((state) => ({
     openSnackBar: state.openSnackBar,
     snackBarMessage: state.snackBarMessage,
   }));
 
-  useEffect(() => {
-    // const user = localStorage.getItem("user");
-    const profile = localStorage.getItem("profile");
-    if (profile) setProfile(JSON.parse(profile));
-  }, []);
-
-  const login = useGoogleLogin({
-    onSuccess: (codeResponse) => {
-      localStorage.setItem("user", JSON.stringify(codeResponse));
-      getProfileImage(codeResponse)
-        .then((res) => {
-          setProfile(res);
-          localStorage.setItem("profile", JSON.stringify(res));
-        })
-        .catch((err) => console.log(err));
-    },
-    onError: (error) => console.log("Login Failed:", error),
-  });
-
-  const handleLogOut = () => {
-    googleLogout();
-    setProfile(null);
-
-    localStorage.removeItem("user");
-    localStorage.removeItem("profile");
-  };
-
   const handleSnackBar = (value, message) => {
     dispatch(setOpenSnackBar(value, message));
+  };
+
+  const login = () => {
+    window.open("http://localhost:3000/google", "_self");
   };
 
   return (
     <BrowserRouter>
       <div className={styles.profile}>
-        {profile ? (
+        {user ? (
           <Profile
-            picture={profile.picture}
-            first_name={profile.given_name}
-            last_name={profile.family_name}
-            email={profile.email}
-            logOutFn={handleLogOut}
+            picture={user.photos[0]?.value}
+            first_name={user.name.givenName}
+            last_name={user.name.familyName}
+            email={user.emails[0]?.value}
+            emailVerified={user.emails[0]?.verified}
+            setUser={setUser}
             setOpenSnackBar={handleSnackBar}
           />
         ) : (

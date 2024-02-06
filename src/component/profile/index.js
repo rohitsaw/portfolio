@@ -18,7 +18,8 @@ const Profile = ({
   first_name,
   last_name,
   email,
-  logOutFn,
+  emailVerified,
+  setUser,
   setOpenSnackBar,
 }) => {
   const [anchorElUser, setAnchorElUser] = useState(null);
@@ -34,13 +35,13 @@ const Profile = ({
   };
 
   const handleLogOut = () => {
+    setUser(null);
     setAnchorElUser(null);
-    logOutFn();
+    window.open("http://localhost:3000/logout", "_self");
   };
 
   const goToEditPage = () => {
-    console.log("email", email);
-    if (email === "rsaw409@gmail.com") {
+    if (email === "rsaw409@gmail.com" && emailVerified) {
       navigate("/edit-details");
       handleCloseUserMenu();
     } else {
