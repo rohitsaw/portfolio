@@ -32,6 +32,7 @@ function App() {
           "Access-Control-Allow-Origin":
             "https://rsaw409-portfolio-backend.onrender.com",
           "Access-Control-Allow-Credentials": true,
+          Cookie: "name=value; SameSite=None; Secure",
         },
       })
         .then((response) => {
