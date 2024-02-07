@@ -19,7 +19,7 @@ const Profile = ({
   last_name,
   email,
   emailVerified,
-  setUser,
+  logOut,
   setOpenSnackBar,
 }) => {
   const [anchorElUser, setAnchorElUser] = useState(null);
@@ -35,9 +35,9 @@ const Profile = ({
   };
 
   const handleLogOut = () => {
-    setUser(null);
-    setAnchorElUser(null);
-    window.open("https://rsaw409-portfolio-backend.onrender.com/logout", "_self");
+    logOut().then(() => {
+      setAnchorElUser(null);
+    });
   };
 
   const goToEditPage = () => {

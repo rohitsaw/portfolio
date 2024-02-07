@@ -82,6 +82,7 @@ const getExperiences = async () => {
 };
 
 export {
+  base_url,
   getProjects,
   getCertificates,
   getUser,

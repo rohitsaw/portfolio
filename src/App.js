@@ -11,6 +11,7 @@ import Profile from "./component/profile";
 import styles from "./app.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { setOpenSnackBar } from "../src/redux/action.js";
+import { base_url as serverAddress } from "./api.js";
 
 const Alert = forwardRef(function Alert(props, ref) {
   return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
@@ -22,7 +23,7 @@ function App() {
 
   useEffect(() => {
     const getUser = () => {
-      fetch("https://rsaw409-portfolio-backend.onrender.com/login/success", {
+      fetch(`${serverAddress}/login/success`, {
         method: "GET",
         credentials: "include",
         headers: {
@@ -56,7 +57,11 @@ function App() {
   };
 
   const login = () => {
-    window.open("https://rsaw409-portfolio-backend.onrender.com/google", "_self");
+    window.open(`${serverAddress}/google`, "_self");
+  };
+
+  const logout = () => {
+    window.open(`${serverAddress}/logout`, "_self");
   };
 
   return (
@@ -69,7 +74,7 @@ function App() {
             last_name={user.name.familyName}
             email={user.emails[0]?.value}
             emailVerified={user.emails[0]?.verified}
-            setUser={setUser}
+            logout={logout}
             setOpenSnackBar={handleSnackBar}
           />
         ) : (
