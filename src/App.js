@@ -29,6 +29,8 @@ function App() {
         headers: {
           Accept: "application/json",
           "Content-Type": "application/json",
+          "Access-Control-Allow-Origin":
+            "https://rsaw409-portfolio-backend.onrender.com",
           "Access-Control-Allow-Credentials": true,
         },
       })
