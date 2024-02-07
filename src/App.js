@@ -25,7 +25,8 @@ function App() {
     const getUser = () => {
       fetch(`${serverAddress}/login/success`, {
         method: "GET",
-        credentials: "include",
+        credentials: "same-origin",
+        // credentials: "include",
         headers: {
           Accept: "application/json",
           "Content-Type": "application/json",
