@@ -35,9 +35,7 @@ const Profile = ({
   };
 
   const handleLogOut = () => {
-    logOut().then(() => {
-      setAnchorElUser(null);
-    });
+    logOut();
   };
 
   const goToEditPage = () => {

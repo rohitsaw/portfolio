@@ -74,7 +74,7 @@ function App() {
             last_name={user.name.familyName}
             email={user.emails[0]?.value}
             emailVerified={user.emails[0]?.verified}
-            logout={logout}
+            logOut={logout}
             setOpenSnackBar={handleSnackBar}
           />
         ) : (
