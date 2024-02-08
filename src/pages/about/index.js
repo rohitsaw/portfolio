@@ -384,7 +384,7 @@ const About = () => {
                 >
                   <li key={each.id}>
                     <div className={styles.item10}>
-                      {each.certificates_name}
+                      {each.certificate_name}
                     </div>
 
                     <div className={styles.item3}>
