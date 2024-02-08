@@ -3,5 +3,9 @@
 }
 
 .skillContainer {
-  width: max-content;
+  width: 100%;
+}
+
+.certificateContainer {
+  width: 100%;
 }

@@ -16,6 +16,7 @@ import {
 import { randomId } from "@mui/x-data-grid-generator";
 
 export default function FullFeaturedCrudGrid({
+  ButtonName,
   rows,
   setDummyRow,
   columns,
@@ -75,7 +76,7 @@ export default function FullFeaturedCrudGrid({
       field: "actions",
       type: "actions",
       headerName: "Actions",
-      width: 130,
+      flex: 1,
       cellClassName: "actions",
       getActions: ({ id }) => {
         const isInEditMode = rowModesModel[id]?.mode === GridRowModes.Edit;
@@ -153,7 +154,7 @@ export default function FullFeaturedCrudGrid({
           toolbar: EditToolbar,
         }}
         slotProps={{
-          toolbar: { setDummyRow, setRowModesModel },
+          toolbar: { ButtonName, setDummyRow, setRowModesModel },
         }}
       />
     </Box>
@@ -161,7 +162,7 @@ export default function FullFeaturedCrudGrid({
 }
 
 function EditToolbar(props) {
-  const { setDummyRow, setRowModesModel } = props;
+  const { ButtonName, setDummyRow, setRowModesModel } = props;
 
   const handleClick = () => {
     const id = randomId();
@@ -175,7 +176,7 @@ function EditToolbar(props) {
   return (
     <GridToolbarContainer>
       <Button color="primary" startIcon={<AddIcon />} onClick={handleClick}>
-        Add record
+        Add New {ButtonName}
       </Button>
     </GridToolbarContainer>
   );

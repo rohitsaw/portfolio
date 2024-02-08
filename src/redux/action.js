@@ -157,6 +157,19 @@ const deleteSkill = (row) => async (dispatch) => {
   });
 };
 
+
+const addDummyCertificate = (mui_id) => async (dispatch) => {
+
+}
+
+const addCertificate = (mui_id) => async (dispatch) => {
+  
+}
+
+const deleteCertificate = (mui_id) => async (dispatch) => {
+  
+}
+
 const setOpenSnackBar = (value, message) => async (dispatch) => {
   dispatch({
     type: ACTIONS.SHOW_SNACKBAR,
@@ -178,5 +191,8 @@ export {
   addDummySkill,
   addSkill,
   deleteSkill,
+  addDummyCertificate,
+  addCertificate,
+  deleteCertificate,
   setOpenSnackBar,
 };
