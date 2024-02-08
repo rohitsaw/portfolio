@@ -66,6 +66,7 @@ const About = () => {
       }
       obj[tmp].push(each);
     }
+    return obj;
   }
 
   function transformSkills(skills) {
