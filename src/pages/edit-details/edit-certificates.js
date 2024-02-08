@@ -2,6 +2,8 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import FullFeaturedCrudGrid from "../../component/datatable.js";
 import { randomId } from "@mui/x-data-grid-generator";
+import { Chip, Stack } from "@mui/material";
+import Link from "@mui/material/Link";
 
 import {
   addDummyCertificate,
@@ -74,6 +76,11 @@ const EditCertificates = ({ styles }) => {
       editable: true,
       align: "left",
       flex: 1,
+      renderCell: (params) => (
+        <Link href={params.value} target="_blank">
+          {params.value.toString()}
+        </Link>
+      ),
     },
     {
       field: "technology_tags",
@@ -81,6 +88,16 @@ const EditCertificates = ({ styles }) => {
       editable: true,
       align: "left",
       flex: 1,
+      type: "singleSelect",
+      renderCell: (params) => {
+        return (
+          <Stack direction="row" spacing={0.25}>
+            {params.row.technology_tags?.map((tag) => (
+              <Chip label={tag} />
+            ))}
+          </Stack>
+        );
+      },
     },
   ];
 
