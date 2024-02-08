@@ -20,6 +20,7 @@ const initialState = {
   isUserLoading: true,
 
   openSnackBar: false,
+  severity: "error",
   snackBarMessage: "",
 };
 
@@ -120,6 +121,7 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         openSnackBar: action.payload.value,
+        severity: action.payload.severity,
         snackBarMessage: action.payload.message,
       };
     }

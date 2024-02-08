@@ -29,7 +29,6 @@ const EditSkillDetails = () => {
 
   const handleError = (error) => {
     console.log("error", error);
-    // dispatch(setOpenSnackBar(true, error?.message || "Something Went Wrong!"));
   };
 
   const skill_columns = [

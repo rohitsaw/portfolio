@@ -46,11 +46,12 @@ function App() {
           console.log(err);
         });
     };
-    getUser()
+    getUser();
   }, []);
 
-  const { openSnackBar, snackBarMessage } = useSelector((state) => ({
+  const { openSnackBar, severity, snackBarMessage } = useSelector((state) => ({
     openSnackBar: state.openSnackBar,
+    severity: state.severity,
     snackBarMessage: state.snackBarMessage,
   }));
 
@@ -98,7 +99,7 @@ function App() {
       >
         <Alert
           onClose={() => handleSnackBar(false, "")}
-          severity="error"
+          severity={severity}
           sx={{ width: "100%" }}
         >
           {snackBarMessage}
