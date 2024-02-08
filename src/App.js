@@ -46,7 +46,7 @@ function App() {
           console.log(err);
         });
     };
-    setTimeout(getUser, 1000);
+    getUser()
   }, []);
 
   const { openSnackBar, snackBarMessage } = useSelector((state) => ({
