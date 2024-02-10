@@ -7,7 +7,9 @@ import {
   getSkills,
   getUser as getUserFromDB,
   addSkills as addSkillInServer,
+  addCertificate as addCertificateInServer,
   deleteSkill as deleteSkillInServer,
+  deleteCertificate as deleteCertificateInServer,
 } from "../api.js";
 
 const getAllProjects = () => async (dispatch) => {
@@ -157,18 +159,78 @@ const deleteSkill = (row) => async (dispatch) => {
   });
 };
 
-
 const addDummyCertificate = (mui_id) => async (dispatch) => {
+  dispatch({
+    type: ACTIONS.ADD_DUMMY_CERTIFICATE,
+    payload: {
+      mui_id: mui_id,
+      certificate_name: "",
+      certificate_description: "",
+      certification_authority: "",
+      certification_date: null,
+      certification_expiry: null,
+      verification_url: "",
+      technology_tags: null,
+      isNew: true,
+    },
+  });
+};
 
-}
+const addCertificate = (new_row, old_row) => async (dispatch) => {
+  try {
+    await addCertificateInServer(new_row);
+    dispatch({
+      type: ACTIONS.SHOW_SNACKBAR,
+      payload: {
+        value: true,
+        severity: "success",
+        message: "Success, skills updated.",
+      },
+    });
+  } catch (error) {
+    dispatch({
+      type: ACTIONS.SHOW_SNACKBAR,
+      payload: {
+        value: true,
+        severity: "error",
+        message: error?.message || "Something went wrong while saving skill",
+      },
+    });
+  }
+  const certificates = await getCertificates();
+  dispatch({
+    type: ACTIONS.CERTIFICATES_LOADED,
+    payload: certificates,
+  });
+};
 
-const addCertificate = (mui_id) => async (dispatch) => {
-  
-}
-
-const deleteCertificate = (mui_id) => async (dispatch) => {
-  
-}
+const deleteCertificate = (row) => async (dispatch) => {
+  try {
+    await deleteCertificateInServer(row);
+    dispatch({
+      type: ACTIONS.SHOW_SNACKBAR,
+      payload: {
+        value: true,
+        severity: "success",
+        message: "Success, skills deleted.",
+      },
+    });
+  } catch (error) {
+    dispatch({
+      type: ACTIONS.SHOW_SNACKBAR,
+      payload: {
+        value: true,
+        severity: "error",
+        message: error?.message || "Something went wrong while deleting skill.",
+      },
+    });
+  }
+  const certificates = await getCertificates();
+  dispatch({
+    type: ACTIONS.CERTIFICATES_LOADED,
+    payload: certificates,
+  });
+};
 
 const setOpenSnackBar = (value, message) => async (dispatch) => {
   dispatch({

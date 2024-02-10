@@ -56,6 +56,28 @@ const addSkills = async (skill) => {
   }
 };
 
+const addCertificate = async (certificate) => {
+  certificate.technology_tags = Array.isArray(certificate.technology_tags)
+    ? certificate.technology_tags
+    : certificate.technology_tags.split(",");
+    
+  const url = `${base_url}/certificates`;
+
+  let response = await fetch(url, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    credentials: "include",
+    body: JSON.stringify(certificate),
+  });
+  if (response.ok) {
+    return response.json();
+  } else {
+    return Promise.reject(await response.json());
+  }
+};
+
 const deleteSkill = async (skill) => {
   const url = `${base_url}/skills`;
 
@@ -66,6 +88,24 @@ const deleteSkill = async (skill) => {
     },
     credentials: "include",
     body: JSON.stringify(skill),
+  });
+  if (response.ok) {
+    return response.json();
+  } else {
+    return Promise.reject(await response.json());
+  }
+};
+
+const deleteCertificate = async (certificate) => {
+  const url = `${base_url}/certificates`;
+
+  let response = await fetch(url, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    credentials: "include",
+    body: JSON.stringify(certificate),
   });
   if (response.ok) {
     return response.json();
@@ -90,5 +130,7 @@ export {
   getSkills,
   getExperiences,
   addSkills,
+  addCertificate,
   deleteSkill,
+  deleteCertificate,
 };

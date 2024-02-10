@@ -4,6 +4,9 @@ import FullFeaturedCrudGrid from "../../component/datatable.js";
 import { randomId } from "@mui/x-data-grid-generator";
 import { Chip, Stack } from "@mui/material";
 import Link from "@mui/material/Link";
+import dayjs from "dayjs";
+import TextField from "@mui/material/TextField";
+import OpenInNewIcon from "@mui/icons-material/OpenInNew";
 
 import {
   addDummyCertificate,
@@ -62,6 +65,8 @@ const EditCertificates = ({ styles }) => {
       editable: true,
       align: "left",
       flex: 1,
+      type: "date",
+      valueFormatter: (params) => dayjs(params?.value).format("DD/MM/YYYY"),
     },
     // {
     //   field: "certification_expiry",
@@ -78,7 +83,7 @@ const EditCertificates = ({ styles }) => {
       flex: 1,
       renderCell: (params) => (
         <Link href={params.value} target="_blank">
-          {params.value.toString()}
+          <OpenInNewIcon />
         </Link>
       ),
     },
@@ -88,7 +93,6 @@ const EditCertificates = ({ styles }) => {
       editable: true,
       align: "left",
       flex: 1,
-      type: "singleSelect",
       renderCell: (params) => {
         return (
           <Stack direction="row" spacing={0.25}>
@@ -96,6 +100,25 @@ const EditCertificates = ({ styles }) => {
               <Chip label={tag} />
             ))}
           </Stack>
+        );
+      },
+      renderEditCell: (params) => {
+        return (
+          <TextField
+            variant="outlined"
+            size="large"
+            value={params.value}
+            fullWidth
+            onChange={(e) => {
+              // Update the value in the cell
+              const updatedValue = e.target.value;
+              params.api.setEditCellValue({
+                id: params.id,
+                field: params.field,
+                value: updatedValue,
+              });
+            }}
+          />
         );
       },
     },

@@ -126,6 +126,13 @@ const reducer = (state = initialState, action) => {
       };
     }
 
+    case ACTIONS.ADD_DUMMY_CERTIFICATE: {
+      return {
+        ...state,
+        certificates: [...state.certificates, action.payload],
+      };
+    }
+
     default:
       return state;
   }
