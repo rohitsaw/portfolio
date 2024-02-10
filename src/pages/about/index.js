@@ -253,7 +253,7 @@ const About = () => {
                     justifyContent: "space-between",
                   }}
                 >
-                  <li key={each.id}>
+                  <li key={each.id} style={{ width: "100%" }}>
                     <div className={styles.item10}>{each.degree_name}</div>
                     <div className={styles.item3}>{each.institute_name}</div>
                     <div
@@ -266,7 +266,9 @@ const About = () => {
                         {`${dayjs(each.start_date).format("MM/YYYY")} -
                           ${dayjs(each.end_date).format("MM/YYYY")}`}
                       </div>
-                      <div className={styles.item3}>{each.score}</div>
+                      <div className={styles.item3}>
+                        {each.score > 10 ? each.score / 10 : each.score}
+                      </div>
                     </div>
                   </li>
                   {false && (
@@ -383,9 +385,7 @@ const About = () => {
                   }}
                 >
                   <li key={each.id}>
-                    <div className={styles.item10}>
-                      {each.certificate_name}
-                    </div>
+                    <div className={styles.item10}>{each.certificate_name}</div>
 
                     <div className={styles.item3}>
                       Certified By - {each.certification_authority}
