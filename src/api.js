@@ -60,7 +60,7 @@ const addCertificate = async (certificate) => {
   certificate.technology_tags = Array.isArray(certificate.technology_tags)
     ? certificate.technology_tags
     : certificate.technology_tags.split(",");
-    
+
   const url = `${base_url}/certificates`;
 
   let response = await fetch(url, {
@@ -114,6 +114,42 @@ const deleteCertificate = async (certificate) => {
   }
 };
 
+const addEducation = async (education) => {
+  const url = `${base_url}/educations`;
+
+  let response = await fetch(url, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    credentials: "include",
+    body: JSON.stringify(education),
+  });
+  if (response.ok) {
+    return response.json();
+  } else {
+    return Promise.reject(await response.json());
+  }
+};
+
+const deleteEducation = async (education) => {
+  const url = `${base_url}/educations`;
+
+  let response = await fetch(url, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    credentials: "include",
+    body: JSON.stringify(education),
+  });
+  if (response.ok) {
+    return response.json();
+  } else {
+    return Promise.reject(await response.json());
+  }
+};
+
 const getExperiences = async () => {
   const url = `${base_url}/experiences`;
   const response = await fetch(url);
@@ -133,4 +169,6 @@ export {
   addCertificate,
   deleteSkill,
   deleteCertificate,
+  addEducation,
+  deleteEducation,
 };

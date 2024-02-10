@@ -10,6 +10,8 @@ import {
   addCertificate as addCertificateInServer,
   deleteSkill as deleteSkillInServer,
   deleteCertificate as deleteCertificateInServer,
+  deleteEducation as deleteEducationInServer,
+  addEducation as addEducationInServer,
 } from "../api.js";
 
 const getAllProjects = () => async (dispatch) => {
@@ -232,6 +234,77 @@ const deleteCertificate = (row) => async (dispatch) => {
   });
 };
 
+const addDummyEducation = (mui_id) => async (dispatch) => {
+  dispatch({
+    type: ACTIONS.ADD_DUMMY_EDUCATION,
+    payload: {
+      mui_id: mui_id,
+      institute_name: "",
+      degree_name: "",
+      start_date: null,
+      end_date: null,
+      score: "",
+      isNew: true,
+    },
+  });
+};
+
+const addEducation = (new_row, old_row) => async (dispatch) => {
+  try {
+    await addEducationInServer(new_row);
+    dispatch({
+      type: ACTIONS.SHOW_SNACKBAR,
+      payload: {
+        value: true,
+        severity: "success",
+        message: "Success, skills updated.",
+      },
+    });
+  } catch (error) {
+    dispatch({
+      type: ACTIONS.SHOW_SNACKBAR,
+      payload: {
+        value: true,
+        severity: "error",
+        message: error?.message || "Something went wrong while saving skill",
+      },
+    });
+  }
+  const educations = await getEducations();
+  dispatch({
+    type: ACTIONS.EDUCATIONS_LOADED,
+    payload: educations,
+  });
+};
+
+const deleteEducation = (row) => async (dispatch) => {
+  try {
+    await deleteEducationInServer(row);
+    dispatch({
+      type: ACTIONS.SHOW_SNACKBAR,
+      payload: {
+        value: true,
+        severity: "success",
+        message: "Success, skills deleted.",
+      },
+    });
+  } catch (error) {
+    dispatch({
+      type: ACTIONS.SHOW_SNACKBAR,
+      payload: {
+        value: true,
+        severity: "error",
+        message: error?.message || "Something went wrong while deleting skill.",
+      },
+    });
+  }
+  const educations = await getEducations();
+  dispatch({
+    type: ACTIONS.EDUCATIONS_LOADED,
+    payload: educations,
+  });
+};
+
 const setOpenSnackBar = (value, message) => async (dispatch) => {
   dispatch({
     type: ACTIONS.SHOW_SNACKBAR,
@@ -256,5 +329,8 @@ export {
   addDummyCertificate,
   addCertificate,
   deleteCertificate,
+  addDummyEducation,
+  addEducation,
+  deleteEducation,
   setOpenSnackBar,
 };

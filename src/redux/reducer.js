@@ -133,6 +133,13 @@ const reducer = (state = initialState, action) => {
       };
     }
 
+    case ACTIONS.ADD_DUMMY_EDUCATION: {
+      return {
+        ...state,
+        educations: [...state.educations, action.payload],
+      };
+    }
+
     default:
       return state;
   }
