@@ -12,6 +12,8 @@ import {
   deleteCertificate as deleteCertificateInServer,
   deleteEducation as deleteEducationInServer,
   addEducation as addEducationInServer,
+  deleteExperience as deleteExperienceInServer,
+  addExperience as addExperienceServer,
 } from "../api.js";
 
 const getAllProjects = () => async (dispatch) => {
@@ -186,7 +188,7 @@ const addCertificate = (new_row, old_row) => async (dispatch) => {
       payload: {
         value: true,
         severity: "success",
-        message: "Success, skills updated.",
+        message: "Success, certificate updated.",
       },
     });
   } catch (error) {
@@ -195,7 +197,7 @@ const addCertificate = (new_row, old_row) => async (dispatch) => {
       payload: {
         value: true,
         severity: "error",
-        message: error?.message || "Something went wrong while saving skill",
+        message: error?.message || "Something went wrong while saving certificate",
       },
     });
   }
@@ -214,7 +216,7 @@ const deleteCertificate = (row) => async (dispatch) => {
       payload: {
         value: true,
         severity: "success",
-        message: "Success, skills deleted.",
+        message: "Success, certificate deleted.",
       },
     });
   } catch (error) {
@@ -223,7 +225,8 @@ const deleteCertificate = (row) => async (dispatch) => {
       payload: {
         value: true,
         severity: "error",
-        message: error?.message || "Something went wrong while deleting skill.",
+        message:
+          error?.message || "Something went wrong while deleting certificate.",
       },
     });
   }
@@ -257,7 +260,7 @@ const addEducation = (new_row, old_row) => async (dispatch) => {
       payload: {
         value: true,
         severity: "success",
-        message: "Success, skills updated.",
+        message: "Success, education updated.",
       },
     });
   } catch (error) {
@@ -266,7 +269,7 @@ const addEducation = (new_row, old_row) => async (dispatch) => {
       payload: {
         value: true,
         severity: "error",
-        message: error?.message || "Something went wrong while saving skill",
+        message: error?.message || "Something went wrong while saving education",
       },
     });
   }
@@ -285,7 +288,7 @@ const deleteEducation = (row) => async (dispatch) => {
       payload: {
         value: true,
         severity: "success",
-        message: "Success, skills deleted.",
+        message: "Success, education deleted.",
       },
     });
   } catch (error) {
@@ -294,7 +297,8 @@ const deleteEducation = (row) => async (dispatch) => {
       payload: {
         value: true,
         severity: "error",
-        message: error?.message || "Something went wrong while deleting skill.",
+        message:
+          error?.message || "Something went wrong while deleting education.",
       },
     });
   }
@@ -302,6 +306,80 @@ const deleteEducation = (row) => async (dispatch) => {
   dispatch({
     type: ACTIONS.EDUCATIONS_LOADED,
     payload: educations,
+  });
+};
+
+const addDummyExperience = (mui_id) => async (dispatch) => {
+  dispatch({
+    type: ACTIONS.ADD_DUMMY_EXPERIENCE,
+    payload: {
+      mui_id: mui_id,
+      company_name: "",
+      designation: "",
+      start_date: null,
+      end_date: null,
+      details: "",
+      isNew: true,
+    },
+  });
+};
+
+const addExperience = (new_row, old_row) => async (dispatch) => {
+  try {
+    await addExperienceServer(new_row);
+    dispatch({
+      type: ACTIONS.SHOW_SNACKBAR,
+      payload: {
+        value: true,
+        severity: "success",
+        message: "Success, experience updated.",
+      },
+    });
+  } catch (error) {
+    dispatch({
+      type: ACTIONS.SHOW_SNACKBAR,
+      payload: {
+        value: true,
+        severity: "error",
+        message:
+          error?.message || "Something went wrong while saving work experience",
+      },
+    });
+  }
+  const experiences = await getExperiences();
+  dispatch({
+    type: ACTIONS.WORKEXPERIENCES_LOADED,
+    payload: experiences,
+  });
+};
+
+const deleteExperience = (row) => async (dispatch) => {
+  try {
+    await deleteExperienceInServer(row);
+    dispatch({
+      type: ACTIONS.SHOW_SNACKBAR,
+      payload: {
+        value: true,
+        severity: "success",
+        message: "Success, work experience deleted.",
+      },
+    });
+  } catch (error) {
+    dispatch({
+      type: ACTIONS.SHOW_SNACKBAR,
+      payload: {
+        value: true,
+        severity: "error",
+        message:
+          error?.message ||
+          "Something went wrong while deleting work experience.",
+      },
+    });
+  }
+  const experiences = await getExperiences();
+  dispatch({
+    type: ACTIONS.WORKEXPERIENCES_LOADED,
+    payload: experiences,
   });
 };
 
@@ -333,4 +411,7 @@ export {
   addEducation,
   deleteEducation,
   setOpenSnackBar,
+  addDummyExperience,
+  addExperience,
+  deleteExperience,
 };

@@ -150,6 +150,42 @@ const deleteEducation = async (education) => {
   }
 };
 
+const addExperience = async (experience) => {
+  const url = `${base_url}/experiences`;
+
+  let response = await fetch(url, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    credentials: "include",
+    body: JSON.stringify(experience),
+  });
+  if (response.ok) {
+    return response.json();
+  } else {
+    return Promise.reject(await response.json());
+  }
+};
+
+const deleteExperience = async (experience) => {
+  const url = `${base_url}/experiences`;
+
+  let response = await fetch(url, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    credentials: "include",
+    body: JSON.stringify(experience),
+  });
+  if (response.ok) {
+    return response.json();
+  } else {
+    return Promise.reject(await response.json());
+  }
+};
+
 const getExperiences = async () => {
   const url = `${base_url}/experiences`;
   const response = await fetch(url);
@@ -171,4 +207,6 @@ export {
   deleteCertificate,
   addEducation,
   deleteEducation,
+  addExperience,
+  deleteExperience,
 };

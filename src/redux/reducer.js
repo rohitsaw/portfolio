@@ -140,6 +140,13 @@ const reducer = (state = initialState, action) => {
       };
     }
 
+    case ACTIONS.ADD_DUMMY_EXPERIENCE: {
+      return {
+        ...state,
+        workExperiences: [...state.workExperiences, action.payload],
+      };
+    }
+
     default:
       return state;
   }
