@@ -94,7 +94,6 @@ const About = () => {
       <div className={styles.pageContainer}>
         <motion.div
           whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.9 }}
           className={styles.logoContainer}
         >
           <img
@@ -108,7 +107,6 @@ const About = () => {
         {/* About Card */}
         <motion.div
           whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.9 }}
           className={styles.cardContainer}
           onMouseEnter={() =>
             setHover((prevState) => {
@@ -164,7 +162,6 @@ const About = () => {
         {/* Skills Card */}
         <motion.div
           whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.9 }}
           className={styles.cardContainer}
           onMouseEnter={() =>
             setHover((prevState) => {
@@ -217,7 +214,6 @@ const About = () => {
         {/* Education card */}
         <motion.div
           whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.9 }}
           className={styles.cardContainer}
           onMouseEnter={() =>
             setHover((prevState) => {
@@ -286,7 +282,6 @@ const About = () => {
         {/* Work Experience Card */}
         <motion.div
           whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.9 }}
           className={styles.cardContainer}
           onMouseEnter={() =>
             setHover((prevState) => {
@@ -348,7 +343,6 @@ const About = () => {
         {/* Certificates Card */}
         <motion.div
           whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.9 }}
           className={styles.cardContainer}
           onMouseEnter={() =>
             setHover((prevState) => {

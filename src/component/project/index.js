@@ -9,7 +9,6 @@ const Project = ({ project }) => {
   return (
     <motion.div
       whileHover={{ scale: 1.1 }}
-      whileTap={{ scale: 0.9 }}
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
       className={styles.projectContainer}
