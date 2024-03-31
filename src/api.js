@@ -1,6 +1,6 @@
 const base_url =
   process.env.NODE_ENV === "production"
-    ? "https://rsaw409-portfolio-backend.onrender.com"
+    ? "https://backend.portfolio.rsaw409.me"
     : "http://localhost:3000";
 
 const getProjects = async () => {
