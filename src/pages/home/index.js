@@ -52,7 +52,7 @@ const Home = () => {
 
           <div className={styles.body}>
             I'm Highly skilled and motivated full-stack software developer with
-            2 years of industry experience. Proficient in developing robust and
+            3 years of industry experience. Proficient in developing robust and
             scalable web applications, combining expertise in both front-end and
             back-end technologies. Adept at analyzing user requirements and
             translating them into functional code, ensuring optimal performance
@@ -66,7 +66,7 @@ const Home = () => {
           </div>
         </div>
 
-        <a target="_blank" href="images/rohit.jpg">
+        <a target="_blank" href="images/rohit.webp">
           <img
             className={styles.img}
             src="images/rohit.jpg"
