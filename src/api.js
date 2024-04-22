@@ -1,7 +1,24 @@
-const base_url =
+let base_url =
   process.env.NODE_ENV === "production"
     ? "https://backend.portfolio.rsaw409.me"
     : "http://localhost:3000";
+
+const loadUser = async () => {
+  const response = await fetch(`${base_url}/login/success`, {
+    method: "GET",
+    credentials: "include",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      "Access-Control-Allow-Origin": "https://portfolio.rsaw409.me",
+      "Access-Control-Allow-Credentials": true,
+    },
+  });
+
+  if (response.status === 200) {
+    return response.json();
+  }
+};
 
 const getProjects = async () => {
   const url = `${base_url}/projects`;
@@ -195,6 +212,7 @@ const getExperiences = async () => {
 
 export {
   base_url,
+  loadUser,
   getProjects,
   getCertificates,
   getUser,

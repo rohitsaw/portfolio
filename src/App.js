@@ -11,7 +11,7 @@ import Profile from "./component/profile";
 import styles from "./app.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { setOpenSnackBar } from "../src/redux/action.js";
-import { base_url as serverAddress } from "./api.js";
+import { base_url as serverAddress, loadUser } from "./api.js";
 
 const Alert = forwardRef(function Alert(props, ref) {
   return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
@@ -23,26 +23,10 @@ function App() {
 
   useEffect(() => {
     const getUser = () => {
-      fetch(`${serverAddress}/login/success`, {
-        method: "GET",
-        credentials: "include",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-          "Access-Control-Allow-Credentials": true,
-        },
-      })
-        .then((response) => {
-          if (response.status === 200) return response.json();
-          throw new Error("authentication has been failed!");
-        })
-        .then((resObject) => {
-          console.log("user", resObject);
-          setUser(resObject.user);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
+      loadUser().then((resObject) => {
+        console.log("user", resObject);
+        setUser(resObject.user);
+      });
     };
     getUser();
   }, []);
