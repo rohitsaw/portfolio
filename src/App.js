@@ -23,10 +23,14 @@ function App() {
 
   useEffect(() => {
     const getUser = () => {
-      loadUser().then((resObject) => {
-        console.log("user", resObject);
-        setUser(resObject.user);
-      });
+      loadUser()
+        .then((resObject) => {
+          console.log("user", resObject);
+          setUser(resObject.user);
+        })
+        .catch((error) => {
+          console.log("Error", error);
+        });
     };
     getUser();
   }, []);

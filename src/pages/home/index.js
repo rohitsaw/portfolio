@@ -1,43 +1,8 @@
 import { motion } from "framer-motion";
-import {
-  faStackOverflow,
-  faTwitter,
-  faGithub,
-  faLinkedin,
-} from "@fortawesome/free-brands-svg-icons";
-import { faEnvelope, faBlog } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useSelector } from "react-redux";
 
 import styles from "./index.module.css";
 
-
 const Home = () => {
-  const {
-    email,
-    linkedin_url,
-    github_url,
-    blog_url,
-    twitter_url,
-    stackoverflow_url,
-  } = useSelector((state) => ({
-    email: state.user?.user_email,
-    linkedin_url: state.user?.linkedin_url,
-    github_url: state.user?.github_url,
-    blog_url: state.user?.blog_url,
-    twitter_url: state.user?.twitter_url,
-    stackoverflow_url: state.user?.stackoverflow_url,
-  }));
-
-  const socialLinks = {
-    github: github_url,
-    linkedin: linkedin_url,
-    stackOverFlow: stackoverflow_url,
-    blog: blog_url,
-    twitter: twitter_url,
-    mail: `mailto:${email}`,
-  };
-
   return (
     <motion.div
       initial={{ opacity: 0, scale: 0.5 }}
@@ -69,7 +34,7 @@ const Home = () => {
         <a target="_blank" href="images/rohit.webp">
           <img
             className={styles.img}
-            src="images/rohit.jpg"
+            src="images/rohit.webp"
             alt="Rohit aka rsaw409 logo"
           />
         </a>
@@ -82,26 +47,6 @@ const Home = () => {
         high-quality software solutions. Proactive problem solver with a passion
         for learning and staying updated with the latest industry trends and
         technologies.
-      </div>
-      <div className={styles.socialLinks}>
-        <a href={socialLinks.github} target="_blank" rel="noreferrer">
-          <FontAwesomeIcon icon={faGithub} size="2xl" />
-        </a>
-        <a href={socialLinks.linkedin} target="_blank" rel="noreferrer">
-          <FontAwesomeIcon icon={faLinkedin} size="2xl" />
-        </a>
-        <a href={socialLinks.stackOverFlow} target="_blank" rel="noreferrer">
-          <FontAwesomeIcon icon={faStackOverflow} size="2xl" />
-        </a>
-        <a href={socialLinks.blog} target="_blank" rel="noreferrer">
-          <FontAwesomeIcon icon={faBlog} size="2xl" />
-        </a>
-        <a href={socialLinks.twitter} target="_blank" rel="noreferrer">
-          <FontAwesomeIcon icon={faTwitter} size="2xl" />
-        </a>
-        <a href={socialLinks.mail} target="_blank" rel="noreferrer">
-          <FontAwesomeIcon icon={faEnvelope} size="2xl" />
-        </a>
       </div>
     </motion.div>
   );
