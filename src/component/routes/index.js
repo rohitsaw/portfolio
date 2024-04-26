@@ -3,7 +3,6 @@ import { Routes, Route, Navigate, useLocation } from "react-router-dom";
 import Layout from "../../component/layout";
 import Contact from "../../pages/contact";
 import About from "../../pages/about/index";
-import Home from "../../pages/home/index";
 import Projects from "../../pages/project/index";
 import Certification from "../../pages/certification/index";
 import EditDetails from "../../pages/edit-details/index";

@@ -167,18 +167,7 @@ const About = () => {
                 <CircularProgress />
               </div>
             ) : (
-              `I'm Highly skilled and motivated full-stack software developer with
-              3 years of industry experience. Proficient in developing robust and
-              scalable web applications, combining expertise in both front-end and
-              back-end technologies. Adept at analyzing user requirements and
-              translating them into functional code, ensuring optimal performance
-              and user experience. Strong knowledge of HTML, CSS, JavaScript, and
-              modern frameworks like React and Node.js. 
-              Additionally, possess a solid foundation in data structures and
-              algorithms, leveraging this expertise to design efficient and
-              optimized solutions. Experienced in implementing algorithms and
-              leveraging data structures to solve complex problems, enhancing
-              application performance and scalability.`
+              <p style={{ opacity: 1 }}>{about}</p>
             )}
           </div>
         </div>

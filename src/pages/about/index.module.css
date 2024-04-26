@@ -93,6 +93,10 @@ a {
   color: #65656d;
 }
 
+.cardContent p {
+  font-size: 16px;
+}
+
 .navLink {
   text-decoration: none;
   color: #65656d;
