@@ -11,14 +11,9 @@ import Divider from "@mui/material/Divider";
 import ListItemText from "@mui/material/ListItemText";
 import ListItemButton from "@mui/material/ListItemButton";
 
-import ListItemAvatar from "@mui/material/ListItemAvatar";
-import Avatar from "@mui/material/Avatar";
 import Typography from "@mui/material/Typography";
 
 import { motion } from "framer-motion";
-
-import IconButton from "@mui/material/IconButton";
-import CommentIcon from "@mui/icons-material/Comment";
 
 import styles from "./index.module.css";
 
@@ -27,6 +22,8 @@ const Certification = () => {
     isCertificatesLoading: state.isCertificatesLoading,
     certificates: state.certificates,
   }));
+
+  const [hoverIndex, setHoverIndex] = useState(-1);
 
   return (
     <motion.div
@@ -46,9 +43,12 @@ const Certification = () => {
       ) : (
         <Box sx={{ width: "100%", bgcolor: "background.paper" }}>
           <List component="nav">
-            {certificates.map((each) => (
+            {certificates.map((each, index) => (
               <>
-                <ListItemButton>
+                <ListItemButton
+                  onMouseEnter={() => setHoverIndex(index)}
+                  onMouseLeave={() => setHoverIndex(-1)}
+                >
                   <ListItem
                     alignItems="flex-start"
                     secondaryAction={
@@ -60,6 +60,9 @@ const Certification = () => {
                       >
                         <ArrowOutwardIcon
                           onClick={() => each.verification_url}
+                          style={{
+                            color: hoverIndex === index ? "#14b8a6" : undefined,
+                          }}
                         />
                       </NavLink>
                     }
