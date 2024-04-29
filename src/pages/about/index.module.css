@@ -40,7 +40,7 @@ a {
 }
 
 .socialLinks svg:hover {
-  color: #14b8a6;
+  color: var(--primary-color); 
   transition: 1.4s;
   transform: rotate(360deg);
 }
@@ -104,7 +104,7 @@ a {
 
 .navLinkHover {
   text-decoration: none;
-  color: #14b8a6;
+  color:var(--primary-color); 
 }
 
 .cardContentList {

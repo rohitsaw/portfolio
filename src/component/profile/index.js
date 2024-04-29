@@ -52,7 +52,7 @@ const Profile = ({
       <Tooltip title="Open Profile">
         <IconButton onClick={handleOpenUserMenu}>
           <Avatar
-            sx={{ bgcolor: "#14b8a6" }}
+            sx={{ bgcolor: `var(--primary-color)`}}
             alt="Profile name initials"
           >{`${first_name[0]}${last_name[0]}`}</Avatar>
         </IconButton>

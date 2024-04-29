@@ -61,7 +61,10 @@ const Certification = () => {
                         <ArrowOutwardIcon
                           onClick={() => each.verification_url}
                           style={{
-                            color: hoverIndex === index ? "#14b8a6" : undefined,
+                            color:
+                              hoverIndex === index
+                                ? `var(--primary-color)`
+                                : undefined,
                           }}
                         />
                       </NavLink>

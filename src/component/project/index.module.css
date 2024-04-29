@@ -46,5 +46,5 @@
   color: #65656d;
 }
 .navLinkHover {
-  color: #14b8a6;
+  color:var(--primary-color); 
 }

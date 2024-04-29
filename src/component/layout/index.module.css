@@ -35,13 +35,13 @@
 }
 
 .navLink:hover {
-  color: #14b8a6;
+  color: var(--primary-color); 
 }
 
 .navLinkActive {
   color: white;
 
-  background-color: #14b8a6;
+  background-color: var(--primary-color); 
   text-decoration: none;
 
   padding: 8px 20px;

@@ -71,7 +71,7 @@ function App() {
             variant="outlined"
             startIcon={<GoogleIcon sx={{ fontSize: "32px" }} />}
             onClick={() => login()}
-            sx={{ color: "#14b8a6" }}
+            sx={{ color: `var(--primary-color)` }}
           >
             Sign In
           </Button>

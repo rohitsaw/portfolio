@@ -50,7 +50,7 @@
 }
 
 .contactItem:hover {
-  color: #14b8a6;
+  color: var(--primary-color);
 }
 
 @media only screen and (max-width: 991px) {

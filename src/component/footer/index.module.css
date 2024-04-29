@@ -14,7 +14,7 @@
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  column-gap : 10%;
+  column-gap: 10%;
   list-style: none;
 }
 
@@ -28,5 +28,5 @@
   text-decoration: none;
 }
 .navLink:hover {
-  color: #14b8a6;
+  color: var(--primary-color);
 }
