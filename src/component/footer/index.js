@@ -6,6 +6,7 @@ import styles from "./index.module.css";
 const Footer = () => {
   const routes = [
     { path: "/about", routeName: "About" },
+    { path: "/workExperience", routeName: "Work" },
     { path: "/certification", routeName: "Certification" },
     { path: "/projects", routeName: "Project" },
     { path: "/contacts", routeName: "Contact" },

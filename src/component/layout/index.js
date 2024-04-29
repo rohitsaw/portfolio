@@ -12,6 +12,7 @@ const Layout = () => {
 
   const routes = [
     { path: "/about", routeName: "About" },
+    { path: "/workexperience", routeName: "Work" },
     { path: "/certification", routeName: "Certification" },
     { path: "/projects", routeName: "Project" },
     { path: "/contacts", routeName: "Contact" },

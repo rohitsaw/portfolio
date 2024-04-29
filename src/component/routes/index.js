@@ -5,6 +5,7 @@ import Contact from "../../pages/contact";
 import About from "../../pages/about/index";
 import Projects from "../../pages/project/index";
 import Certification from "../../pages/certification/index";
+import WorkExperience from "../../pages/workexperience/index";
 import EditDetails from "../../pages/edit-details/index";
 
 import { AnimatePresence } from "framer-motion";
@@ -40,6 +41,7 @@ const AnimateRoutes = ({ setOpenSnackBar }) => {
         <Route path="/" element={<Layout />}>
           <Route index element={<Navigate to="/about" replace />} />
           <Route path="about" element={<About />} />
+          <Route path="workexperience" element={<WorkExperience />} />
           <Route path="certification" element={<Certification />} />
           <Route path="projects" element={<Projects />} />
           <Route path="contacts" element={<Contact />} />

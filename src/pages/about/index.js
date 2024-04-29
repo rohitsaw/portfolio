@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import {
-  faBriefcase,
   faUserCircle,
   faCog,
   faGraduationCap,
@@ -19,17 +18,12 @@ import {
 } from "@fortawesome/free-brands-svg-icons";
 import { faEnvelope, faBlog } from "@fortawesome/free-solid-svg-icons";
 
-import coderLogo from "../../icons/coder.png";
-import placeHolderCoderLogo from "../../icons/coder.jpg";
-
 import styles from "./index.module.css";
 
 const About = () => {
   let {
     isEducationLoading,
     educations,
-    isWorkExperiencesLoading,
-    workExperiences,
     isSkillsLoading,
     skills,
     isUserLoading,
@@ -40,9 +34,6 @@ const About = () => {
 
     isSkillsLoading: state.isSkillsLoading,
     skills: transformSkills(state.skills),
-
-    isWorkExperiencesLoading: state.isWorkExperiencesLoading,
-    workExperiences: state.workExperiences,
 
     isUserLoading: state.isUserLoading,
     about: state.user?.about,
@@ -119,7 +110,6 @@ const About = () => {
             <img
               className={styles.img}
               src="images/rohit.webp"
-              placeholderSrc={placeHolderCoderLogo}
               alt="coder logo"
             />
           </a>
@@ -171,67 +161,6 @@ const About = () => {
             )}
           </div>
         </div>
-
-        {/* Work Experience Card */}
-        <motion.div
-          whileHover={{ scale: 1.1 }}
-          className={styles.cardContainer}
-          onMouseEnter={() =>
-            setHover((prevState) => {
-              return { ...prevState, work: true };
-            })
-          }
-          onMouseLeave={() =>
-            setHover((prevState) => {
-              return { ...prevState, work: false };
-            })
-          }
-        >
-          <div className={styles.cardTitle}>
-            <FontAwesomeIcon icon={faBriefcase} /> <span>Work</span>
-          </div>
-          <ul className={styles.cardContentList}>
-            {isWorkExperiencesLoading ? (
-              <div
-                style={{
-                  display: "flex",
-                  justifyContent: "center",
-                }}
-              >
-                <CircularProgress />
-              </div>
-            ) : (
-              workExperiences.map((each) => (
-                <div
-                  key={each.id}
-                  style={{
-                    display: "flex",
-                    flexDirection: "row",
-                    justifyContent: "space-between",
-                  }}
-                >
-                  <li key={each.id}>
-                    <div className={styles.item10}>{each.company_name}</div>
-                    <div className={styles.item3}>{each.designation}</div>
-                    <div className={styles.item3}>{`${dayjs(
-                      each.start_date
-                    ).format("MM/YYYY")} - ${
-                      each.end_date
-                        ? dayjs(each.end_date).format("MM/YYYY")
-                        : "Present"
-                    }`}</div>
-                  </li>
-                  {false && (
-                    <FontAwesomeIcon
-                      icon={faExternalLink}
-                      className={styles.navLinkHover}
-                    />
-                  )}
-                </div>
-              ))
-            )}
-          </ul>
-        </motion.div>
 
         {/* Education card */}
         <motion.div
