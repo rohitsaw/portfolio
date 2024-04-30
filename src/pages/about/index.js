@@ -40,7 +40,7 @@ const About = () => {
   }));
 
   const about = user?.about;
-  const email = user?.social_links?.user_email;
+  const email = user?.user_email;
   const linkedin_url = user?.social_links?.linkedin_url;
   const github_url = user?.social_links?.github_url;
   const blog_url = user?.social_links?.blog_url;
