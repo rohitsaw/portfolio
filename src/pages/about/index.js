@@ -18,6 +18,8 @@ import {
 } from "@fortawesome/free-brands-svg-icons";
 import { faEnvelope, faBlog } from "@fortawesome/free-solid-svg-icons";
 
+import { transformSkills } from "../../utils/util.js";
+
 import styles from "./index.module.css";
 
 const About = () => {
@@ -63,32 +65,6 @@ const About = () => {
     twitter: twitter_url,
     mail: `mailto:${email}`,
   };
-
-  function groupBy(array, callbackFn) {
-    let obj = {};
-    for (let each of array) {
-      let tmp = callbackFn(each);
-      if (!obj.hasOwnProperty(tmp)) {
-        obj[tmp] = [];
-      }
-      obj[tmp].push(each);
-    }
-    return obj;
-  }
-
-  function transformSkills(skills) {
-    if (Array.isArray) {
-      let tmp = groupBy(skills, ({ skill_category }) => skill_category);
-      return Object.keys(tmp).map((skill_category) => {
-        return {
-          skill_category: skill_category,
-          skills: tmp[skill_category],
-        };
-      });
-    } else {
-      return skills;
-    }
-  }
 
   return (
     <motion.div
