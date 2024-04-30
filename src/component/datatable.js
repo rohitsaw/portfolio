@@ -175,7 +175,11 @@ function EditToolbar(props) {
 
   return (
     <GridToolbarContainer>
-      <Button color="primary" startIcon={<AddIcon />} onClick={handleClick}>
+      <Button
+        sx={{ color: `var(--primary-color)` }}
+        startIcon={<AddIcon />}
+        onClick={handleClick}
+      >
         Add New {ButtonName}
       </Button>
     </GridToolbarContainer>

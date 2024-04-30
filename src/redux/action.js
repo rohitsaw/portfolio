@@ -14,6 +14,7 @@ import {
   addEducation as addEducationInServer,
   deleteExperience as deleteExperienceInServer,
   addExperience as addExperienceServer,
+  deleteProject as deleteProjectInServer,
 } from "../api.js";
 
 const getAllProjects = () => async (dispatch) => {
@@ -397,8 +398,53 @@ const setOpenSnackBar = (value, message) => async (dispatch) => {
 };
 
 const addProject = () => {};
-const addDummyProject = () => {};
-const deleteProject = () => {};
+
+const addDummyProject = (mui_id) => async (dispatch) => {
+  dispatch({
+    type: ACTIONS.ADD_DUMMY_PROJECT,
+    payload: {
+      mui_id: mui_id,
+      project_name: "",
+      project_description: "",
+      github_url: "",
+      web_url: null,
+      play_store_url: "",
+      technology_tags: null,
+      isNew: true,
+    },
+  });
+};
+
+const deleteProject = (row) => async (dispatch) => {
+  try {
+    await deleteProjectInServer(row);
+    dispatch({
+      type: ACTIONS.SHOW_SNACKBAR,
+      payload: {
+        value: true,
+        severity: "success",
+        message: "Success, project deleted.",
+      },
+    });
+  } catch (error) {
+    dispatch({
+      type: ACTIONS.SHOW_SNACKBAR,
+      payload: {
+        value: true,
+        severity: "error",
+        message:
+          error?.message ||
+          "Something went wrong while deleting work experience.",
+      },
+    });
+  }
+  const projects = await getProjects();
+
+  dispatch({
+    type: ACTIONS.PROJECTS_LOADED,
+    payload: projects,
+  });
+};
 
 export {
   getAllProjects,

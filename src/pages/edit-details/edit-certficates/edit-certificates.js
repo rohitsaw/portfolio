@@ -6,7 +6,7 @@ import { Chip, Stack } from "@mui/material";
 import Link from "@mui/material/Link";
 import dayjs from "dayjs";
 import TextField from "@mui/material/TextField";
-import OpenInNewIcon from "@mui/icons-material/OpenInNew";
+import ArrowOutwardIcon from "@mui/icons-material/ArrowOutward";
 
 import EditDetailsPage from "../index.js";
 
@@ -71,7 +71,11 @@ const EditCertificates = ({ styles }) => {
       flex: 1,
       renderCell: (params) => (
         <Link href={params.value} target="_blank">
-          <OpenInNewIcon />
+          <ArrowOutwardIcon
+            style={{
+              color: `var(--primary-color)`,
+            }}
+          />
         </Link>
       ),
     },

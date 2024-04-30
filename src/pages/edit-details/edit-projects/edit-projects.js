@@ -5,9 +5,8 @@ import FullFeaturedCrudGrid from "../../../component/datatable.js";
 import { randomId } from "@mui/x-data-grid-generator";
 import { Chip, Stack } from "@mui/material";
 import Link from "@mui/material/Link";
-import dayjs from "dayjs";
 import TextField from "@mui/material/TextField";
-import OpenInNewIcon from "@mui/icons-material/OpenInNew";
+import ArrowOutwardIcon from "@mui/icons-material/ArrowOutward";
 
 import {
   addProject,
@@ -59,11 +58,18 @@ const EditProject = ({ styles }) => {
       editable: true,
       align: "left",
       flex: 1,
-      renderCell: (params) => (
-        <Link href={params.value} target="_blank">
-          <OpenInNewIcon />
-        </Link>
-      ),
+      renderCell: (params) =>
+        params.value ? (
+          <Link href={params.value} target="_blank">
+            <ArrowOutwardIcon
+              style={{
+                color: `var(--primary-color)`,
+              }}
+            />
+          </Link>
+        ) : (
+          "Not Available"
+        ),
     },
     {
       field: "web_url",
@@ -71,23 +77,37 @@ const EditProject = ({ styles }) => {
       editable: true,
       align: "left",
       flex: 1,
-      renderCell: (params) => (
-        <Link href={params.value} target="_blank">
-          <OpenInNewIcon />
-        </Link>
-      ),
+      renderCell: (params) =>
+        params.value ? (
+          <Link href={params.value} target="_blank">
+            <ArrowOutwardIcon
+              style={{
+                color: `var(--primary-color)`,
+              }}
+            />
+          </Link>
+        ) : (
+          "Not Available"
+        ),
     },
     {
       field: "play_store_url",
-      headerName: "PlayStore Link",
+      headerName: "Play Store Link",
       editable: true,
       align: "left",
       flex: 1,
-      renderCell: (params) => (
-        <Link href={params.value} target="_blank">
-          <OpenInNewIcon />
-        </Link>
-      ),
+      renderCell: (params) =>
+        params.value ? (
+          <Link href={params.value} target="_blank">
+            <ArrowOutwardIcon
+              style={{
+                color: `var(--primary-color)`,
+              }}
+            />
+          </Link>
+        ) : (
+          "Not Available"
+        ),
     },
     {
       field: "technology_tags",

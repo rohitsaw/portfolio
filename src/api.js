@@ -115,6 +115,24 @@ const deleteSkill = async (skill) => {
   }
 };
 
+const deleteProject = async (project) => {
+  const url = `${base_url}/projects`;
+
+  let response = await fetch(url, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    credentials: "include",
+    body: JSON.stringify(project),
+  });
+  if (response.ok) {
+    return response.json();
+  } else {
+    return Promise.reject(await response.json());
+  }
+};
+
 const deleteCertificate = async (certificate) => {
   const url = `${base_url}/certificates`;
 
@@ -229,4 +247,5 @@ export {
   deleteEducation,
   addExperience,
   deleteExperience,
+  deleteProject,
 };

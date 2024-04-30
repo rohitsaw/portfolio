@@ -147,6 +147,13 @@ const reducer = (state = initialState, action) => {
       };
     }
 
+    case ACTIONS.ADD_DUMMY_PROJECT: {
+      return {
+        ...state,
+        projects: [...state.projects, action.payload],
+      };
+    }
+
     default:
       return state;
   }
