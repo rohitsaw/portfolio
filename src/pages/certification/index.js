@@ -15,7 +15,6 @@ import Typography from "@mui/material/Typography";
 
 import { motion } from "framer-motion";
 
-import styles from "./index.module.css";
 
 const Certification = () => {
   let { isCertificatesLoading, certificates } = useSelector((state) => ({
@@ -56,7 +55,6 @@ const Certification = () => {
                         to={each.verification_url}
                         target="_blank"
                         rel="noreferrer"
-                        className={styles.navLinkHover}
                       >
                         <ArrowOutwardIcon
                           onClick={() => each.verification_url}

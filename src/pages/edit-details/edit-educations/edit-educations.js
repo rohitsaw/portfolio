@@ -1,48 +1,51 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import FullFeaturedCrudGrid from "../../component/datatable.js";
+import CircularProgressWithLabel from "../../../component/circularprogessbarwithlabel/index";
+import FullFeaturedCrudGrid from "../../../component/datatable.js";
 import { randomId } from "@mui/x-data-grid-generator";
 import dayjs from "dayjs";
 import {
-  addDummyExperience,
-  addExperience,
-  deleteExperience,
-} from "../../redux/action.js";
+  addDummyEducation,
+  addEducation,
+  deleteEducation,
+} from "../../../redux/action.js";
 
-const EditExperiences = ({ styles }) => {
+import EditDetailsPage from "../index.js";
+
+const EditEducations = ({ styles }) => {
   const dispatch = useDispatch();
-  const { workExperiences } = useSelector((state) => ({
-    workExperiences: state.workExperiences,
+  const { educations } = useSelector((state) => ({
+    educations: state.educations,
   }));
 
   const setRow = (new_row, original_row) => {
-    dispatch(addExperience(new_row));
+    dispatch(addEducation(new_row));
   };
 
   const setDummyRow = (id) => {
-    dispatch(addDummyExperience(id));
+    dispatch(addDummyEducation(id));
   };
 
   const deleteRow = (row) => {
-    dispatch(deleteExperience(row));
+    dispatch(deleteEducation(row));
   };
 
   const handleError = (error) => {
     console.log("error", error);
   };
 
-  const experience_columns = [
+  const education_columns = [
     { field: "mui_id", headerName: "ID", flex: 1, align: "left" },
     {
-      field: "company_name",
-      headerName: "Company",
+      field: "degree_name",
+      headerName: "Degree",
       flex: 1,
       editable: true,
       align: "left",
     },
     {
-      field: "designation",
-      headerName: "Designation",
+      field: "institute_name",
+      headerName: "Institute",
       flex: 1,
       editable: true,
       align: "left",
@@ -63,30 +66,36 @@ const EditExperiences = ({ styles }) => {
       editable: true,
       align: "left",
       type: "date",
-      valueFormatter: (params) =>
-        params?.value === null
-          ? "Present"
-          : dayjs(params?.value).format("DD/MM/YYYY"),
+      valueFormatter: (params) => dayjs(params?.value).format("DD/MM/YYYY"),
     },
     {
-      field: "details",
-      headerName: "Details",
+      field: "score",
+      headerName: "Score",
       flex: 1,
       editable: true,
       align: "left",
+      type: "number",
+      headerAlign: "left",
+      renderCell: (params) => {
+        return (
+          <CircularProgressWithLabel
+            value={params.value <= 10 ? params.value * 10 : params.value}
+          />
+        );
+      },
     },
   ];
 
   return (
     <div className={styles.educationContainer}>
       <FullFeaturedCrudGrid
-        ButtonName={"Work Experience"}
-        rows={workExperiences.map((each) => {
+        ButtonName={"Education"}
+        rows={educations.map((each) => {
           if (each.hasOwnProperty("mui_id")) return each;
           else return { ...each, mui_id: randomId() };
         })}
         setDummyRow={setDummyRow}
-        columns={experience_columns}
+        columns={education_columns}
         saveRowInServer={setRow}
         onProcessRowUpdateError={handleError}
         deleteRowFromServer={deleteRow}
@@ -95,4 +104,4 @@ const EditExperiences = ({ styles }) => {
   );
 };
 
-export default EditExperiences;
+export default EditDetailsPage(EditEducations);

@@ -1,10 +1,12 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import CircularProgressWithLabel from "../../component/circularprogessbarwithlabel/index";
-import FullFeaturedCrudGrid from "../../component/datatable.js";
+import CircularProgressWithLabel from "../../../component/circularprogessbarwithlabel/index";
+import FullFeaturedCrudGrid from "../../../component/datatable.js";
 import { randomId } from "@mui/x-data-grid-generator";
 
-import { addDummySkill, addSkill, deleteSkill } from "../../redux/action.js";
+import { addDummySkill, addSkill, deleteSkill } from "../../../redux/action.js";
+
+import EditDetailsPage from "../index.js";
 
 const EditSkills = ({ styles }) => {
   const dispatch = useDispatch();
@@ -75,4 +77,4 @@ const EditSkills = ({ styles }) => {
   );
 };
 
-export default EditSkills;
+export default EditDetailsPage(EditSkills);

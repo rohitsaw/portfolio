@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import FullFeaturedCrudGrid from "../../component/datatable.js";
+import FullFeaturedCrudGrid from "../../../component/datatable.js";
 import { randomId } from "@mui/x-data-grid-generator";
 import { Chip, Stack } from "@mui/material";
 import Link from "@mui/material/Link";
@@ -8,11 +8,13 @@ import dayjs from "dayjs";
 import TextField from "@mui/material/TextField";
 import OpenInNewIcon from "@mui/icons-material/OpenInNew";
 
+import EditDetailsPage from "../index.js";
+
 import {
   addDummyCertificate,
   addCertificate,
   deleteCertificate,
-} from "../../redux/action.js";
+} from "../../../redux/action.js";
 
 const EditCertificates = ({ styles }) => {
   const dispatch = useDispatch();
@@ -45,13 +47,6 @@ const EditCertificates = ({ styles }) => {
       align: "left",
       flex: 1,
     },
-    // {
-    //   field: "certificate_description",
-    //   headerName: "Description",
-    //   align: "left",
-    //   editable: true,
-    //   flex: 1,
-    // },
     {
       field: "certification_authority",
       headerName: "Certified By",
@@ -68,13 +63,6 @@ const EditCertificates = ({ styles }) => {
       type: "date",
       valueFormatter: (params) => dayjs(params?.value).format("DD/MM/YYYY"),
     },
-    // {
-    //   field: "certification_expiry",
-    //   headerName: "Expiry Date",
-    //   editable: true,
-    //   align: "left",
-    //   flex: 1,
-    // },
     {
       field: "verification_url",
       headerName: "Verification Link",
@@ -142,4 +130,4 @@ const EditCertificates = ({ styles }) => {
   );
 };
 
-export default EditCertificates;
+export default EditDetailsPage(EditCertificates);

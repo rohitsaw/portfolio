@@ -1,12 +1,12 @@
 import { Routes, Route, Navigate, useLocation } from "react-router-dom";
 
 import Layout from "../../component/layout";
+
 import Contact from "../../pages/contact";
 import About from "../../pages/about/index";
 import Projects from "../../pages/project/index";
 import Certification from "../../pages/certification/index";
 import WorkExperience from "../../pages/workexperience/index";
-import EditDetails from "../../pages/edit-details/index";
 
 import { AnimatePresence } from "framer-motion";
 import { useEffect } from "react";
@@ -20,6 +20,11 @@ import {
   getUser,
   getAllExperiences,
 } from "../../redux/action.js";
+
+import EditCertificates from "../../pages/edit-details/edit-certficates/edit-certificates.js";
+import EditExperiences from "../../pages/edit-details/edit-experiences/edit-experiences.js";
+import EditSkills from "../../pages/edit-details/edit-skills/edit-skills.js";
+import EditEducation from "../../pages/edit-details/edit-educations/edit-educations.js";
 
 const AnimateRoutes = ({ setOpenSnackBar }) => {
   const dispatch = useDispatch();
@@ -47,8 +52,20 @@ const AnimateRoutes = ({ setOpenSnackBar }) => {
           <Route path="contacts" element={<Contact />} />
         </Route>
         <Route
-          path="/edit-details"
-          element={<EditDetails setOpenSnackBar={setOpenSnackBar} />}
+          path="/edit-certificate"
+          element={<EditCertificates setOpenSnackBar={setOpenSnackBar} />}
+        />
+        <Route
+          path="/edit-education"
+          element={<EditEducation setOpenSnackBar={setOpenSnackBar} />}
+        />
+        <Route
+          path="/edit-experience"
+          element={<EditExperiences setOpenSnackBar={setOpenSnackBar} />}
+        />
+        <Route
+          path="/edit-skill"
+          element={<EditSkills setOpenSnackBar={setOpenSnackBar} />}
         />
         <Route path="*" element={<Navigate replace to="/" />} />
       </Routes>

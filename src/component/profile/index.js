@@ -11,6 +11,16 @@ import MenuItem from "@mui/material/MenuItem";
 
 import LogoutIcon from "@mui/icons-material/Logout";
 import PersonIcon from "@mui/icons-material/Person";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
+import {
+  faUserCircle,
+  faBriefcase,
+  faCertificate,
+  faCog,
+  faGraduationCap,
+} from "@fortawesome/free-solid-svg-icons";
+
 import { Divider } from "@mui/material";
 
 const Profile = ({
@@ -26,6 +36,29 @@ const Profile = ({
 
   const navigate = useNavigate();
 
+  const menuItems = [
+    {
+      menu_name: "Edit Certificate",
+      routeName: "/edit-certificate",
+      icon: faCertificate,
+    },
+    {
+      menu_name: "Edit Skill",
+      routeName: "/edit-skill",
+      icon: faCog,
+    },
+    {
+      menu_name: "Edit Education",
+      routeName: "/edit-education",
+      icon: faGraduationCap,
+    },
+    {
+      menu_name: "Edit Work",
+      routeName: "/edit-experience",
+      icon: faBriefcase,
+    },
+  ];
+
   const handleOpenUserMenu = (event) => {
     setAnchorElUser(event.currentTarget);
   };
@@ -38,9 +71,9 @@ const Profile = ({
     logOut();
   };
 
-  const goToEditPage = () => {
+  const goToEditPage = (routeName) => {
     if (email === "rsaw409@gmail.com" && emailVerified) {
-      navigate("/edit-details");
+      navigate(routeName);
       handleCloseUserMenu();
     } else {
       setOpenSnackBar(true, "You do not have permission to edit!");
@@ -52,7 +85,7 @@ const Profile = ({
       <Tooltip title="Open Profile">
         <IconButton onClick={handleOpenUserMenu}>
           <Avatar
-            sx={{ bgcolor: `var(--primary-color)`}}
+            sx={{ bgcolor: `var(--primary-color)` }}
             alt="Profile name initials"
           >{`${first_name[0]}${last_name[0]}`}</Avatar>
         </IconButton>
@@ -75,17 +108,23 @@ const Profile = ({
           </Box>
         </MenuItem>
         <Divider />
-        <MenuItem onClick={goToEditPage}>
-          <PersonIcon
-            sx={{
-              fontSize: "18px",
-              paddingLeft: "8px",
-              color: "#65656d",
-              opacity: 0.8,
-            }}
-          />
-          <Box sx={{ marginLeft: "18px", color: "#65656d" }}>Edit Profile</Box>
-        </MenuItem>
+        {menuItems.map((each) => {
+          return (
+            <MenuItem onClick={() => goToEditPage(each.routeName)}>
+              <FontAwesomeIcon
+                paddingLeft={18}
+                color="#65656d"
+                fontSize={18}
+                opacity={0.8}
+                icon={each.icon}
+              />
+              <Box sx={{ marginLeft: "18px", color: "#65656d" }}>
+                {each.menu_name}
+              </Box>
+            </MenuItem>
+          );
+        })}
+
         <Divider />
         <MenuItem key={"Logout"} onClick={handleLogOut}>
           <LogoutIcon
