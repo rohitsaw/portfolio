@@ -15,6 +15,7 @@ import {
   deleteExperience as deleteExperienceInServer,
   addExperience as addExperienceServer,
   deleteProject as deleteProjectInServer,
+  addProject as addProjectInServer,
 } from "../api.js";
 
 const getAllProjects = () => async (dispatch) => {
@@ -397,7 +398,34 @@ const setOpenSnackBar = (value, message) => async (dispatch) => {
   });
 };
 
-const addProject = () => {};
+const addProject = (new_row, old_row) => async (dispatch) => {
+  try {
+    await addProjectInServer(new_row);
+    dispatch({
+      type: ACTIONS.SHOW_SNACKBAR,
+      payload: {
+        value: true,
+        severity: "success",
+        message: "Success, project updated.",
+      },
+    });
+  } catch (error) {
+    dispatch({
+      type: ACTIONS.SHOW_SNACKBAR,
+      payload: {
+        value: true,
+        severity: "error",
+        message:
+          error?.message || "Something went wrong while saving work experience",
+      },
+    });
+  }
+  const projects = await getProjects();
+  dispatch({
+    type: ACTIONS.PROJECTS_LOADED,
+    payload: projects,
+  });
+};
 
 const addDummyProject = (mui_id) => async (dispatch) => {
   dispatch({

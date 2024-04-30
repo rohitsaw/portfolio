@@ -97,6 +97,28 @@ const addCertificate = async (certificate) => {
   }
 };
 
+const addProject = async (project) => {
+  project.technology_tags = Array.isArray(project.technology_tags)
+    ? project.technology_tags
+    : project.technology_tags.split(",");
+
+  const url = `${base_url}/projects`;
+
+  let response = await fetch(url, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    credentials: "include",
+    body: JSON.stringify(project),
+  });
+  if (response.ok) {
+    return response.json();
+  } else {
+    return Promise.reject(await response.json());
+  }
+};
+
 const deleteSkill = async (skill) => {
   const url = `${base_url}/skills`;
 
@@ -248,4 +270,5 @@ export {
   addExperience,
   deleteExperience,
   deleteProject,
+  addProject,
 };
