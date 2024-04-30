@@ -100,7 +100,7 @@ const addCertificate = async (certificate) => {
 const addProject = async (project) => {
   project.technology_tags = Array.isArray(project.technology_tags)
     ? project.technology_tags
-    : project.technology_tags.split(",");
+    : project.technology_tags?.split(",");
 
   const url = `${base_url}/projects`;
 

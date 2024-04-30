@@ -66,35 +66,35 @@ const transformProjects = (projects) => {
       links: links,
       getLogo: () => (
         <>
-          {each.technology_tags.includes("react") && (
+          {each.technology_tags?.includes("react") && (
             <FontAwesomeIcon
               icon={faReact}
               style={{ color: "#5ED2F3" }}
               size="xl"
             />
           )}
-          {each.technology_tags.includes("android") && (
+          {each.technology_tags?.includes("android") && (
             <FontAwesomeIcon
               icon={faAndroid}
               style={{ color: "#9FC036" }}
               size="xl"
             />
           )}
-          {each.technology_tags.includes("node") && (
+          {each.technology_tags?.includes("node") && (
             <FontAwesomeIcon
               icon={faNode}
               style={{ color: "#57A745" }}
               size="2xl"
             />
           )}
-          {each.technology_tags.includes("javascript") && (
+          {each.technology_tags?.includes("javascript") && (
             <FontAwesomeIcon
               icon={faJs}
               style={{ color: "#EFD81A" }}
               size="xl"
             />
           )}
-          {each.technology_tags.includes("flutter") && (
+          {each.technology_tags?.includes("flutter") && (
             <FlutterLogo height={22} />
           )}
         </>
