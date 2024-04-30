@@ -13,6 +13,7 @@ import LogoutIcon from "@mui/icons-material/Logout";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import {
+  faProjectDiagram,
   faUserCircle,
   faBriefcase,
   faCertificate,
@@ -40,6 +41,11 @@ const Profile = ({
       menu_name: "Edit User",
       routeName: "/edit-profile",
       icon: faUserCircle,
+    },
+    {
+      menu_name: "Edit Project",
+      routeName: "/edit-project",
+      icon: faProjectDiagram,
     },
     {
       menu_name: "Edit Certificate",

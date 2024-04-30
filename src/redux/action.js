@@ -197,7 +197,8 @@ const addCertificate = (new_row, old_row) => async (dispatch) => {
       payload: {
         value: true,
         severity: "error",
-        message: error?.message || "Something went wrong while saving certificate",
+        message:
+          error?.message || "Something went wrong while saving certificate",
       },
     });
   }
@@ -269,7 +270,8 @@ const addEducation = (new_row, old_row) => async (dispatch) => {
       payload: {
         value: true,
         severity: "error",
-        message: error?.message || "Something went wrong while saving education",
+        message:
+          error?.message || "Something went wrong while saving education",
       },
     });
   }
@@ -394,6 +396,10 @@ const setOpenSnackBar = (value, message) => async (dispatch) => {
   });
 };
 
+const addProject = () => {};
+const addDummyProject = () => {};
+const deleteProject = () => {};
+
 export {
   getAllProjects,
   getAllCertificates,
@@ -414,4 +420,7 @@ export {
   addDummyExperience,
   addExperience,
   deleteExperience,
+  addProject,
+  addDummyProject,
+  deleteProject,
 };

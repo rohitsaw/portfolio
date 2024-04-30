@@ -26,6 +26,7 @@ import EditCertificates from "../../pages/edit-details/edit-certficates/edit-cer
 import EditExperiences from "../../pages/edit-details/edit-experiences/edit-experiences.js";
 import EditSkills from "../../pages/edit-details/edit-skills/edit-skills.js";
 import EditEducation from "../../pages/edit-details/edit-educations/edit-educations.js";
+import EditProjects from "../../pages/edit-details/edit-projects/edit-projects.js";
 
 const AnimateRoutes = ({ setOpenSnackBar }) => {
   const dispatch = useDispatch();
@@ -52,6 +53,10 @@ const AnimateRoutes = ({ setOpenSnackBar }) => {
           <Route path="projects" element={<Projects />} />
           <Route path="contacts" element={<Contact />} />
         </Route>
+        <Route
+          path="/edit-project"
+          element={<EditProjects setOpenSnackBar={setOpenSnackBar} />}
+        />
         <Route
           path="/edit-profile"
           element={<EditUserDetails setOpenSnackBar={setOpenSnackBar} />}
