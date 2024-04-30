@@ -21,6 +21,7 @@ import {
   getAllExperiences,
 } from "../../redux/action.js";
 
+import EditUserDetails from "../../pages/edit-details/edit-user-details/edit-user-details.js";
 import EditCertificates from "../../pages/edit-details/edit-certficates/edit-certificates.js";
 import EditExperiences from "../../pages/edit-details/edit-experiences/edit-experiences.js";
 import EditSkills from "../../pages/edit-details/edit-skills/edit-skills.js";
@@ -51,6 +52,10 @@ const AnimateRoutes = ({ setOpenSnackBar }) => {
           <Route path="projects" element={<Projects />} />
           <Route path="contacts" element={<Contact />} />
         </Route>
+        <Route
+          path="/edit-profile"
+          element={<EditUserDetails setOpenSnackBar={setOpenSnackBar} />}
+        />
         <Route
           path="/edit-certificate"
           element={<EditCertificates setOpenSnackBar={setOpenSnackBar} />}

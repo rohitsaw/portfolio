@@ -80,7 +80,7 @@ const EditExperiences = ({ styles }) => {
   ];
 
   return (
-    <div className={styles.educationContainer}>
+    <div className={styles.editExperienceContainer}>
       <FullFeaturedCrudGrid
         ButtonName={"Work Experience"}
         rows={workExperiences.map((each) => {

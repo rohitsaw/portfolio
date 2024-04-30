@@ -60,7 +60,7 @@ const EditSkills = ({ styles }) => {
   ];
 
   return (
-    <div className={styles.skillContainer}>
+    <div className={styles.editSkillContainer}>
       <FullFeaturedCrudGrid
         ButtonName={"Skill"}
         rows={skills.map((each) => {

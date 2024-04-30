@@ -113,7 +113,7 @@ const EditCertificates = ({ styles }) => {
   ];
 
   return (
-    <div className={styles.certificateContainer}>
+    <div className={styles.editCertificateContainer}>
       <FullFeaturedCrudGrid
         ButtonName={"Certificate"}
         rows={certificates.map((each) => {

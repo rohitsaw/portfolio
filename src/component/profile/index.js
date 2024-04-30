@@ -10,7 +10,6 @@ import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 
 import LogoutIcon from "@mui/icons-material/Logout";
-import PersonIcon from "@mui/icons-material/Person";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import {
@@ -37,6 +36,11 @@ const Profile = ({
   const navigate = useNavigate();
 
   const menuItems = [
+    {
+      menu_name: "Edit User",
+      routeName: "/edit-profile",
+      icon: faUserCircle,
+    },
     {
       menu_name: "Edit Certificate",
       routeName: "/edit-certificate",

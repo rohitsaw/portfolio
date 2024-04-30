@@ -1,15 +1,24 @@
-.container {
-  padding: 20px 20px;
-}
-
-.skillContainer {
+.editSkillContainer {
+  padding-top: 80px;
   width: 100%;
 }
 
-.certificateContainer {
+.editCertificateContainer {
+  padding-top: 80px;
   width: 100%;
 }
 
-.educationContainer {
+.editEducationContainer {
+  padding-top: 80px;
+  width: 100%;
+}
+
+.editExperienceContainer {
+  padding-top: 80px;
+  width: 100%;
+}
+
+.editUserContainer {
+  padding-top: 80px;
   width: 100%;
 }

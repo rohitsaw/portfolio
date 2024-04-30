@@ -87,7 +87,7 @@ const EditEducations = ({ styles }) => {
   ];
 
   return (
-    <div className={styles.educationContainer}>
+    <div className={styles.editEducationContainer}>
       <FullFeaturedCrudGrid
         ButtonName={"Education"}
         rows={educations.map((each) => {
