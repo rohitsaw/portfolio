@@ -27,7 +27,7 @@ const About = () => {
     isSkillsLoading,
     skills,
     isUserLoading,
-    about,
+    user,
   } = useSelector((state) => ({
     isEducationLoading: state.isEducationLoading,
     educations: state.educations,
@@ -36,24 +36,16 @@ const About = () => {
     skills: transformSkills(state.skills),
 
     isUserLoading: state.isUserLoading,
-    about: state.user?.about,
+    user: state.user,
   }));
 
-  const {
-    email,
-    linkedin_url,
-    github_url,
-    blog_url,
-    twitter_url,
-    stackoverflow_url,
-  } = useSelector((state) => ({
-    email: state.user?.user_email,
-    linkedin_url: state.user?.linkedin_url,
-    github_url: state.user?.github_url,
-    blog_url: state.user?.blog_url,
-    twitter_url: state.user?.twitter_url,
-    stackoverflow_url: state.user?.stackoverflow_url,
-  }));
+  const about = user?.about;
+  const email = user?.social_links?.user_email;
+  const linkedin_url = user?.social_links?.linkedin_url;
+  const github_url = user?.social_links?.github_url;
+  const blog_url = user?.social_links?.blog_url;
+  const twitter_url = user?.social_links?.twitter_url;
+  const stackoverflow_url = user?.social_links?.stackoverflow_url;
 
   const [hover, setHover] = useState({
     about: false,
