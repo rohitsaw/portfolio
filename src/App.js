@@ -10,7 +10,7 @@ import Profile from "./component/profile";
 
 import styles from "./app.module.css";
 import { useDispatch, useSelector } from "react-redux";
-import { setOpenSnackBar } from "../src/redux/action.js";
+import { setOpenSnackBar, setUserFromGoogle } from "../src/redux/action.js";
 import { base_url as serverAddress, loadUser } from "./api.js";
 
 const Alert = forwardRef(function Alert(props, ref) {
@@ -19,14 +19,13 @@ const Alert = forwardRef(function Alert(props, ref) {
 
 function App() {
   const dispatch = useDispatch();
-  const [user, setUser] = useState(null);
 
   useEffect(() => {
     const getUser = () => {
       loadUser()
         .then((resObject) => {
           console.log("user", resObject);
-          setUser(resObject.user);
+          dispatch(setUserFromGoogle(resObject.user));
         })
         .catch((error) => {
           console.log("Error", error);
@@ -34,6 +33,10 @@ function App() {
     };
     getUser();
   }, []);
+
+  const { user } = useSelector((state) => ({
+    user: state.userFromGoogle,
+  }));
 
   const { openSnackBar, severity, snackBarMessage } = useSelector((state) => ({
     openSnackBar: state.openSnackBar,

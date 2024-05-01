@@ -36,7 +36,7 @@ const AnimateRoutes = ({ setOpenSnackBar }) => {
     dispatch(getAllProjects());
     dispatch(getAllSkills());
     dispatch(getAllEducations());
-    dispatch(getUser());
+    dispatch(getUser("rsaw409@gmail.com"));
     dispatch(getAllExperiences());
   }, []);
 

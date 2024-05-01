@@ -19,6 +19,8 @@ const initialState = {
   user: null,
   isUserLoading: true,
 
+  userFromGoogle: null,
+
   openSnackBar: false,
   severity: "error",
   snackBarMessage: "",
@@ -107,6 +109,13 @@ const reducer = (state = initialState, action) => {
         ...state,
         user: action.payload,
         isUserLoading: false,
+      };
+    }
+
+    case ACTIONS.USER_FROM_GOOGLE: {
+      return {
+        ...state,
+        userFromGoogle: action.payload,
       };
     }
 

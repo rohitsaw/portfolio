@@ -45,6 +45,13 @@ const getAllCertificates = () => async (dispatch) => {
   });
 };
 
+const setUserFromGoogle = (user) => async (dispatch) => {
+  dispatch({
+    type: ACTIONS.USER_FROM_GOOGLE,
+    payload: user,
+  });
+};
+
 const getAllSkills = () => async (dispatch) => {
   dispatch({
     type: ACTIONS.LOADING_SKILLS,
@@ -71,12 +78,12 @@ const getAllEducations = () => async (dispatch) => {
   });
 };
 
-const getUser = () => async (dispatch) => {
+const getUser = (user_email) => async (dispatch) => {
   dispatch({
     type: ACTIONS.LOADING_USER,
   });
 
-  const user = await getUserFromDB("rsaw409@gmail.com");
+  const user = await getUserFromDB(user_email);
 
   dispatch({
     type: ACTIONS.USER_LOADED,
@@ -504,6 +511,7 @@ const updateUser = (updatedUser) => async (dispatch) => {
 };
 
 export {
+  setUserFromGoogle,
   getAllProjects,
   getAllCertificates,
   getAllSkills,
