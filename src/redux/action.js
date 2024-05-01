@@ -6,6 +6,7 @@ import {
   getExperiences,
   getSkills,
   getUser as getUserFromDB,
+  addUser as addPUserInServer,
   addSkills as addSkillInServer,
   addCertificate as addCertificateInServer,
   deleteSkill as deleteSkillInServer,
@@ -75,7 +76,7 @@ const getUser = () => async (dispatch) => {
     type: ACTIONS.LOADING_USER,
   });
 
-  const user = await getUserFromDB();
+  const user = await getUserFromDB("rsaw409@gmail.com");
 
   dispatch({
     type: ACTIONS.USER_LOADED,
@@ -416,7 +417,7 @@ const addProject = (new_row, old_row) => async (dispatch) => {
         value: true,
         severity: "error",
         message:
-          error?.message || "Something went wrong while saving work experience",
+          error?.message || "Something went wrong while updating project",
       },
     });
   }
@@ -474,6 +475,34 @@ const deleteProject = (row) => async (dispatch) => {
   });
 };
 
+const updateUser = (updatedUser) => async (dispatch) => {
+  try {
+    await addPUserInServer(updatedUser);
+    dispatch({
+      type: ACTIONS.SHOW_SNACKBAR,
+      payload: {
+        value: true,
+        severity: "success",
+        message: "Success, user updated.",
+      },
+    });
+  } catch (error) {
+    dispatch({
+      type: ACTIONS.SHOW_SNACKBAR,
+      payload: {
+        value: true,
+        severity: "error",
+        message: error?.message || "Something went wrong while updating user.",
+      },
+    });
+  }
+  const user = await getUserFromDB(updatedUser.user_email);
+  dispatch({
+    type: ACTIONS.USER_LOADED,
+    payload: user[0],
+  });
+};
+
 export {
   getAllProjects,
   getAllCertificates,
@@ -497,4 +526,5 @@ export {
   addProject,
   addDummyProject,
   deleteProject,
+  updateUser,
 };

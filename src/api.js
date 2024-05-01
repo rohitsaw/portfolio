@@ -36,11 +36,28 @@ const getCertificates = async () => {
   return certificates;
 };
 
-const getUser = async () => {
-  const url = `${base_url}/user`;
+const getUser = async (user_email) => {
+  const url = `${base_url}/user?user_email=${user_email}`;
   const response = await fetch(url);
   const user = await response.json();
   return user;
+};
+
+const addUser = async (user) => {
+  const url = `${base_url}/user`;
+  let response = await fetch(url, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    credentials: "include",
+    body: JSON.stringify(user),
+  });
+  if (response.ok) {
+    return response.json();
+  } else {
+    return Promise.reject(await response.json());
+  }
 };
 
 const getEducations = async () => {
@@ -271,4 +288,5 @@ export {
   deleteExperience,
   deleteProject,
   addProject,
+  addUser,
 };
