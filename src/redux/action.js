@@ -388,7 +388,7 @@ const addExperience = (new_row, user_id) => async (dispatch) => {
   });
 };
 
-const deleteExperience = (row,user_id) => async (dispatch) => {
+const deleteExperience = (row, user_id) => async (dispatch) => {
   try {
     await deleteExperienceInServer(row, user_id);
     dispatch({
@@ -505,9 +505,9 @@ const deleteProject = (row, user_id) => async (dispatch) => {
   });
 };
 
-const updateUser = (updatedUser) => async (dispatch) => {
+const updateUser = (updatedUser, user_id) => async (dispatch) => {
   try {
-    await addOrUpdateUserInServer(updatedUser);
+    await addOrUpdateUserInServer(updatedUser, user_id);
     dispatch({
       type: ACTIONS.SHOW_SNACKBAR,
       payload: {

@@ -38,7 +38,7 @@ const EditUserDetails = ({ styles }) => {
         stackoverflow_url: stackOverFlow,
       },
     };
-    dispatch(updateUser(updatedUser));
+    dispatch(updateUser(updatedUser, user.id));
   };
   return (
     <div className={styles.editUserContainer}>

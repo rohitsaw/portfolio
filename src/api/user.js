@@ -26,8 +26,8 @@ const getUser = async (user_email) => {
   return user;
 };
 
-const addOrUpdateUser = async (user) => {
-  const url = `${base_url}/user`;
+const addOrUpdateUser = async (user, user_id) => {
+  const url = `${base_url}/user?user_id=${user_id}`;
   let response = await fetch(url, {
     method: "POST",
     headers: {
