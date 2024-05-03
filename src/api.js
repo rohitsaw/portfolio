@@ -22,18 +22,32 @@ const loadUser = async () => {
   }
 };
 
-const getProjects = async () => {
-  const url = `${base_url}/projects`;
+const getProjects = async (user_id) => {
+  const url = `${base_url}/projects?user_id=${user_id}`;
   const response = await fetch(url);
   const projects = await response.json();
   return projects;
 };
 
-const getCertificates = async () => {
-  const url = `${base_url}/certificates`;
+const getCertificates = async (user_id) => {
+  const url = `${base_url}/certificates?user_id=${user_id}`;
   const response = await fetch(url);
   const certificates = await response.json();
   return certificates;
+};
+
+const getEducations = async (user_id) => {
+  const url = `${base_url}/educations?user_id=${user_id}`;
+  const response = await fetch(url);
+  const educations = await response.json();
+  return educations;
+};
+
+const getSkills = async (user_id) => {
+  const url = `${base_url}/skills?user_id=${user_id}`;
+  const response = await fetch(url);
+  const skills = await response.json();
+  return skills;
 };
 
 const getUser = async (user_email) => {
@@ -43,7 +57,14 @@ const getUser = async (user_email) => {
   return user;
 };
 
-const addUser = async (user) => {
+const getExperiences = async (user_id) => {
+  const url = `${base_url}/experiences?user_id=${user_id}`;
+  const response = await fetch(url);
+  const experiences = await response.json();
+  return experiences;
+};
+
+const addOrUpdateUser = async (user) => {
   const url = `${base_url}/user`;
   let response = await fetch(url, {
     method: "POST",
@@ -60,22 +81,8 @@ const addUser = async (user) => {
   }
 };
 
-const getEducations = async () => {
-  const url = `${base_url}/educations`;
-  const response = await fetch(url);
-  const educations = await response.json();
-  return educations;
-};
-
-const getSkills = async () => {
-  const url = `${base_url}/skills`;
-  const response = await fetch(url);
-  const skills = await response.json();
-  return skills;
-};
-
-const addSkills = async (skill) => {
-  const url = `${base_url}/skills`;
+const addSkills = async (skill, user_id) => {
+  const url = `${base_url}/skills?user_id=${user_id}`;
 
   let response = await fetch(url, {
     method: "POST",
@@ -92,12 +99,12 @@ const addSkills = async (skill) => {
   }
 };
 
-const addCertificate = async (certificate) => {
+const addCertificate = async (certificate, user_id) => {
   certificate.technology_tags = Array.isArray(certificate.technology_tags)
     ? certificate.technology_tags
     : certificate.technology_tags.split(",");
 
-  const url = `${base_url}/certificates`;
+  const url = `${base_url}/certificates?user_id=${user_id}`;
 
   let response = await fetch(url, {
     method: "POST",
@@ -114,12 +121,12 @@ const addCertificate = async (certificate) => {
   }
 };
 
-const addProject = async (project) => {
+const addProject = async (project, user_id) => {
   project.technology_tags = Array.isArray(project.technology_tags)
     ? project.technology_tags
     : project.technology_tags?.split(",");
 
-  const url = `${base_url}/projects`;
+  const url = `${base_url}/projects?user_id=${user_id}`;
 
   let response = await fetch(url, {
     method: "POST",
@@ -190,8 +197,8 @@ const deleteCertificate = async (certificate) => {
   }
 };
 
-const addEducation = async (education) => {
-  const url = `${base_url}/educations`;
+const addEducation = async (education, user_id) => {
+  const url = `${base_url}/educations?user_id=${user_id}`;
 
   let response = await fetch(url, {
     method: "POST",
@@ -226,8 +233,8 @@ const deleteEducation = async (education) => {
   }
 };
 
-const addExperience = async (experience) => {
-  const url = `${base_url}/experiences`;
+const addExperience = async (experience, user_id) => {
+  const url = `${base_url}/experiences?user_id=${user_id}`;
 
   let response = await fetch(url, {
     method: "POST",
@@ -262,13 +269,6 @@ const deleteExperience = async (experience) => {
   }
 };
 
-const getExperiences = async () => {
-  const url = `${base_url}/experiences`;
-  const response = await fetch(url);
-  const experiences = await response.json();
-  return experiences;
-};
-
 export {
   base_url,
   loadUser,
@@ -288,5 +288,5 @@ export {
   deleteExperience,
   deleteProject,
   addProject,
-  addUser,
+  addOrUpdateUser,
 };

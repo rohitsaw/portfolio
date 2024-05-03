@@ -1,6 +1,8 @@
 import { ACTIONS } from "./constant";
 
 const initialState = {
+  isValidView: true,
+
   projects: [],
   isProjectsLoading: true,
 
@@ -160,6 +162,13 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         projects: [...state.projects, action.payload],
+      };
+    }
+
+    case ACTIONS.USER_NOT_FOUND: {
+      return {
+        ...state,
+        isValidView: false,
       };
     }
 

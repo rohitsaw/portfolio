@@ -16,12 +16,13 @@ import {
 
 const EditProject = ({ styles }) => {
   const dispatch = useDispatch();
-  const { projects } = useSelector((state) => ({
+  const { projects, user_id } = useSelector((state) => ({
     projects: state.projects,
+    user_id: state.user.id,
   }));
 
   const setRow = (new_row, original_row) => {
-    dispatch(addProject(new_row));
+    dispatch(addProject(new_row, user_id));
   };
 
   const setDummyRow = (id) => {
@@ -150,7 +151,7 @@ const EditProject = ({ styles }) => {
     <div className={styles.editProjectContainer}>
       <FullFeaturedCrudGrid
         ButtonName={"Projects"}
-        rows={projects.map((each) => {
+        rows={projects?.map((each) => {
           if (each.hasOwnProperty("mui_id")) return each;
           else return { ...each, mui_id: randomId() };
         })}

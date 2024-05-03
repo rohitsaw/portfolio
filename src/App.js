@@ -1,5 +1,5 @@
-import { BrowserRouter } from "react-router-dom";
-import { useState, forwardRef, useEffect } from "react";
+import { useSearchParams } from "react-router-dom";
+import { forwardRef, useEffect } from "react";
 import MuiAlert from "@mui/material/Alert";
 import Snackbar from "@mui/material/Snackbar";
 import Button from "@mui/material/Button";
@@ -10,8 +10,13 @@ import Profile from "./component/profile";
 
 import styles from "./app.module.css";
 import { useDispatch, useSelector } from "react-redux";
-import { setOpenSnackBar, setUserFromGoogle } from "../src/redux/action.js";
+import {
+  setOpenSnackBar,
+  setUserFromGoogle,
+  getUser,
+} from "../src/redux/action.js";
 import { base_url as serverAddress, loadUser } from "./api.js";
+import ErrorPage from "./pages/ErrorPage/index.js";
 
 const Alert = forwardRef(function Alert(props, ref) {
   return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
@@ -20,8 +25,10 @@ const Alert = forwardRef(function Alert(props, ref) {
 function App() {
   const dispatch = useDispatch();
 
+  let [searchParams, setSearchParams] = useSearchParams();
+
   useEffect(() => {
-    const getUser = () => {
+    const getLogedInUser = () => {
       loadUser()
         .then((resObject) => {
           console.log("user", resObject);
@@ -31,11 +38,13 @@ function App() {
           console.log("Error", error);
         });
     };
-    getUser();
+    getLogedInUser();
+    dispatch(getUser(searchParams.get("email") ?? "rsaw409@gmail.com"));
   }, []);
 
-  const { user } = useSelector((state) => ({
+  const { user, isValidView } = useSelector((state) => ({
     user: state.userFromGoogle,
+    isValidView: state.isValidView,
   }));
 
   const { openSnackBar, severity, snackBarMessage } = useSelector((state) => ({
@@ -56,8 +65,12 @@ function App() {
     window.open(`${serverAddress}/logout`, "_self");
   };
 
+  if (!isValidView) {
+    return <ErrorPage />;
+  }
+
   return (
-    <BrowserRouter>
+    <>
       <div className={styles.profile}>
         {user ? (
           <Profile
@@ -81,6 +94,7 @@ function App() {
         )}
       </div>
       <AnimateRoutes setOpenSnackBar={handleSnackBar} />
+
       <Snackbar
         open={openSnackBar}
         autoHideDuration={1000}
@@ -94,7 +108,7 @@ function App() {
           {snackBarMessage}
         </Alert>
       </Snackbar>
-    </BrowserRouter>
+    </>
   );
 }
 

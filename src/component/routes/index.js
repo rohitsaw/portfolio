@@ -7,17 +7,17 @@ import About from "../../pages/about/index";
 import Projects from "../../pages/project/index";
 import Certification from "../../pages/certification/index";
 import WorkExperience from "../../pages/workexperience/index";
+import ErrorPage from "../../pages/ErrorPage/index.js";
 
 import { AnimatePresence } from "framer-motion";
 import { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import {
   getAllCertificates,
   getAllProjects,
   getAllSkills,
   getAllEducations,
-  getUser,
   getAllExperiences,
 } from "../../redux/action.js";
 
@@ -30,17 +30,17 @@ import EditProjects from "../../pages/edit-details/edit-projects/edit-projects.j
 
 const AnimateRoutes = ({ setOpenSnackBar }) => {
   const dispatch = useDispatch();
+  const location = useLocation();
+
+  const { user } = useSelector((state) => ({ user: state.user }));
 
   useEffect(() => {
-    dispatch(getAllCertificates());
-    dispatch(getAllProjects());
-    dispatch(getAllSkills());
-    dispatch(getAllEducations());
-    dispatch(getUser("rsaw409@gmail.com"));
-    dispatch(getAllExperiences());
-  }, []);
-
-  const location = useLocation();
+    dispatch(getAllCertificates(user?.id));
+    dispatch(getAllProjects(user?.id));
+    dispatch(getAllSkills(user?.id));
+    dispatch(getAllEducations(user?.id));
+    dispatch(getAllExperiences(user?.id));
+  }, [user]);
 
   return (
     <AnimatePresence mode="wait">
@@ -55,6 +55,7 @@ const AnimateRoutes = ({ setOpenSnackBar }) => {
           <Route path="*" element={<Navigate to="/about" replace />} />
         </Route>
         <Route path="/edit">
+          <Route index element={<ErrorPage />} />
           <Route
             path="profile"
             element={<EditUserDetails setOpenSnackBar={setOpenSnackBar} />}
@@ -79,7 +80,7 @@ const AnimateRoutes = ({ setOpenSnackBar }) => {
             path="skill"
             element={<EditSkills setOpenSnackBar={setOpenSnackBar} />}
           />
-          <Route path="*" element={<Navigate replace to="/about" />} />
+          <Route path="*" element={<ErrorPage />} />
         </Route>
       </Routes>
     </AnimatePresence>

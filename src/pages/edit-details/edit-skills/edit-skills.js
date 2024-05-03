@@ -10,10 +10,13 @@ import EditDetailsPage from "../index.js";
 
 const EditSkills = ({ styles }) => {
   const dispatch = useDispatch();
-  const { skills } = useSelector((state) => ({ skills: state.skills }));
+  const { user_id, skills } = useSelector((state) => ({
+    skills: state.skills,
+    user_id: state.user.id,
+  }));
 
   const setRow = (new_row, original_row) => {
-    dispatch(addSkill(new_row));
+    dispatch(addSkill(new_row, user_id));
   };
 
   const setDummyRow = (id) => {
@@ -63,7 +66,7 @@ const EditSkills = ({ styles }) => {
     <div className={styles.editSkillContainer}>
       <FullFeaturedCrudGrid
         ButtonName={"Skill"}
-        rows={skills.map((each) => {
+        rows={skills?.map((each) => {
           if (each.hasOwnProperty("mui_id")) return each;
           else return { ...each, mui_id: randomId() };
         })}

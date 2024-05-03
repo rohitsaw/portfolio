@@ -13,12 +13,13 @@ import EditDetailsPage from "../index.js";
 
 const EditExperiences = ({ styles }) => {
   const dispatch = useDispatch();
-  const { workExperiences } = useSelector((state) => ({
+  const { workExperiences, user_id } = useSelector((state) => ({
     workExperiences: state.workExperiences,
+    user_id: state.user.id,
   }));
 
   const setRow = (new_row, original_row) => {
-    dispatch(addExperience(new_row));
+    dispatch(addExperience(new_row, user_id));
   };
 
   const setDummyRow = (id) => {
@@ -83,7 +84,7 @@ const EditExperiences = ({ styles }) => {
     <div className={styles.editExperienceContainer}>
       <FullFeaturedCrudGrid
         ButtonName={"Work Experience"}
-        rows={workExperiences.map((each) => {
+        rows={workExperiences?.map((each) => {
           if (each.hasOwnProperty("mui_id")) return each;
           else return { ...each, mui_id: randomId() };
         })}

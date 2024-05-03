@@ -14,12 +14,13 @@ import EditDetailsPage from "../index.js";
 
 const EditEducations = ({ styles }) => {
   const dispatch = useDispatch();
-  const { educations } = useSelector((state) => ({
+  const { educations, user_id } = useSelector((state) => ({
     educations: state.educations,
+    user_id: state.user.id,
   }));
 
   const setRow = (new_row, original_row) => {
-    dispatch(addEducation(new_row));
+    dispatch(addEducation(new_row, user_id));
   };
 
   const setDummyRow = (id) => {
@@ -90,7 +91,7 @@ const EditEducations = ({ styles }) => {
     <div className={styles.editEducationContainer}>
       <FullFeaturedCrudGrid
         ButtonName={"Education"}
-        rows={educations.map((each) => {
+        rows={educations?.map((each) => {
           if (each.hasOwnProperty("mui_id")) return each;
           else return { ...each, mui_id: randomId() };
         })}

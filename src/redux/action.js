@@ -6,7 +6,7 @@ import {
   getExperiences,
   getSkills,
   getUser as getUserFromDB,
-  addUser as addPUserInServer,
+  addOrUpdateUser as addOrUpdateUserInServer,
   addSkills as addSkillInServer,
   addCertificate as addCertificateInServer,
   deleteSkill as deleteSkillInServer,
@@ -19,12 +19,13 @@ import {
   addProject as addProjectInServer,
 } from "../api.js";
 
-const getAllProjects = () => async (dispatch) => {
+const getAllProjects = (user_id) => async (dispatch) => {
+  if (!user_id) return;
   dispatch({
     type: ACTIONS.LOADING_PROJECTS,
   });
 
-  const projects = await getProjects();
+  const projects = await getProjects(user_id);
 
   dispatch({
     type: ACTIONS.PROJECTS_LOADED,
@@ -32,12 +33,13 @@ const getAllProjects = () => async (dispatch) => {
   });
 };
 
-const getAllCertificates = () => async (dispatch) => {
+const getAllCertificates = (user_id) => async (dispatch) => {
+  if (!user_id) return;
   dispatch({
     type: ACTIONS.LOADING_CERTIFICATES,
   });
 
-  const certificates = await getCertificates();
+  const certificates = await getCertificates(user_id);
 
   dispatch({
     type: ACTIONS.CERTIFICATES_LOADED,
@@ -52,12 +54,13 @@ const setUserFromGoogle = (user) => async (dispatch) => {
   });
 };
 
-const getAllSkills = () => async (dispatch) => {
+const getAllSkills = (user_id) => async (dispatch) => {
+  if (!user_id) return;
   dispatch({
     type: ACTIONS.LOADING_SKILLS,
   });
 
-  const skills = await getSkills();
+  const skills = await getSkills(user_id);
 
   dispatch({
     type: ACTIONS.SKILLS_LOADED,
@@ -65,12 +68,13 @@ const getAllSkills = () => async (dispatch) => {
   });
 };
 
-const getAllEducations = () => async (dispatch) => {
+const getAllEducations = (user_id) => async (dispatch) => {
+  if (!user_id) return;
   dispatch({
     type: ACTIONS.LOADING_EDUCATIONS,
   });
 
-  const educations = await getEducations();
+  const educations = await getEducations(user_id);
 
   dispatch({
     type: ACTIONS.EDUCATIONS_LOADED,
@@ -85,18 +89,25 @@ const getUser = (user_email) => async (dispatch) => {
 
   const user = await getUserFromDB(user_email);
 
-  dispatch({
-    type: ACTIONS.USER_LOADED,
-    payload: user[0],
-  });
+  if (user[0]) {
+    dispatch({
+      type: ACTIONS.USER_LOADED,
+      payload: user[0],
+    });
+  } else {
+    dispatch({
+      type: ACTIONS.USER_NOT_FOUND,
+    });
+  }
 };
 
-const getAllExperiences = () => async (dispatch) => {
+const getAllExperiences = (user_id) => async (dispatch) => {
+  if (!user_id) return;
   dispatch({
     type: ACTIONS.LOADING_WORKEXPERIENCES,
   });
 
-  const experiences = await getExperiences();
+  const experiences = await getExperiences(user_id);
 
   dispatch({
     type: ACTIONS.WORKEXPERIENCES_LOADED,
@@ -117,9 +128,9 @@ const addDummySkill = (mui_id) => async (dispatch) => {
   });
 };
 
-const addSkill = (new_row, old_row) => async (dispatch) => {
+const addSkill = (new_row, user_id) => async (dispatch) => {
   try {
-    await addSkillInServer(new_row);
+    await addSkillInServer(new_row, user_id);
     dispatch({
       type: ACTIONS.SHOW_SNACKBAR,
       payload: {
@@ -138,7 +149,7 @@ const addSkill = (new_row, old_row) => async (dispatch) => {
       },
     });
   }
-  const skills = await getSkills();
+  const skills = await getSkills(user_id);
   dispatch({
     type: ACTIONS.SKILLS_LOADED,
     payload: skills,
@@ -190,9 +201,9 @@ const addDummyCertificate = (mui_id) => async (dispatch) => {
   });
 };
 
-const addCertificate = (new_row, old_row) => async (dispatch) => {
+const addCertificate = (new_row, user_id) => async (dispatch) => {
   try {
-    await addCertificateInServer(new_row);
+    await addCertificateInServer(new_row, user_id);
     dispatch({
       type: ACTIONS.SHOW_SNACKBAR,
       payload: {
@@ -212,7 +223,7 @@ const addCertificate = (new_row, old_row) => async (dispatch) => {
       },
     });
   }
-  const certificates = await getCertificates();
+  const certificates = await getCertificates(user_id);
   dispatch({
     type: ACTIONS.CERTIFICATES_LOADED,
     payload: certificates,
@@ -263,9 +274,9 @@ const addDummyEducation = (mui_id) => async (dispatch) => {
   });
 };
 
-const addEducation = (new_row, old_row) => async (dispatch) => {
+const addEducation = (new_row, user_id) => async (dispatch) => {
   try {
-    await addEducationInServer(new_row);
+    await addEducationInServer(new_row, user_id);
     dispatch({
       type: ACTIONS.SHOW_SNACKBAR,
       payload: {
@@ -285,7 +296,7 @@ const addEducation = (new_row, old_row) => async (dispatch) => {
       },
     });
   }
-  const educations = await getEducations();
+  const educations = await getEducations(user_id);
   dispatch({
     type: ACTIONS.EDUCATIONS_LOADED,
     payload: educations,
@@ -336,9 +347,9 @@ const addDummyExperience = (mui_id) => async (dispatch) => {
   });
 };
 
-const addExperience = (new_row, old_row) => async (dispatch) => {
+const addExperience = (new_row, user_id) => async (dispatch) => {
   try {
-    await addExperienceServer(new_row);
+    await addExperienceServer(new_row, user_id);
     dispatch({
       type: ACTIONS.SHOW_SNACKBAR,
       payload: {
@@ -358,7 +369,7 @@ const addExperience = (new_row, old_row) => async (dispatch) => {
       },
     });
   }
-  const experiences = await getExperiences();
+  const experiences = await getExperiences(user_id);
   dispatch({
     type: ACTIONS.WORKEXPERIENCES_LOADED,
     payload: experiences,
@@ -406,9 +417,9 @@ const setOpenSnackBar = (value, message) => async (dispatch) => {
   });
 };
 
-const addProject = (new_row, old_row) => async (dispatch) => {
+const addProject = (new_row, user_id) => async (dispatch) => {
   try {
-    await addProjectInServer(new_row);
+    await addProjectInServer(new_row, user_id);
     dispatch({
       type: ACTIONS.SHOW_SNACKBAR,
       payload: {
@@ -428,7 +439,7 @@ const addProject = (new_row, old_row) => async (dispatch) => {
       },
     });
   }
-  const projects = await getProjects();
+  const projects = await getProjects(user_id);
   dispatch({
     type: ACTIONS.PROJECTS_LOADED,
     payload: projects,
@@ -484,7 +495,7 @@ const deleteProject = (row) => async (dispatch) => {
 
 const updateUser = (updatedUser) => async (dispatch) => {
   try {
-    await addPUserInServer(updatedUser);
+    await addOrUpdateUserInServer(updatedUser);
     dispatch({
       type: ACTIONS.SHOW_SNACKBAR,
       payload: {

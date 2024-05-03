@@ -18,12 +18,13 @@ import {
 
 const EditCertificates = ({ styles }) => {
   const dispatch = useDispatch();
-  const { certificates } = useSelector((state) => ({
+  const { certificates, user_id } = useSelector((state) => ({
     certificates: state.certificates,
+    user_id: state.user.id,
   }));
 
   const setRow = (new_row, original_row) => {
-    dispatch(addCertificate(new_row));
+    dispatch(addCertificate(new_row, user_id));
   };
 
   const setDummyRow = (id) => {
@@ -120,7 +121,7 @@ const EditCertificates = ({ styles }) => {
     <div className={styles.editCertificateContainer}>
       <FullFeaturedCrudGrid
         ButtonName={"Certificate"}
-        rows={certificates.map((each) => {
+        rows={certificates?.map((each) => {
           if (each.hasOwnProperty("mui_id")) return each;
           else return { ...each, mui_id: randomId() };
         })}
