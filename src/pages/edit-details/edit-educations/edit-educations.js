@@ -28,7 +28,7 @@ const EditEducations = ({ styles }) => {
   };
 
   const deleteRow = (row) => {
-    dispatch(deleteEducation(row));
+    dispatch(deleteEducation(row, user_id));
   };
 
   const handleError = (error) => {

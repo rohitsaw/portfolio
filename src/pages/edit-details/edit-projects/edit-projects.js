@@ -30,7 +30,7 @@ const EditProject = ({ styles }) => {
   };
 
   const deleteRow = (row) => {
-    dispatch(deleteProject(row));
+    dispatch(deleteProject(row, user_id));
   };
 
   const handleError = (error) => {

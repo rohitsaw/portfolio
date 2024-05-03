@@ -168,9 +168,9 @@ const addSkill = (new_row, user_id) => async (dispatch) => {
   });
 };
 
-const deleteSkill = (row) => async (dispatch) => {
+const deleteSkill = (row, user_id) => async (dispatch) => {
   try {
-    await deleteSkillInServer(row);
+    await deleteSkillInServer(row, user_id);
     dispatch({
       type: ACTIONS.SHOW_SNACKBAR,
       payload: {
@@ -189,7 +189,7 @@ const deleteSkill = (row) => async (dispatch) => {
       },
     });
   }
-  const skills = await getSkills();
+  const skills = await getSkills(user_id);
   dispatch({
     type: ACTIONS.SKILLS_LOADED,
     payload: skills,
@@ -242,9 +242,9 @@ const addCertificate = (new_row, user_id) => async (dispatch) => {
   });
 };
 
-const deleteCertificate = (row) => async (dispatch) => {
+const deleteCertificate = (row, user_id) => async (dispatch) => {
   try {
-    await deleteCertificateInServer(row);
+    await deleteCertificateInServer(row, user_id);
     dispatch({
       type: ACTIONS.SHOW_SNACKBAR,
       payload: {
@@ -264,7 +264,7 @@ const deleteCertificate = (row) => async (dispatch) => {
       },
     });
   }
-  const certificates = await getCertificates();
+  const certificates = await getCertificates(user_id);
   dispatch({
     type: ACTIONS.CERTIFICATES_LOADED,
     payload: certificates,
@@ -315,9 +315,9 @@ const addEducation = (new_row, user_id) => async (dispatch) => {
   });
 };
 
-const deleteEducation = (row) => async (dispatch) => {
+const deleteEducation = (row, user_id) => async (dispatch) => {
   try {
-    await deleteEducationInServer(row);
+    await deleteEducationInServer(row, user_id);
     dispatch({
       type: ACTIONS.SHOW_SNACKBAR,
       payload: {
@@ -337,7 +337,7 @@ const deleteEducation = (row) => async (dispatch) => {
       },
     });
   }
-  const educations = await getEducations();
+  const educations = await getEducations(user_id);
   dispatch({
     type: ACTIONS.EDUCATIONS_LOADED,
     payload: educations,
@@ -388,9 +388,9 @@ const addExperience = (new_row, user_id) => async (dispatch) => {
   });
 };
 
-const deleteExperience = (row) => async (dispatch) => {
+const deleteExperience = (row,user_id) => async (dispatch) => {
   try {
-    await deleteExperienceInServer(row);
+    await deleteExperienceInServer(row, user_id);
     dispatch({
       type: ACTIONS.SHOW_SNACKBAR,
       payload: {
@@ -411,7 +411,7 @@ const deleteExperience = (row) => async (dispatch) => {
       },
     });
   }
-  const experiences = await getExperiences();
+  const experiences = await getExperiences(user_id);
   dispatch({
     type: ACTIONS.WORKEXPERIENCES_LOADED,
     payload: experiences,
@@ -474,9 +474,9 @@ const addDummyProject = (mui_id) => async (dispatch) => {
   });
 };
 
-const deleteProject = (row) => async (dispatch) => {
+const deleteProject = (row, user_id) => async (dispatch) => {
   try {
-    await deleteProjectInServer(row);
+    await deleteProjectInServer(row, user_id);
     dispatch({
       type: ACTIONS.SHOW_SNACKBAR,
       payload: {
@@ -497,7 +497,7 @@ const deleteProject = (row) => async (dispatch) => {
       },
     });
   }
-  const projects = await getProjects();
+  const projects = await getProjects(user_id);
 
   dispatch({
     type: ACTIONS.PROJECTS_LOADED,

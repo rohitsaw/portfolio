@@ -25,8 +25,8 @@ const addEducation = async (education, user_id) => {
   }
 };
 
-const deleteEducation = async (education) => {
-  const url = `${base_url}/educations`;
+const deleteEducation = async (education, user_id) => {
+  const url = `${base_url}/educations?user_id=${user_id}`;
 
   let response = await fetch(url, {
     method: "DELETE",

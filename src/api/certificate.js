@@ -29,8 +29,8 @@ const addCertificate = async (certificate, user_id) => {
   }
 };
 
-const deleteCertificate = async (certificate) => {
-  const url = `${base_url}/certificates`;
+const deleteCertificate = async (certificate, user_id) => {
+  const url = `${base_url}/certificates?user_id=${user_id}`;
 
   let response = await fetch(url, {
     method: "DELETE",

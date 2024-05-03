@@ -24,7 +24,7 @@ const EditSkills = ({ styles }) => {
   };
 
   const deleteRow = (row) => {
-    dispatch(deleteSkill(row));
+    dispatch(deleteSkill(row, user_id));
   };
 
   const handleError = (error) => {

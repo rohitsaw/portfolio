@@ -29,8 +29,8 @@ const addProject = async (project, user_id) => {
   }
 };
 
-const deleteProject = async (project) => {
-  const url = `${base_url}/projects`;
+const deleteProject = async (project, user_id) => {
+  const url = `${base_url}/projects?user_id=${user_id}`;
 
   let response = await fetch(url, {
     method: "DELETE",

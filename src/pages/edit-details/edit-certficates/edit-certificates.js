@@ -32,7 +32,7 @@ const EditCertificates = ({ styles }) => {
   };
 
   const deleteRow = (row) => {
-    dispatch(deleteCertificate(row));
+    dispatch(deleteCertificate(row, user_id));
   };
 
   const handleError = (error) => {

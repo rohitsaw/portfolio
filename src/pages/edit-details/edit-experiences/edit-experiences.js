@@ -27,7 +27,7 @@ const EditExperiences = ({ styles }) => {
   };
 
   const deleteRow = (row) => {
-    dispatch(deleteExperience(row));
+    dispatch(deleteExperience(row, user_id));
   };
 
   const handleError = (error) => {

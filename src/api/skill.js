@@ -25,8 +25,8 @@ const addSkills = async (skill, user_id) => {
   }
 };
 
-const deleteSkill = async (skill) => {
-  const url = `${base_url}/skills`;
+const deleteSkill = async (skill, user_id) => {
+  const url = `${base_url}/skills?user_id=${user_id}`;
 
   let response = await fetch(url, {
     method: "DELETE",

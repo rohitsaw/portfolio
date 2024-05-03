@@ -25,8 +25,8 @@ const addExperience = async (experience, user_id) => {
   }
 };
 
-const deleteExperience = async (experience) => {
-  const url = `${base_url}/experiences`;
+const deleteExperience = async (experience, user_id) => {
+  const url = `${base_url}/experiences?user_id=${user_id}`;
 
   let response = await fetch(url, {
     method: "DELETE",
