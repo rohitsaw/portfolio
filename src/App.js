@@ -15,7 +15,8 @@ import {
   setUserFromGoogle,
   getUser,
 } from "../src/redux/action.js";
-import { base_url as serverAddress, loadUser } from "./api.js";
+import { base_url as serverAddress } from "./api/api.js";
+import { loadUser } from "./api/user.js";
 import ErrorPage from "./pages/ErrorPage/index.js";
 
 const Alert = forwardRef(function Alert(props, ref) {

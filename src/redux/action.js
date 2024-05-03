@@ -1,23 +1,35 @@
 import { ACTIONS } from "./constant";
+
+import {
+  getCertificates,
+  addCertificate as addCertificateInServer,
+  deleteCertificate as deleteCertificateInServer,
+} from "../api/certificate.js";
+import {
+  getEducations,
+  addEducation as addEducationInServer,
+  deleteEducation as deleteEducationInServer,
+} from "../api/education.js";
+import {
+  getExperiences,
+  addExperience as addExperienceServer,
+  deleteExperience as deleteExperienceInServer,
+} from "../api/experience.js";
 import {
   getProjects,
-  getCertificates,
-  getEducations,
-  getExperiences,
+  addProject as addProjectInServer,
+  deleteProject as deleteProjectInServer,
+} from "../api/project.js";
+import {
   getSkills,
+  addSkills as addSkillInServer,
+  deleteSkill as deleteSkillInServer,
+} from "../api/skill.js";
+import {} from "../api/user.js";
+import {
   getUser as getUserFromDB,
   addOrUpdateUser as addOrUpdateUserInServer,
-  addSkills as addSkillInServer,
-  addCertificate as addCertificateInServer,
-  deleteSkill as deleteSkillInServer,
-  deleteCertificate as deleteCertificateInServer,
-  deleteEducation as deleteEducationInServer,
-  addEducation as addEducationInServer,
-  deleteExperience as deleteExperienceInServer,
-  addExperience as addExperienceServer,
-  deleteProject as deleteProjectInServer,
-  addProject as addProjectInServer,
-} from "../api.js";
+} from "../api/user.js";
 
 const getAllProjects = (user_id) => async (dispatch) => {
   if (!user_id) return;
