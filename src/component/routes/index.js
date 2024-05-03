@@ -52,32 +52,35 @@ const AnimateRoutes = ({ setOpenSnackBar }) => {
           <Route path="certification" element={<Certification />} />
           <Route path="projects" element={<Projects />} />
           <Route path="contacts" element={<Contact />} />
+          <Route path="*" element={<Navigate to="/about" replace />} />
         </Route>
-        <Route
-          path="/edit-project"
-          element={<EditProjects setOpenSnackBar={setOpenSnackBar} />}
-        />
-        <Route
-          path="/edit-profile"
-          element={<EditUserDetails setOpenSnackBar={setOpenSnackBar} />}
-        />
-        <Route
-          path="/edit-certificate"
-          element={<EditCertificates setOpenSnackBar={setOpenSnackBar} />}
-        />
-        <Route
-          path="/edit-education"
-          element={<EditEducation setOpenSnackBar={setOpenSnackBar} />}
-        />
-        <Route
-          path="/edit-experience"
-          element={<EditExperiences setOpenSnackBar={setOpenSnackBar} />}
-        />
-        <Route
-          path="/edit-skill"
-          element={<EditSkills setOpenSnackBar={setOpenSnackBar} />}
-        />
-        <Route path="*" element={<Navigate replace to="/" />} />
+        <Route path="/edit">
+          <Route
+            path="profile"
+            element={<EditUserDetails setOpenSnackBar={setOpenSnackBar} />}
+          />
+          <Route
+            path="project"
+            element={<EditProjects setOpenSnackBar={setOpenSnackBar} />}
+          />
+          <Route
+            path="certificate"
+            element={<EditCertificates setOpenSnackBar={setOpenSnackBar} />}
+          />
+          <Route
+            path="education"
+            element={<EditEducation setOpenSnackBar={setOpenSnackBar} />}
+          />
+          <Route
+            path="experience"
+            element={<EditExperiences setOpenSnackBar={setOpenSnackBar} />}
+          />
+          <Route
+            path="skill"
+            element={<EditSkills setOpenSnackBar={setOpenSnackBar} />}
+          />
+          <Route path="*" element={<Navigate replace to="/about" />} />
+        </Route>
       </Routes>
     </AnimatePresence>
   );

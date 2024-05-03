@@ -39,32 +39,32 @@ const Profile = ({
   const menuItems = [
     {
       menu_name: "Edit User",
-      routeName: "/edit-profile",
+      routeName: "/edit/profile",
       icon: faUserCircle,
     },
     {
       menu_name: "Edit Project",
-      routeName: "/edit-project",
+      routeName: "/edit/project",
       icon: faProjectDiagram,
     },
     {
       menu_name: "Edit Certificate",
-      routeName: "/edit-certificate",
+      routeName: "/edit/certificate",
       icon: faCertificate,
     },
     {
       menu_name: "Edit Skill",
-      routeName: "/edit-skill",
+      routeName: "/edit/skill",
       icon: faCog,
     },
     {
       menu_name: "Edit Education",
-      routeName: "/edit-education",
+      routeName: "/edit/education",
       icon: faGraduationCap,
     },
     {
       menu_name: "Edit Work",
-      routeName: "/edit-experience",
+      routeName: "/edit/experience",
       icon: faBriefcase,
     },
   ];
