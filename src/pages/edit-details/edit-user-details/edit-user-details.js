@@ -8,20 +8,21 @@ import { useState } from "react";
 import { updateUser } from "../../../redux/action.js";
 
 const EditUserDetails = ({ styles }) => {
-  const { user } = useSelector((state) => ({
+  const { user, isUserLoading } = useSelector((state) => ({
     user: state.user,
+    isUserLoading: state.isUserLoading,
   }));
 
-  const [user_email, setUserEmail] = useState(user.user_email);
-  const [name, setName] = useState(user.name);
-  const [github, setGithub] = useState(user.social_links?.github_url);
-  const [linkedin, setLinkedin] = useState(user.social_links?.linkedin_url);
-  const [blog, setBlog] = useState(user.social_links?.blog_url);
-  const [twitter, setTwitter] = useState(user.social_links?.twitter_url);
+  const [user_email, setUserEmail] = useState(user?.user_email);
+  const [name, setName] = useState(user?.name);
+  const [github, setGithub] = useState(user?.social_links?.github_url);
+  const [linkedin, setLinkedin] = useState(user?.social_links?.linkedin_url);
+  const [blog, setBlog] = useState(user?.social_links?.blog_url);
+  const [twitter, setTwitter] = useState(user?.social_links?.twitter_url);
   const [stackOverFlow, setStackoverflow] = useState(
-    user.social_links?.stackoverflow_url
+    user?.social_links?.stackoverflow_url
   );
-  const [about, setAbout] = useState(user.about);
+  const [about, setAbout] = useState(user?.about);
   const dispatch = useDispatch();
 
   const handleSubmit = (event) => {
@@ -58,7 +59,7 @@ const EditUserDetails = ({ styles }) => {
               fullWidth
               onChange={(e) => setUserEmail(e.target.value)}
               label="Email"
-              defaultValue={user.user_email}
+              defaultValue={user_email}
               disabled
               style={{ width: 400, paddingLeft: "auto" }}
             />

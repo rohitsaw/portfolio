@@ -40,19 +40,19 @@ function transformSkills(skills) {
 const transformProjects = (projects) => {
   return projects?.map((each) => {
     const links = [];
-    if (each.github_url) {
+    if (each.github_url && each.github_url !== "NULL") {
       links.push({
         getIcon: () => <GitHubIcon />,
         url: each.github_url,
       });
     }
-    if (each.play_store_url) {
+    if (each.play_store_url && each.play_store_url != "NULL") {
       links.push({
         getIcon: () => <ShopIcon />,
         url: each.play_store_url,
       });
     }
-    if (each.web_url) {
+    if (each.web_url && each.web_url !== "NULL") {
       links.push({
         getIcon: () => <ArrowOutwardIcon />,
         url: each.web_url,
