@@ -50,7 +50,7 @@ function App() {
       }
     };
     getLogedInUser();
-  }, [user]);
+  }, []);
 
   const { openSnackBar, severity, snackBarMessage } = useSelector((state) => ({
     openSnackBar: state.openSnackBar,
