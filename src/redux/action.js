@@ -529,7 +529,7 @@ const updateUser = (updatedUser, user_id) => async (dispatch) => {
       },
     });
   }
-  const user = await getUserFromDB(updatedUser.user_email);
+  const user = await getUserFromDB(updatedUser.user_email, null);
   dispatch({
     type: ACTIONS.USER_LOADED,
     payload: user[0],
