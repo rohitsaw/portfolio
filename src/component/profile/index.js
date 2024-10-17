@@ -82,7 +82,7 @@ const Profile = ({
   };
 
   const goToEditPage = (routeName) => {
-    if (email === "rsaw409@gmail.com" && emailVerified) {
+    if (emailVerified) {
       navigate(routeName);
       handleCloseUserMenu();
     } else {
