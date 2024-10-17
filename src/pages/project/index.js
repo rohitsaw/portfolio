@@ -9,6 +9,7 @@ import CircularProgress from "@mui/material/CircularProgress";
 import styles from "./index.module.css";
 
 import { ListItem, ListItemButton } from "@mui/material";
+import ErrorPage from "../ErrorPage/index.js";
 
 import Box from "@mui/material/Box";
 import List from "@mui/material/List";
@@ -30,12 +31,17 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { ReactComponent as FlutterLogo } from "../../icons/Google-flutter-logo.svg";
 
 const Projects = () => {
-  let { isProjectsLoading, projects } = useSelector((state) => ({
+  let { isProjectsLoading, projects, isValidView } = useSelector((state) => ({
     isProjectsLoading: state.isProjectsLoading,
     projects: state.projects,
+    isValidView: state.isValidView,
   }));
 
   const [hoverIndex, setHoverIndex] = useState(-1);
+
+  if (!isValidView) {
+    return <ErrorPage />;
+  }
 
   return (
     <motion.div

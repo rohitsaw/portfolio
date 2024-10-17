@@ -13,7 +13,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { setOpenSnackBar, setUserFromGoogle } from "../src/redux/action.js";
 import { base_url as serverAddress } from "./api/api.js";
 import { loadUser } from "./api/user.js";
-import ErrorPage from "./pages/ErrorPage/index.js";
 import { getUser } from "./redux/action.js";
 
 const Alert = forwardRef(function Alert(props, ref) {
@@ -23,6 +22,10 @@ const Alert = forwardRef(function Alert(props, ref) {
 function App() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  const { user } = useSelector((state) => ({
+    user: state.userFromGoogle,
+  }));
 
   useEffect(() => {
     const getLogedInUser = async () => {
@@ -43,12 +46,7 @@ function App() {
       }
     };
     getLogedInUser();
-  }, []);
-
-  const { user, isValidView } = useSelector((state) => ({
-    user: state.userFromGoogle,
-    isValidView: state.isValidView,
-  }));
+  }, [user]);
 
   const { openSnackBar, severity, snackBarMessage } = useSelector((state) => ({
     openSnackBar: state.openSnackBar,
@@ -67,10 +65,6 @@ function App() {
   const logout = () => {
     window.open(`${serverAddress}/logout`, "_self");
   };
-
-  if (!isValidView) {
-    return <ErrorPage />;
-  }
 
   return (
     <>

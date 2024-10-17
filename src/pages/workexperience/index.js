@@ -9,14 +9,22 @@ import Divider from "@mui/material/Divider";
 import ListItemText from "@mui/material/ListItemText";
 import ListItemButton from "@mui/material/ListItemButton";
 import Typography from "@mui/material/Typography";
+import ErrorPage from "../ErrorPage/index.js";
 
 import { motion } from "framer-motion";
 
 const WorkExperience = () => {
-  let { isWorkExperiencesLoading, workExperiences } = useSelector((state) => ({
-    isWorkExperiencesLoading: state.isWorkExperiencesLoading,
-    workExperiences: state.workExperiences,
-  }));
+  let { isWorkExperiencesLoading, workExperiences, isValidView } = useSelector(
+    (state) => ({
+      isWorkExperiencesLoading: state.isWorkExperiencesLoading,
+      workExperiences: state.workExperiences,
+      isValidView: state.isValidView,
+    })
+  );
+
+  if (!isValidView) {
+    return <ErrorPage />;
+  }
 
   return (
     <motion.div

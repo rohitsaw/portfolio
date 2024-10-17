@@ -5,13 +5,15 @@ import { NavLink } from "react-router-dom";
 import { motion } from "framer-motion";
 import { useSelector } from "react-redux";
 import { CircularProgress } from "@mui/material";
+import ErrorPage from "../ErrorPage/index.js";
 
 import styles from "./index.module.css";
 
 const Contact = () => {
-  const { isUserLoading, user } = useSelector((state) => ({
+  const { isUserLoading, user, isValidView } = useSelector((state) => ({
     isUserLoading: state.isUserLoading,
     user: state.user,
+    isValidView: state.isValidView,
   }));
 
   const email = user?.user_email;
@@ -37,6 +39,10 @@ const Contact = () => {
       url: social_links?.github_url,
     },
   ];
+
+  if (!isValidView) {
+    return <ErrorPage />;
+  }
 
   return (
     <motion.div

@@ -17,7 +17,7 @@ import {
   faLinkedin,
 } from "@fortawesome/free-brands-svg-icons";
 import { faEnvelope, faBlog } from "@fortawesome/free-solid-svg-icons";
-
+import ErrorPage from "../ErrorPage/index.js";
 import { transformSkills } from "../../utils/util.js";
 
 import styles from "./index.module.css";
@@ -30,6 +30,7 @@ const About = () => {
     skills,
     isUserLoading,
     user,
+    isValidView,
   } = useSelector((state) => ({
     isEducationLoading: state.isEducationLoading,
     educations: state.educations,
@@ -39,6 +40,7 @@ const About = () => {
 
     isUserLoading: state.isUserLoading,
     user: state.user,
+    isValidView: state.isValidView,
   }));
 
   const about = user?.about;
@@ -65,6 +67,10 @@ const About = () => {
     twitter: twitter_url,
     mail: `mailto:${email}`,
   };
+
+  if (!isValidView) {
+    return <ErrorPage />;
+  }
 
   return (
     <motion.div

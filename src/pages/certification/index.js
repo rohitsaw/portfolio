@@ -12,17 +12,26 @@ import ListItemText from "@mui/material/ListItemText";
 import ListItemButton from "@mui/material/ListItemButton";
 
 import Typography from "@mui/material/Typography";
+import ErrorPage from "../ErrorPage/index.js";
+
 
 import { motion } from "framer-motion";
 
 
 const Certification = () => {
-  let { isCertificatesLoading, certificates } = useSelector((state) => ({
+  let { isCertificatesLoading, certificates, isValidView } = useSelector((state) => ({
     isCertificatesLoading: state.isCertificatesLoading,
     certificates: state.certificates,
+    isValidView: state.isValidView,
+
   }));
 
   const [hoverIndex, setHoverIndex] = useState(-1);
+
+
+  if (!isValidView) {
+    return <ErrorPage />;
+  }
 
   return (
     <motion.div
