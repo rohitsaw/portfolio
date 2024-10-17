@@ -101,15 +101,15 @@ const getUser = (user_email) => async (dispatch) => {
 
   const user = await getUserFromDB(user_email);
 
-  if (user[0]) {
-    dispatch(getAllCertificates(user[0]?.id));
-    dispatch(getAllProjects(user[0]?.id));
-    dispatch(getAllSkills(user[0]?.id));
-    dispatch(getAllEducations(user[0]?.id));
-    dispatch(getAllExperiences(user[0]?.id));
+  if (user) {
+    dispatch(getAllCertificates(user?.id));
+    dispatch(getAllProjects(user?.id));
+    dispatch(getAllSkills(user?.id));
+    dispatch(getAllEducations(user?.id));
+    dispatch(getAllExperiences(user?.id));
     dispatch({
       type: ACTIONS.USER_LOADED,
-      payload: user[0],
+      payload: user,
     });
   } else {
     dispatch({
