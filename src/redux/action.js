@@ -94,14 +94,12 @@ const getAllEducations = (user_id) => async (dispatch) => {
   });
 };
 
-const getUser = (user_email) => async (dispatch) => {
+const getUser = (user_email, name) => async (dispatch) => {
   dispatch({
     type: ACTIONS.LOADING_USER,
   });
-
-  const user = await getUserFromDB(user_email);
-
-  if (user) {
+  try {
+    const user = await getUserFromDB(user_email, name);
     dispatch(getAllCertificates(user?.id));
     dispatch(getAllProjects(user?.id));
     dispatch(getAllSkills(user?.id));
@@ -111,7 +109,7 @@ const getUser = (user_email) => async (dispatch) => {
       type: ACTIONS.USER_LOADED,
       payload: user,
     });
-  } else {
+  } catch (error) {
     dispatch({
       type: ACTIONS.USER_NOT_FOUND,
     });

@@ -32,17 +32,30 @@ function App() {
       try {
         const resObject = await loadUser();
         dispatch(setUserFromGoogle(resObject.user));
-        dispatch(getUser(resObject.user?.emails[0]?.value));
+        dispatch(
+          getUser(resObject.user?.emails[0]?.value, resObject.user?.displayName)
+        );
         navigate(`/${resObject.user?.emails[0]?.value}/about`, {
           replace: true,
         });
         console.log("LogedIn user found", resObject);
       } catch (error) {
-        console.log("LogedIn user not found");
-        dispatch(getUser("rsaw409@gmail.com"));
-        navigate("/rsaw409@gmail.com/about", {
-          replace: true,
-        });
+        const pathname = window.location?.pathname;
+        const extractedEmail = pathname?.split("/")?.[1];
+        const restPath = pathname?.split("/")?.[2];
+        console.log("extractedEmail", extractedEmail);
+        if (/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(extractedEmail)) {
+          dispatch(getUser(extractedEmail, null));
+          navigate(`/${extractedEmail}/${restPath}`, {
+            replace: true,
+          });
+        } else {
+          console.log("LogedIn user not found");
+          dispatch(getUser("rsaw409@gmail.com", null));
+          navigate("/rsaw409@gmail.com/about", {
+            replace: true,
+          });
+        }
       }
     };
     getLogedInUser();

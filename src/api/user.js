@@ -19,9 +19,12 @@ const loadUser = async () => {
   }
 };
 
-const getUser = async (user_email) => {
+const getUser = async (user_email, name) => {
   const url = `${base_url}/user?user_email=${user_email}`;
-  const response = await fetch(url);
+  const response = await fetch(url, {
+    method: "GET",
+    headers: { ...(name && { name: name }) },
+  });
   const user = await response.json();
   return user;
 };
