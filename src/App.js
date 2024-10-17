@@ -42,7 +42,7 @@ function App() {
       } catch (error) {
         const pathname = window.location?.pathname;
         const extractedEmail = pathname?.split("/")?.[1];
-        const restPath = pathname?.split("/")?.[2];
+        const restPath = pathname?.split("/")?.[2] ?? "about";
         console.log("extractedEmail", extractedEmail);
         if (/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(extractedEmail)) {
           dispatch(getUser(extractedEmail, null));
