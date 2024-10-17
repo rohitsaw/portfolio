@@ -80,10 +80,13 @@ const About = () => {
     >
       <div className={styles.pageContainer}>
         <div className={styles.logoWrapper}>
-          <a target="_blank" href="images/rohit.webp">
+          <a
+            target="_blank"
+            href="https://cywiacstqjeecqodaozz.supabase.co/storage/v1/object/sign/portfolio_images/rohit.webp?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJwb3J0Zm9saW9faW1hZ2VzL3JvaGl0LndlYnAiLCJpYXQiOjE3MjkxNzIxMzMsImV4cCI6MjA0NDUzMjEzM30.8d6c-caOMcpUpWEtVkR-BHW1CdkW8QhFB6TgIRiWKJQ"
+          >
             <img
               className={styles.img}
-              src="images/rohit.webp"
+              src="https://cywiacstqjeecqodaozz.supabase.co/storage/v1/object/sign/portfolio_images/rohit.webp?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJwb3J0Zm9saW9faW1hZ2VzL3JvaGl0LndlYnAiLCJpYXQiOjE3MjkxNzIxMzMsImV4cCI6MjA0NDUzMjEzM30.8d6c-caOMcpUpWEtVkR-BHW1CdkW8QhFB6TgIRiWKJQ"
               alt="coder logo"
             />
           </a>
