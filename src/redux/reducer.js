@@ -111,6 +111,7 @@ const reducer = (state = initialState, action) => {
         ...state,
         user: action.payload,
         isUserLoading: false,
+        isValidView: true,
       };
     }
 

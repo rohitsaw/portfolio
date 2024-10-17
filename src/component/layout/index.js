@@ -1,21 +1,23 @@
 import React from "react";
 import { useLocation } from "react-router-dom";
+import { useParams } from "react-router";
 
-import { Outlet, NavLink, Link } from "react-router-dom";
+import { Outlet, Link } from "react-router-dom";
 import Footer from "../footer";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 
 import styles from "./index.module.css";
 
 const Layout = () => {
   const location = useLocation();
+  const { emailId } = useParams();
 
   const routes = [
-    { path: "/about", routeName: "About" },
-    { path: "/workexperience", routeName: "Work" },
-    { path: "/certification", routeName: "Certification" },
-    { path: "/projects", routeName: "Project" },
-    { path: "/contacts", routeName: "Contact" },
+    { path: `/${emailId}/about`, routeName: "About" },
+    { path: `/${emailId}/workexperience`, routeName: "Work" },
+    { path: `/${emailId}/certification`, routeName: "Certification" },
+    { path: `/${emailId}/projects`, routeName: "Project" },
+    { path: `/${emailId}/contacts`, routeName: "Contact" },
   ];
 
   return (

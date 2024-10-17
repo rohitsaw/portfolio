@@ -1,23 +1,20 @@
-import { useSearchParams } from "react-router-dom";
 import { forwardRef, useEffect } from "react";
 import MuiAlert from "@mui/material/Alert";
 import Snackbar from "@mui/material/Snackbar";
 import Button from "@mui/material/Button";
 import GoogleIcon from "@mui/icons-material/Google";
+import { useNavigate } from "react-router-dom";
 
 import AnimateRoutes from "./component/routes";
 import Profile from "./component/profile";
 
 import styles from "./app.module.css";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  setOpenSnackBar,
-  setUserFromGoogle,
-  getUser,
-} from "../src/redux/action.js";
+import { setOpenSnackBar, setUserFromGoogle } from "../src/redux/action.js";
 import { base_url as serverAddress } from "./api/api.js";
 import { loadUser } from "./api/user.js";
 import ErrorPage from "./pages/ErrorPage/index.js";
+import { getUser } from "./redux/action.js";
 
 const Alert = forwardRef(function Alert(props, ref) {
   return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
@@ -25,22 +22,27 @@ const Alert = forwardRef(function Alert(props, ref) {
 
 function App() {
   const dispatch = useDispatch();
-
-  let [searchParams, setSearchParams] = useSearchParams();
+  const navigate = useNavigate();
 
   useEffect(() => {
-    const getLogedInUser = () => {
-      loadUser()
-        .then((resObject) => {
-          console.log("user", resObject);
-          dispatch(setUserFromGoogle(resObject.user));
-        })
-        .catch((error) => {
-          console.log("Error", error);
+    const getLogedInUser = async () => {
+      try {
+        const resObject = await loadUser();
+        dispatch(setUserFromGoogle(resObject.user));
+        dispatch(getUser(resObject.user?.emails[0]?.value));
+        navigate(`/${resObject.user?.emails[0]?.value}/about`, {
+          replace: true,
         });
+        console.log("LogedIn user found", resObject);
+      } catch (error) {
+        console.log("LogedIn user not found");
+        dispatch(getUser("rsaw409@gmail.com"));
+        navigate("/rsaw409@gmail.com/about", {
+          replace: true,
+        });
+      }
     };
     getLogedInUser();
-    dispatch(getUser(searchParams.get("email") ?? "rsaw409@gmail.com"));
   }, []);
 
   const { user, isValidView } = useSelector((state) => ({

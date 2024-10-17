@@ -106,6 +106,12 @@ const getUser = (user_email) => async (dispatch) => {
       type: ACTIONS.USER_LOADED,
       payload: user[0],
     });
+
+    dispatch(getAllCertificates(user[0]?.id));
+    dispatch(getAllProjects(user[0]?.id));
+    dispatch(getAllSkills(user[0]?.id));
+    dispatch(getAllEducations(user[0]?.id));
+    dispatch(getAllExperiences(user[0]?.id));
   } else {
     dispatch({
       type: ACTIONS.USER_NOT_FOUND,

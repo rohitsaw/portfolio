@@ -1,7 +1,6 @@
 import { Routes, Route, Navigate, useLocation } from "react-router-dom";
 
 import Layout from "../../component/layout";
-
 import Contact from "../../pages/contact";
 import About from "../../pages/about/index";
 import Projects from "../../pages/project/index";
@@ -10,16 +9,6 @@ import WorkExperience from "../../pages/workexperience/index";
 import ErrorPage from "../../pages/ErrorPage/index.js";
 
 import { AnimatePresence } from "framer-motion";
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-
-import {
-  getAllCertificates,
-  getAllProjects,
-  getAllSkills,
-  getAllEducations,
-  getAllExperiences,
-} from "../../redux/action.js";
 
 import EditUserDetails from "../../pages/edit-details/edit-user-details/edit-user-details.js";
 import EditCertificates from "../../pages/edit-details/edit-certficates/edit-certificates.js";
@@ -29,33 +18,50 @@ import EditEducation from "../../pages/edit-details/edit-educations/edit-educati
 import EditProjects from "../../pages/edit-details/edit-projects/edit-projects.js";
 
 const AnimateRoutes = ({ setOpenSnackBar }) => {
-  const dispatch = useDispatch();
   const location = useLocation();
 
-  const { user } = useSelector((state) => ({ user: state.user }));
-
-  useEffect(() => {
-    dispatch(getAllCertificates(user?.id));
-    dispatch(getAllProjects(user?.id));
-    dispatch(getAllSkills(user?.id));
-    dispatch(getAllEducations(user?.id));
-    dispatch(getAllExperiences(user?.id));
-  }, [user]);
+  const fallbackEmailId = "rsaw409@gmail.com";
 
   return (
     <AnimatePresence mode="wait">
       <Routes location={location} key={location.pathname}>
-        <Route path="/" element={<Layout />}>
-          <Route index element={<Navigate to="/about" replace />} />
-          <Route path="about" element={<About />} />
+        <Route
+          path="about"
+          element={<Navigate to={`/${fallbackEmailId}/about`} />}
+        />
+        <Route
+          path="workexperience"
+          element={<Navigate to={`/${fallbackEmailId}/workexperience`} />}
+        />
+        <Route
+          path="certification"
+          element={<Navigate to={`/${fallbackEmailId}/certification`} />}
+        />
+        <Route
+          path="projects"
+          element={<Navigate to={`/${fallbackEmailId}/projects`} />}
+        />
+        <Route
+          path="contacts"
+          element={<Navigate to={`/${fallbackEmailId}/contacts`} />}
+        />
+
+        <Route path="/:emailId" element={<Layout />}>
+          <Route index element={<About />} />
+          <Route index path="about" element={<About />} />
           <Route path="workexperience" element={<WorkExperience />} />
           <Route path="certification" element={<Certification />} />
           <Route path="projects" element={<Projects />} />
           <Route path="contacts" element={<Contact />} />
-          <Route path="*" element={<Navigate to="/about" replace />} />
+          <Route path="*" element={<ErrorPage />} />
         </Route>
+        <Route path="/" element={<Layout />} />
+        
         <Route path="/edit">
-          <Route index element={<ErrorPage />} />
+          <Route
+            index
+            element={<EditUserDetails setOpenSnackBar={setOpenSnackBar} />}
+          />
           <Route
             path="profile"
             element={<EditUserDetails setOpenSnackBar={setOpenSnackBar} />}
