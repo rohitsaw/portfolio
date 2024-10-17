@@ -47,8 +47,7 @@ const AnimateRoutes = ({ setOpenSnackBar }) => {
         />
 
         <Route path="/:emailId" element={<Layout />}>
-          <Route index element={<About />} />
-          <Route index path="about" element={<About />} />
+          <Route path="about" element={<About />} />
           <Route path="workexperience" element={<WorkExperience />} />
           <Route path="certification" element={<Certification />} />
           <Route path="projects" element={<Projects />} />
@@ -56,12 +55,8 @@ const AnimateRoutes = ({ setOpenSnackBar }) => {
           <Route path="*" element={<ErrorPage />} />
         </Route>
         <Route path="/" element={<Layout />} />
-        
+
         <Route path="/edit">
-          <Route
-            index
-            element={<EditUserDetails setOpenSnackBar={setOpenSnackBar} />}
-          />
           <Route
             path="profile"
             element={<EditUserDetails setOpenSnackBar={setOpenSnackBar} />}
