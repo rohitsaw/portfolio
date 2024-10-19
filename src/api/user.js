@@ -30,14 +30,24 @@ const getUser = async (user_email, name) => {
 };
 
 const addOrUpdateUser = async (user, user_id) => {
+  const formData = new FormData();
+
+  formData.append("profile_pic", user.profile_url);
+  formData.append("user_email", user.user_email);
+  formData.append("name", user.name);
+  formData.append("about", user.about);
+
+  formData.append("github_url", user.social_links.github_url);
+  formData.append("linkedin_url", user.social_links.linkedin_url);
+  formData.append("blog_url", user.social_links.blog_url);
+  formData.append("twitter_url", user.social_links.twitter_url);
+  formData.append("stackoverflow_url", user.social_links.stackoverflow_url);
+
   const url = `${base_url}/user?user_id=${user_id}`;
   let response = await fetch(url, {
     method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
     credentials: "include",
-    body: JSON.stringify(user),
+    body: formData,
   });
   if (response.ok) {
     return response.json();
