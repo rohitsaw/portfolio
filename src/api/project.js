@@ -1,3 +1,4 @@
+import Cookies from "js-cookie";
 import { base_url } from "./api";
 
 const getProjects = async (user_id) => {
@@ -18,6 +19,7 @@ const addProject = async (project, user_id) => {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
+      "X-XSRF-TOKEN": Cookies.get("XSRF-TOKEN"),
     },
     credentials: "include",
     body: JSON.stringify(project),
@@ -36,6 +38,7 @@ const deleteProject = async (project, user_id) => {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json",
+      "X-XSRF-TOKEN": Cookies.get("XSRF-TOKEN"),
     },
     credentials: "include",
     body: JSON.stringify(project),

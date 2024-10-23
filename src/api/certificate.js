@@ -1,3 +1,4 @@
+import Cookies from "js-cookie";
 import { base_url } from "./api.js";
 
 const getCertificates = async (user_id) => {
@@ -18,6 +19,7 @@ const addCertificate = async (certificate, user_id) => {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
+      "X-XSRF-TOKEN": Cookies.get("XSRF-TOKEN"),
     },
     credentials: "include",
     body: JSON.stringify(certificate),
@@ -36,6 +38,7 @@ const deleteCertificate = async (certificate, user_id) => {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json",
+      "X-XSRF-TOKEN": Cookies.get("XSRF-TOKEN"),
     },
     credentials: "include",
     body: JSON.stringify(certificate),

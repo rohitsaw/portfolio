@@ -1,3 +1,4 @@
+import Cookies from "js-cookie";
 import { base_url } from "./api";
 
 const getEducations = async (user_id) => {
@@ -14,6 +15,7 @@ const addEducation = async (education, user_id) => {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
+      "X-XSRF-TOKEN": Cookies.get("XSRF-TOKEN"),
     },
     credentials: "include",
     body: JSON.stringify(education),
@@ -32,6 +34,7 @@ const deleteEducation = async (education, user_id) => {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json",
+      "X-XSRF-TOKEN": Cookies.get("XSRF-TOKEN"),
     },
     credentials: "include",
     body: JSON.stringify(education),
