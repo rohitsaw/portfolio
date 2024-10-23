@@ -3,4 +3,11 @@ let base_url =
     ? "https://backend.portfolio.rsaw409.me"
     : "http://localhost:3000";
 
-export { base_url };
+function getCookie(name) {
+  const value = `; ${document.cookie}`;
+  const parts = value.split(`; ${name}=`);
+  if (parts.length === 2) return parts.pop().split(";").shift();
+  return null;
+}
+
+export { base_url, getCookie };

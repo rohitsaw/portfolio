@@ -1,4 +1,4 @@
-import { base_url } from "./api";
+import { base_url, getCookie } from "./api";
 
 const loadUser = async () => {
   const response = await fetch(`${base_url}/login/success`, {
@@ -47,6 +47,9 @@ const addOrUpdateUser = async (user, user_id) => {
   let response = await fetch(url, {
     method: "POST",
     credentials: "include",
+    headers: {
+      "CSRF-Token": getCookie("XSRF-TOKEN"),
+    },
     body: formData,
   });
   if (response.ok) {
