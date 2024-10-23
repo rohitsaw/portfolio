@@ -45,10 +45,13 @@ const addOrUpdateUser = async (user, user_id) => {
   formData.append("stackoverflow_url", user.social_links.stackoverflow_url);
 
   const url = `${base_url}/user?user_id=${user_id}`;
+
+  const csrf_token = Cookies.get("XSRF-TOKEN");
+  console.log("csrf_token", csrf_token);
   let response = await fetch(url, {
     method: "POST",
     headers: {
-      "X-XSRF-TOKEN": Cookies.get("XSRF-TOKEN"),
+      "X-XSRF-TOKEN": csrf_token,
     },
     credentials: "include",
     body: formData,
