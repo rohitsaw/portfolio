@@ -3,11 +3,6 @@ let base_url =
     ? "https://backend.portfolio.rsaw409.me"
     : "http://localhost:3000";
 
-function getCookie(name) {
-  const value = `; ${document.cookie}`;
-  const parts = value.split(`; ${name}=`);
-  if (parts.length === 2) return parts.pop().split(";").shift();
-  return null;
-}
+// axios.defaults.withXSRFToken = true
 
-export { base_url, getCookie };
+export { base_url };
