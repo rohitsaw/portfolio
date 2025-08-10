@@ -1,4 +1,3 @@
-import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import FullFeaturedCrudGrid from "../../../component/datatable.js";
 import { randomId } from "@mui/x-data-grid-generator";
@@ -10,6 +9,8 @@ import {
 } from "../../../redux/action.js";
 
 import EditDetailsPage from "../index.js";
+import {formatDateYYYYMMDD} from "../../../utils/util.js";
+
 
 const EditExperiences = ({ styles }) => {
   const dispatch = useDispatch();
@@ -19,6 +20,9 @@ const EditExperiences = ({ styles }) => {
   }));
 
   const setRow = (new_row, original_row) => {
+    new_row.start_date = formatDateYYYYMMDD(new_row.start_date);
+    new_row.end_date = formatDateYYYYMMDD(new_row.end_date);
+
     dispatch(addExperience(new_row, user_id));
   };
 
