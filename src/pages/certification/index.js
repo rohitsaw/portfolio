@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import ArrowOutwardIcon from "@mui/icons-material/ArrowOutward";
 import { NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";

@@ -8,9 +8,8 @@
   position: fixed;
   top: 3vh;
   z-index: 999;
-
-  height: 40px;
-  width: 480px;
+  height: 48px;
+  width: 500px;
 }
 
 .navBackGround {
@@ -18,7 +17,8 @@
   height: 100%;
   width: 100%;
   background: #fff;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.12);
+  padding: 0 1rem;
 }
 
 .navList {
@@ -26,83 +26,84 @@
   align-items: center;
   justify-content: space-between;
   list-style: none;
-  padding: 12px 18px;
-}
-
-.navLink {
-  color: #27272a;
-  text-decoration: none;
-}
-
-.navLink:hover {
-  color: var(--primary-color); 
-}
-
-.navLinkActive {
-  color: white;
-
-  background-color: var(--primary-color); 
-  text-decoration: none;
-
-  padding: 8px 20px;
-  border-radius: 40px;
-
-  margin-left: -12px;
-  margin-right: -12px;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  gap: 1rem;
 }
 
 .navItem {
-  font-size: 80%;
-  font-weight: 700;
+  font-size: 0.95rem;
+  font-weight: 600;
+  position: relative;
+}
+
+.navLink {
+  text-decoration: none;
+  color: var(--text-secondary, #444);
+  transition: color 0.3s ease, transform 0.2s ease;
+  padding: 0.4rem 0.8rem;
+  border-radius: 30px;
+}
+
+.navLink:hover {
+  color: var(--primary-color, #6c63ff);
+  transform: translateY(-2px);
+}
+
+.navLinkActive {
+  color: #fff;
+  background-color: var(--primary-color, #6c63ff);
+  text-decoration: none;
+  padding: 0.4rem 1rem;
+  border-radius: 30px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
 }
 
 .contentBackground {
-  background-color: #f1f1f1;
+  background-color: #f5f5f5;
 }
 
 .contentWrapper {
   background-color: white;
-
   max-width: 90%;
-
-  margin-left: 8%;
-  margin-right: 8%;
-
-  padding-left: 3vw;
-  padding-right: 3vw;
-
-  padding-top: 150px;
-  padding-bottom: 0px;
+  margin: 0 auto;
+  padding: 150px 3vw 0 3vw;
 }
 
 .footerWrapper {
-  margin-left: 8%;
-  margin-right: 8%;
-  padding-left: 3%;
-  padding-right: 3%;
+  margin: 0 auto;
   max-width: 90%;
   background-color: white;
-  padding-top: 80px;
+  padding: 80px 3% 3% 3%;
 }
 
+/* Mobile responsive */
 @media only screen and (max-width: 600px) {
   .navbar {
-    width: 82%;
+    width: 85%;
     top: 6vh;
+    height: 44px;
+  }
+
+  .navList {
+    gap: 0.5rem;
+  }
+
+  .navLink,
+  .navLinkActive {
+    font-size: 0.85rem;
+    padding: 0.3rem 0.7rem;
   }
 
   .contentWrapper {
     max-width: 100%;
-
-    margin-left: 0px;
-    margin-right: 0px;
-
+    margin: 0;
     padding-top: 120px;
   }
 
   .footerWrapper {
-    margin-left: 0px;
-    margin-right: 0px;
     max-width: 100%;
+    margin: 0;
   }
 }

@@ -1,4 +1,3 @@
-import React from "react";
 import { Link, useLocation, useParams } from "react-router-dom";
 import { motion } from "framer-motion";
 
@@ -23,20 +22,20 @@ const Footer = () => {
           const isActive = eachRoute.path === location.pathname;
           return (
             <li key={index} className={styles.footerNavItem}>
-              {isActive ? (
-                <motion.div layoutId="footerSelected">
-                  <Link
-                    to={eachRoute.path}
-                    className={`${styles.footerNavLink} ${styles.footerNavLinkActive}`}
-                  >
-                    {eachRoute.routeName}
-                  </Link>
-                </motion.div>
-              ) : (
-                <Link to={eachRoute.path} className={styles.footerNavLink}>
-                  {eachRoute.routeName}
-                </Link>
-              )}
+              <Link
+                to={eachRoute.path}
+                className={`${styles.footerNavLink} ${
+                  isActive ? styles.footerNavLinkActive : ""
+                }`}
+              >
+                {eachRoute.routeName}
+                {isActive && (
+                  <motion.div
+                    layoutId="footerSelected"
+                    className={styles.footerHighlight}
+                  />
+                )}
+              </Link>
             </li>
           );
         })}

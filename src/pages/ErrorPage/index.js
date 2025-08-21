@@ -1,5 +1,3 @@
-import React from "react";
-
 const ErrorPage = () => {
   const handleRetry = () => {
     window.location.href = "/"; // navigate to home
