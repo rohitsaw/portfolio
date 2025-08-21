@@ -1,13 +1,16 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Box from "@mui/material/Box";
-import IconButton from "@mui/material/IconButton";
-import Typography from "@mui/material/Typography";
-import Menu from "@mui/material/Menu";
-
-import Avatar from "@mui/material/Avatar";
-import Tooltip from "@mui/material/Tooltip";
-import MenuItem from "@mui/material/MenuItem";
+import {
+  Box,
+  IconButton,
+  Typography,
+  Menu,
+  Avatar,
+  Tooltip,
+  MenuItem,
+  Divider,
+  ListItemIcon,
+} from "@mui/material";
 
 import LogoutIcon from "@mui/icons-material/Logout";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -21,8 +24,6 @@ import {
   faGraduationCap,
 } from "@fortawesome/free-solid-svg-icons";
 
-import { Divider } from "@mui/material";
-
 const Profile = ({
   picture,
   first_name,
@@ -33,53 +34,20 @@ const Profile = ({
   setOpenSnackBar,
 }) => {
   const [anchorElUser, setAnchorElUser] = useState(null);
-
   const navigate = useNavigate();
 
   const menuItems = [
-    {
-      menu_name: "Edit User",
-      routeName: "/edit/profile",
-      icon: faUserCircle,
-    },
-    {
-      menu_name: "Edit Project",
-      routeName: "/edit/project",
-      icon: faProjectDiagram,
-    },
-    {
-      menu_name: "Edit Certificate",
-      routeName: "/edit/certificate",
-      icon: faCertificate,
-    },
-    {
-      menu_name: "Edit Skill",
-      routeName: "/edit/skill",
-      icon: faCog,
-    },
-    {
-      menu_name: "Edit Education",
-      routeName: "/edit/education",
-      icon: faGraduationCap,
-    },
-    {
-      menu_name: "Edit Work",
-      routeName: "/edit/experience",
-      icon: faBriefcase,
-    },
+    { menu_name: "Edit User", routeName: "/edit/profile", icon: faUserCircle },
+    { menu_name: "Edit Project", routeName: "/edit/project", icon: faProjectDiagram },
+    { menu_name: "Edit Certificate", routeName: "/edit/certificate", icon: faCertificate },
+    { menu_name: "Edit Skill", routeName: "/edit/skill", icon: faCog },
+    { menu_name: "Edit Education", routeName: "/edit/education", icon: faGraduationCap },
+    { menu_name: "Edit Work", routeName: "/edit/experience", icon: faBriefcase },
   ];
 
-  const handleOpenUserMenu = (event) => {
-    setAnchorElUser(event.currentTarget);
-  };
-
-  const handleCloseUserMenu = () => {
-    setAnchorElUser(null);
-  };
-
-  const handleLogOut = () => {
-    logOut();
-  };
+  const handleOpenUserMenu = (event) => setAnchorElUser(event.currentTarget);
+  const handleCloseUserMenu = () => setAnchorElUser(null);
+  const handleLogOut = () => logOut();
 
   const goToEditPage = (routeName) => {
     if (emailVerified) {
@@ -92,60 +60,78 @@ const Profile = ({
 
   return (
     <Box>
-      <Tooltip title="Open Profile">
+      <Tooltip title="Profile Menu">
         <IconButton onClick={handleOpenUserMenu}>
           <Avatar
-            sx={{ bgcolor: `var(--primary-color)` }}
-            alt="Profile name initials"
-          >{`${first_name[0]}${last_name[0]}`}</Avatar>
+            alt={`${first_name} ${last_name}`}
+            src={picture}
+            sx={{
+              bgcolor: "var(--primary-color)",
+              fontWeight: "600",
+              fontSize: "0.9rem",
+            }}
+          >
+            {first_name[0]}
+            {last_name[0]}
+          </Avatar>
         </IconButton>
       </Tooltip>
+
       <Menu
         anchorEl={anchorElUser}
-        keepMounted
         open={Boolean(anchorElUser)}
         onClose={handleCloseUserMenu}
+        PaperProps={{
+          elevation: 6,
+          sx: {
+            mt: 1.5,
+            borderRadius: "12px",
+            minWidth: 240,
+            padding: "0.5rem 0",
+            background: "#fff",
+            boxShadow: "0 4px 16px rgba(0,0,0,0.1)",
+          },
+        }}
+        transformOrigin={{ horizontal: "right", vertical: "top" }}
+        anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
       >
-        <MenuItem key={"profile"}>
+        {/* Profile header */}
+        <MenuItem disableRipple sx={{ "&:hover": { background: "transparent" } }}>
           <Avatar alt="Profile Picture" src={picture} />
-          <Box sx={{ marginLeft: "12px" }}>
-            <Typography variant="h6" sx={{ letterSpacing: 0 }}>
+          <Box sx={{ ml: 2 }}>
+            <Typography variant="subtitle1" sx={{ fontWeight: 600 }}>
               Hi {first_name}!
             </Typography>
-            <Typography variant="subtitle2" sx={{ color: "#65656d" }}>
+            <Typography variant="body2" sx={{ color: "text.secondary" }}>
               {email}
             </Typography>
           </Box>
         </MenuItem>
-        <Divider />
-        {menuItems.map((each) => {
-          return (
-            <MenuItem onClick={() => goToEditPage(each.routeName)}>
-              <FontAwesomeIcon
-                paddingLeft={18}
-                color="#65656d"
-                fontSize={18}
-                opacity={0.8}
-                icon={each.icon}
-              />
-              <Box sx={{ marginLeft: "18px", color: "#65656d" }}>
-                {each.menu_name}
-              </Box>
-            </MenuItem>
-          );
-        })}
 
-        <Divider />
-        <MenuItem key={"Logout"} onClick={handleLogOut}>
-          <LogoutIcon
-            sx={{
-              fontSize: "18px",
-              paddingLeft: "8px",
-              color: "#65656d",
-              opacity: 0.8,
-            }}
-          />
-          <Box sx={{ marginLeft: "18px", color: "#65656d" }}>Log out</Box>
+        <Divider sx={{ my: 1 }} />
+
+        {/* Dynamic edit items */}
+        {menuItems.map((each) => (
+          <MenuItem key={each.routeName} onClick={() => goToEditPage(each.routeName)}>
+            <ListItemIcon>
+              <FontAwesomeIcon icon={each.icon} fontSize={16} color="#555" />
+            </ListItemIcon>
+            <Typography variant="body2" sx={{ color: "#444" }}>
+              {each.menu_name}
+            </Typography>
+          </MenuItem>
+        ))}
+
+        <Divider sx={{ my: 1 }} />
+
+        {/* Logout */}
+        <MenuItem onClick={handleLogOut}>
+          <ListItemIcon>
+            <LogoutIcon fontSize="small" sx={{ color: "#d32f2f" }} />
+          </ListItemIcon>
+          <Typography variant="body2" sx={{ color: "#d32f2f", fontWeight: 500 }}>
+            Log out
+          </Typography>
         </MenuItem>
       </Menu>
     </Box>

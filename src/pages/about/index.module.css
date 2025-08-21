@@ -15,17 +15,19 @@
   width: 140px;
   height: 140px;
   border-radius: 50%;
-  border: 4px solid #6c63ff;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  border: 4px solid var(--primary-color, #14b8a6);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
 }
 .userName {
   margin-top: 1rem;
   font-size: 1.6rem;
   font-weight: 600;
+  color: #222;
 }
 .tagline {
-  color: #666;
+  color: #555;
   margin-bottom: 1rem;
+  font-size: 1rem;
 }
 .socialLinks {
   display: flex;
@@ -35,32 +37,35 @@
 .socialIcon {
   font-size: 1.4rem;
   color: #444;
-  transition: all 0.2s ease;
+  transition: transform 0.2s ease, color 0.2s ease;
 }
 .socialIcon:hover {
-  color: #6c63ff;
+  color: var(--primary-color, #14b8a6);
+  transform: translateY(-2px);
 }
 
 /* Card */
 .cardContainer {
   background: #fff;
-  border-radius: 16px;
+  border-radius: 14px;
   padding: 1.5rem;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-  transition: transform 0.2s ease;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 .cardContainer:hover {
   transform: translateY(-4px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
 }
 .cardTitle {
   font-size: 1.2rem;
   font-weight: 600;
   margin-bottom: 1rem;
-  border-left: 4px solid #6c63ff;
-  padding-left: 0.5rem;
+  border-left: 4px solid var(--primary-color, #14b8a6);
+  padding-left: 0.6rem;
+  color: #222;
 }
 .cardContent p {
-  color: #333;
+  color: #444;
   line-height: 1.6;
 }
 .center {
@@ -83,7 +88,7 @@
   top: 0;
   bottom: 0;
   width: 2px;
-  background: #6c63ff;
+  background: var(--primary-color, #14b8a6);
 }
 .timelineItem {
   position: relative;
@@ -95,13 +100,14 @@
   top: 5px;
   width: 12px;
   height: 12px;
-  background: #6c63ff;
+  background: var(--primary-color, #14b8a6);
   border-radius: 50%;
 }
 .timelineContent h4 {
   margin: 0;
   font-size: 1rem;
   font-weight: 600;
+  color: #222;
 }
 .institute {
   color: #555;
@@ -113,8 +119,9 @@
 }
 .score {
   font-size: 0.8rem;
-  color: #6c63ff;
+  color: var(--primary-color, #14b8a6);
   margin-left: 1rem;
+  font-weight: 500;
 }
 
 /* Skills */
@@ -125,7 +132,8 @@
 }
 .skillCategory h4 {
   margin-bottom: 0.5rem;
-  color: #333;
+  color: #222;
+  font-weight: 600;
 }
 .skillChips {
   display: flex;
@@ -133,9 +141,15 @@
   gap: 0.5rem;
 }
 .chip {
-  background: #f1f0ff;
-  color: #6c63ff;
+  background: rgba(20, 184, 166, 0.1); /* lighter teal */
+  color: var(--primary-color, #14b8a6);
   padding: 0.4rem 0.8rem;
   border-radius: 999px;
   font-size: 0.85rem;
+  font-weight: 500;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+.chip:hover {
+  background: rgba(20, 184, 166, 0.15);
+  transform: translateY(-2px);
 }
