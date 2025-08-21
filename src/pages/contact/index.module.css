@@ -1,76 +1,64 @@
+.contactContainer {
+  padding: 2rem;
+  max-width: 900px;
+  margin: auto;
+  text-align: center;
+}
 
 .contactTitle {
-  font-weight: 700;
-  font-size: 45px;
-  width: 80%;
-  color: #27272a;
+  font-size: 1.8rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
 }
 
 .contactSubTitle {
-  color: #65656d;
-  font-size: 16px;
-  line-height: 28px;
-  width: 80%;
-  margin-top: 35px;
-
-  text-align: justify;
+  font-size: 1rem;
+  color: #666;
+  margin-bottom: 2rem;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-.contactsListWrapper {
-  padding-top: 35px;
+.center {
   display: flex;
-  justify-content: flex-start;
-}
-
-.contactList {
-  display: flex;
-  flex-direction: column;
-}
-
-.linkWrapper {
-  display: flex;
-  flex-direction: row;
-}
-
-.contactItem {
-  padding-bottom: 20px;
-  font-size: 14px;
-  font-weight: 600;
-  color: #65656d;
-  text-decoration: none;
-
-  display: flex;
-  flex-direction: row;
+  justify-content: center;
   align-items: center;
-  justify-content: flex-start;
-  column-gap: 12px;
 }
 
-.contactItem:hover {
+.contactsGrid {
+  display: grid;
+  gap: 1.2rem;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+}
+
+.contactCard {
+  background: #fff;
+  padding: 1.2rem 1.5rem;
+  border-radius: 14px;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.08);
+  transition: all 0.3s ease;
+}
+
+.contactLink {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  color: #333;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.contactCard:hover .contactLink {
   color: var(--primary-color);
 }
 
-@media only screen and (max-width: 991px) {
-  .contactTitle {
-    width: 100%;
-  }
-
-  .contactSubTitle {
-    width: 100%;
-  }
+.icon {
+  font-size: 1.2rem;
+  color: var(--primary-color);
 }
 
-@media only screen and (max-width: 600px) {
-  .contactTitle {
-    font-size: 35px;
-  }
-
-  .contactSubTitle {
-    font-size: 14px;
-    line-height: 26px;
-  }
-
-  .contactItem {
-    font-size: 12px;
-  }
+.text {
+  word-break: break-word;
 }

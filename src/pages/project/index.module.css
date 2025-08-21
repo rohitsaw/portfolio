@@ -1,42 +1,80 @@
+.projectsContainer {
+  padding: 2rem;
+  max-width: 1100px;
+  margin: auto;
+}
+
 .projectsTitle {
-  color: #27272a;
-  font-size: 45px;
-  font-weight: 700;
-  width: 80%;
+  font-size: 1.8rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  text-align: center;
 }
 
 .projectsSubTitle {
-  color: #65656d;
-  font-size: 16px;
-  line-height: 28px;
-  width: 80%;
-  margin-top: 35px;
-  margin-bottom: 35px;
-
-  text-align: justify;
+  text-align: center;
+  font-size: 1rem;
+  color: #666;
+  margin-bottom: 2rem;
 }
 
-.projectsList {
+.center {
   display: flex;
-  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.projectsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.projectCard {
+  background: #fff;
+  border-radius: 14px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.projectCard:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+}
+
+.cardHeader h3 {
+  font-size: 1.2rem;
+  margin: 0;
+  font-weight: 600;
+}
+
+.description {
+  font-size: 0.95rem;
+  color: #444;
+  margin: 0.8rem 0 1rem;
+  line-height: 1.5;
+}
+
+.techStack {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 1rem;
   flex-wrap: wrap;
-  gap: 20px;
 }
 
-@media only screen and (max-width: 991px) {
-  .projectsTitle {
-    width: 100%;
-  }
-  .projectsSubTitle {
-    width: 100%;
-  }
+.actions {
+  display: flex;
+  gap: 14px;
 }
 
-@media only screen and (max-width: 600px) {
-  .projectsTitle {
-    font-size: 35px;
-  }
-  .projectsSubTitle {
-    font-size: 14px;
-  }
+.actions a {
+  color: #444;
+  transition: color 0.3s ease;
+}
+.actions a:hover {
+  color: var(--primary-color);
 }

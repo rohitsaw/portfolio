@@ -3,31 +3,22 @@ import ArrowOutwardIcon from "@mui/icons-material/ArrowOutward";
 import { NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
 import CircularProgress from "@mui/material/CircularProgress";
-
-import Box from "@mui/material/Box";
-import List from "@mui/material/List";
-import ListItem from "@mui/material/ListItem";
-import Divider from "@mui/material/Divider";
-import ListItemText from "@mui/material/ListItemText";
-import ListItemButton from "@mui/material/ListItemButton";
-
 import Typography from "@mui/material/Typography";
 import ErrorPage from "../ErrorPage/index.js";
-
-
 import { motion } from "framer-motion";
 
+import styles from "./index.module.css";
 
 const Certification = () => {
-  let { isCertificatesLoading, certificates, isValidView } = useSelector((state) => ({
-    isCertificatesLoading: state.isCertificatesLoading,
-    certificates: state.certificates,
-    isValidView: state.isValidView,
-
-  }));
+  let { isCertificatesLoading, certificates, isValidView } = useSelector(
+    (state) => ({
+      isCertificatesLoading: state.isCertificatesLoading,
+      certificates: state.certificates,
+      isValidView: state.isValidView,
+    })
+  );
 
   const [hoverIndex, setHoverIndex] = useState(-1);
-
 
   if (!isValidView) {
     return <ErrorPage />;
@@ -35,75 +26,55 @@ const Certification = () => {
 
   return (
     <motion.div
-      initial={{ opacity: 0, scale: 0.5 }}
+      initial={{ opacity: 0, scale: 0.95 }}
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.5 }}
+      className={styles.pageContainer}
     >
       {isCertificatesLoading ? (
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "center",
-          }}
-        >
+        <div className={styles.center}>
           <CircularProgress />
         </div>
       ) : (
-        <Box sx={{ width: "100%", bgcolor: "background.paper" }}>
-          <List component="nav">
-            {certificates.map((each, index) => (
-              <>
-                <ListItemButton
-                  onMouseEnter={() => setHoverIndex(index)}
-                  onMouseLeave={() => setHoverIndex(-1)}
+        <div className={styles.cardsWrapper}>
+          {certificates.map((each, index) => (
+            <motion.div
+              key={each.id || index}
+              className={styles.card}
+              whileHover={{ y: -5, scale: 1.02 }}
+              transition={{ type: "spring", stiffness: 200 }}
+              onMouseEnter={() => setHoverIndex(index)}
+              onMouseLeave={() => setHoverIndex(-1)}
+            >
+              <div className={styles.cardHeader}>
+                <h3 className={styles.certName}>{each.certificate_name}</h3>
+                <NavLink
+                  to={each.verification_url}
+                  target="_blank"
+                  rel="noreferrer"
+                  className={styles.iconButton}
                 >
-                  <ListItem
-                    alignItems="flex-start"
-                    secondaryAction={
-                      <NavLink
-                        to={each.verification_url}
-                        target="_blank"
-                        rel="noreferrer"
-                      >
-                        <ArrowOutwardIcon
-                          onClick={() => each.verification_url}
-                          style={{
-                            color:
-                              hoverIndex === index
-                                ? `var(--primary-color)`
-                                : undefined,
-                          }}
-                        />
-                      </NavLink>
-                    }
-                  >
-                    <ListItemText
-                      primary={each.certificate_name}
-                      secondary={
-                        <React.Fragment>
-                          <Typography
-                            sx={{ display: "inline" }}
-                            component="span"
-                            variant="body2"
-                            color="text.primary"
-                          >
-                            Certified By - {each.certification_authority}
-                            <br />
-                            Certification Date -{" "}
-                            {new Date(
-                              each.certification_date
-                            ).toLocaleDateString()}
-                          </Typography>
-                        </React.Fragment>
-                      }
-                    />
-                  </ListItem>
-                </ListItemButton>
-                <Divider variant="middle" component="li" />
-              </>
-            ))}
-          </List>
-        </Box>
+                  <ArrowOutwardIcon
+                    style={{
+                      color:
+                        hoverIndex === index
+                          ? "var(--primary-color)"
+                          : "inherit",
+                    }}
+                  />
+                </NavLink>
+              </div>
+
+              <Typography variant="body2" className={styles.certDetails}>
+                <strong>Certified By:</strong> {each.certification_authority}
+              </Typography>
+              <Typography variant="body2" className={styles.certDetails}>
+                <strong>Date:</strong>{" "}
+                {new Date(each.certification_date).toLocaleDateString()}
+              </Typography>
+            </motion.div>
+          ))}
+        </div>
       )}
     </motion.div>
   );

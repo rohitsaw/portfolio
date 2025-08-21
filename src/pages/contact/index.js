@@ -47,41 +47,54 @@ const Contact = () => {
   return (
     <motion.div
       className={styles.contactContainer}
-      initial={{ opacity: 0, scale: 0.5 }}
-      animate={{ opacity: 1, scale: 1 }}
-      transition={{ duration: 0.5 }}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.6 }}
     >
       {isUserLoading ? (
-        <div style={{ display: "flex", justifyContent: "center" }}>
+        <div className={styles.center}>
           <CircularProgress />
         </div>
       ) : (
         <>
-          <div className={styles.contactTitle}>
-            Let's Get in Touch: Ways to Connect with Me
-          </div>
-          <div className={styles.contactSubTitle}>
-            Thank you for your interest in getting in touch with me. I welcome
-            your feedback, questions, and suggestions. I look forward to hearing
-            from you!
-          </div>
-          <div className={styles.contactsListWrapper}>
-            <div className={styles.contactList}>
-              {contacts.map((contact) => (
-                <div className={styles.linkWrapper} key={contact.id}>
-                  <NavLink
-                    to={contact.url}
-                    target="_blank"
-                    style={{ textDecoration: "none" }}
-                    className={styles.contactItem}
-                  >
-                    <span>{contact.getLogo()}</span>
-                    <span>{contact.title}</span>
-                  </NavLink>
-                </div>
-              ))}
-            </div>
-          </div>
+          <h2 className={styles.contactTitle}>Let’s Get in Touch</h2>
+          <p className={styles.contactSubTitle}>
+            I’d love to connect! Whether you have a question, want to collaborate,
+            or just say hi — feel free to reach out through any of the options below.
+          </p>
+
+          <motion.div
+            className={styles.contactsGrid}
+            initial="hidden"
+            animate="visible"
+            variants={{
+              hidden: { opacity: 0 },
+              visible: {
+                opacity: 1,
+                transition: { staggerChildren: 0.2 },
+              },
+            }}
+          >
+            {contacts.map((contact) => (
+              <motion.div
+                key={contact.id}
+                className={styles.contactCard}
+                whileHover={{ scale: 1.05, y: -5 }}
+                whileTap={{ scale: 0.97 }}
+                variants={{ hidden: { opacity: 0, y: 30 }, visible: { opacity: 1, y: 0 } }}
+              >
+                <NavLink
+                  to={contact.url}
+                  target="_blank"
+                  rel="noreferrer"
+                  className={styles.contactLink}
+                >
+                  <span className={styles.icon}>{contact.getLogo()}</span>
+                  <span className={styles.text}>{contact.title}</span>
+                </NavLink>
+              </motion.div>
+            ))}
+          </motion.div>
         </>
       )}
     </motion.div>

@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import {
   faUserCircle,
   faCog,
   faGraduationCap,
-  faExternalLink,
+  faEnvelope,
+  faBlog,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { motion } from "framer-motion";
@@ -16,7 +17,6 @@ import {
   faGithub,
   faLinkedin,
 } from "@fortawesome/free-brands-svg-icons";
-import { faEnvelope, faBlog } from "@fortawesome/free-solid-svg-icons";
 import ErrorPage from "../ErrorPage/index.js";
 import { transformSkills } from "../../utils/util.js";
 
@@ -53,11 +53,8 @@ const About = () => {
   const stackoverflow_url = user?.social_links?.stackoverflow_url;
 
   const [hover, setHover] = useState({
-    about: false,
     education: false,
-    work: false,
     skill: false,
-    certificates: false,
   });
 
   const socialLinks = {
@@ -75,182 +72,136 @@ const About = () => {
 
   return (
     <motion.div
-      initial={{ opacity: 0, scale: 0.5 }}
+      initial={{ opacity: 0, scale: 0.95 }}
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.5 }}
     >
       <div className={styles.pageContainer}>
-        <div className={styles.logoWrapper}>
-          <a target="_blank" href={profile_url}>
-            <img className={styles.img} src={profile_url} alt="coder logo" />
-          </a>
+        {/* Profile Section */}
+        <motion.div
+          className={styles.profileSection}
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+        >
+          <img className={styles.profileImg} src={profile_url} alt="Profile" />
+          <h2 className={styles.userName}>{user?.name}</h2>
+          <p className={styles.tagline}>Software Engineer</p>
 
           <div className={styles.socialLinks}>
-            <a href={socialLinks.github} target="_blank" rel="noreferrer">
-              <FontAwesomeIcon icon={faGithub} size="xl" />
-            </a>
-            <a href={socialLinks.linkedin} target="_blank" rel="noreferrer">
-              <FontAwesomeIcon icon={faLinkedin} size="xl" />
-            </a>
-            <a
-              href={socialLinks.stackOverFlow}
-              target="_blank"
-              rel="noreferrer"
-            >
-              <FontAwesomeIcon icon={faStackOverflow} size="xl" />
-            </a>
-            <a href={socialLinks.blog} target="_blank" rel="noreferrer">
-              <FontAwesomeIcon icon={faBlog} size="xl" />
-            </a>
-            <a href={socialLinks.twitter} target="_blank" rel="noreferrer">
-              <FontAwesomeIcon icon={faTwitter} size="xl" />
-            </a>
-            <a href={socialLinks.mail} target="_blank" rel="noreferrer">
-              <FontAwesomeIcon icon={faEnvelope} size="xl" />
-            </a>
+            {Object.entries(socialLinks).map(([key, link]) =>
+              link ? (
+                <motion.a
+                  whileHover={{ scale: 1.2 }}
+                  href={link}
+                  key={key}
+                  target="_blank"
+                  rel="noreferrer"
+                  className={styles.socialIcon}
+                >
+                  <FontAwesomeIcon
+                    icon={
+                      key === "github"
+                        ? faGithub
+                        : key === "linkedin"
+                        ? faLinkedin
+                        : key === "stackOverFlow"
+                        ? faStackOverflow
+                        : key === "twitter"
+                        ? faTwitter
+                        : key === "blog"
+                        ? faBlog
+                        : faEnvelope
+                    }
+                  />
+                </motion.a>
+              ) : null
+            )}
           </div>
-        </div>
+        </motion.div>
 
         {/* About Card */}
         <div className={styles.cardContainer}>
           <div className={styles.cardTitle}>
             <FontAwesomeIcon icon={faUserCircle} /> <span>About</span>
           </div>
-
           <div className={styles.cardContent}>
             {isUserLoading ? (
-              <div
-                style={{
-                  display: "flex",
-                  justifyContent: "center",
-                }}
-              >
+              <div className={styles.center}>
                 <CircularProgress />
               </div>
             ) : (
-              <p style={{ opacity: 1 }}>{about}</p>
+              <p>{about}</p>
             )}
           </div>
         </div>
 
-        {/* Education card */}
+        {/* Education Timeline */}
         <motion.div
-          whileHover={{ scale: 1.1 }}
+          whileHover={{ scale: 1.01 }}
           className={styles.cardContainer}
-          onMouseEnter={() =>
-            setHover((prevState) => {
-              return { ...prevState, education: true };
-            })
-          }
-          onMouseLeave={() =>
-            setHover((prevState) => {
-              return { ...prevState, education: false };
-            })
-          }
+          onMouseEnter={() => setHover((prev) => ({ ...prev, education: true }))}
+          onMouseLeave={() => setHover((prev) => ({ ...prev, education: false }))}
         >
           <div className={styles.cardTitle}>
             <FontAwesomeIcon icon={faGraduationCap} /> <span>Education</span>
           </div>
-          <ul className={styles.cardContentList}>
-            {isEducationLoading ? (
-              <div
-                style={{
-                  display: "flex",
-                  flexDirection: "row",
-                  justifyContent: "center",
-                }}
-              >
-                <CircularProgress />
-              </div>
-            ) : (
-              educations.map((each) => (
-                <div
-                  key={each.id}
-                  style={{
-                    display: "flex",
-                    justifyContent: "space-between",
-                  }}
-                >
-                  <li key={each.id} style={{ width: "100%" }}>
-                    <div className={styles.item10}>{each.degree_name}</div>
-                    <div className={styles.item3}>{each.institute_name}</div>
-                    <div
-                      style={{
-                        display: "flex",
-                        justifyContent: "space-between",
-                      }}
-                    >
-                      <div className={styles.item3}>
-                        {`${dayjs(each.start_date).format("MM/YYYY")} -
-                          ${dayjs(each.end_date).format("MM/YYYY")}`}
-                      </div>
-                      <div className={styles.item3}>
-                        {each.score > 10 ? each.score / 10 : each.score}
-                      </div>
-                    </div>
-                  </li>
-                  {false && (
-                    <FontAwesomeIcon
-                      icon={faExternalLink}
-                      className={styles.navLinkHover}
-                    />
-                  )}
+          {isEducationLoading ? (
+            <div className={styles.center}>
+              <CircularProgress />
+            </div>
+          ) : (
+            <div className={styles.timeline}>
+              {educations.map((each) => (
+                <div key={each.id} className={styles.timelineItem}>
+                  <div className={styles.timelineDot}></div>
+                  <div className={styles.timelineContent}>
+                    <h4>{each.degree_name}</h4>
+                    <p className={styles.institute}>{each.institute_name}</p>
+                    <span className={styles.date}>
+                      {`${dayjs(each.start_date).format("MM/YYYY")} - ${dayjs(
+                        each.end_date
+                      ).format("MM/YYYY")}`}
+                    </span>
+                    <span className={styles.score}>
+                      {each.score > 10 ? each.score / 10 : each.score}
+                    </span>
+                  </div>
                 </div>
-              ))
-            )}
-          </ul>
+              ))}
+            </div>
+          )}
         </motion.div>
 
-        {/* Skills Card */}
+        {/* Skills */}
         <motion.div
-          whileHover={{ scale: 1.1 }}
+          whileHover={{ scale: 1.01 }}
           className={styles.cardContainer}
-          onMouseEnter={() =>
-            setHover((prevState) => {
-              return { ...prevState, skill: true };
-            })
-          }
-          onMouseLeave={() =>
-            setHover((prevState) => {
-              return { ...prevState, skill: false };
-            })
-          }
+          onMouseEnter={() => setHover((prev) => ({ ...prev, skill: true }))}
+          onMouseLeave={() => setHover((prev) => ({ ...prev, skill: false }))}
         >
           <div className={styles.cardTitle}>
             <FontAwesomeIcon icon={faCog} /> <span>Skills</span>
           </div>
-
-          <ul className={styles.cardContentList}>
-            {isSkillsLoading ? (
-              <div
-                style={{
-                  display: "flex",
-                  justifyContent: "center",
-                }}
-              >
-                <CircularProgress />
-              </div>
-            ) : (
-              skills.map((eachSkill) => (
-                <li key={eachSkill.skill_category}>
-                  <span style={{ display: "inline-block" }}>
-                    <span className={styles.item10}>
-                      {eachSkill.skill_category}:{" "}
-                    </span>
-                    <span
-                      className={styles.item3}
-                      style={{
-                        wordWrap: "breakWord",
-                        textAlign: "right",
-                      }}
-                    >
-                      {eachSkill.skills.map((e) => e.skill_name).join(", ")}
-                    </span>
-                  </span>
-                </li>
-              ))
-            )}
-          </ul>
+          {isSkillsLoading ? (
+            <div className={styles.center}>
+              <CircularProgress />
+            </div>
+          ) : (
+            <div className={styles.skillsWrapper}>
+              {skills.map((eachSkill) => (
+                <div key={eachSkill.skill_category} className={styles.skillCategory}>
+                  <h4>{eachSkill.skill_category}</h4>
+                  <div className={styles.skillChips}>
+                    {eachSkill.skills.map((e) => (
+                      <span key={e.skill_name} className={styles.chip}>
+                        {e.skill_name}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
         </motion.div>
       </div>
     </motion.div>

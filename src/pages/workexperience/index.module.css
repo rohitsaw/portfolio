@@ -1,0 +1,93 @@
+.pageContainer {
+  padding: 2rem;
+  max-width: 900px;
+  margin: auto;
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.timeline {
+  position: relative;
+  margin-left: 1rem;
+  padding-left: 2rem;
+}
+
+.timeline::before {
+  content: "";
+  position: absolute;
+  left: 20px;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: #e0e0e0;
+  border-radius: 2px;
+}
+
+.timelineItem {
+  position: relative;
+  margin-bottom: 2rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.timelineDot {
+  position: absolute;
+  left: 12px;
+  top: 10px;
+  width: 16px;
+  height: 16px;
+  background: var(--primary-color);
+  border-radius: 50%;
+  z-index: 1;
+  border: 3px solid #fff;
+  box-shadow: 0 0 0 2px rgba(108, 99, 255, 0.3);
+}
+
+.card {
+  background: #fff;
+  border-radius: 12px;
+  padding: 1.2rem 1.5rem;
+  margin-left: 2.5rem;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  transition: transform 0.3s ease;
+}
+.card:hover {
+  transform: translateY(-4px);
+}
+
+.cardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.company {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+.duration {
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.designation {
+  margin-top: 0.4rem;
+  font-weight: 500;
+  color: #333;
+}
+
+.details {
+  margin-top: 0.8rem;
+  padding-left: 1.2rem;
+  color: #444;
+  line-height: 1.5;
+}
+.details li {
+  margin-bottom: 0.4rem;
+}

@@ -1,33 +1,18 @@
 import React, { useState } from "react";
-import ArrowOutwardIcon from "@mui/icons-material/ArrowOutward";
 import { NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
-
 import { motion } from "framer-motion";
 import CircularProgress from "@mui/material/CircularProgress";
 
+import ErrorPage from "../ErrorPage/index.js";
 import styles from "./index.module.css";
 
-import { ListItem, ListItemButton } from "@mui/material";
-import ErrorPage from "../ErrorPage/index.js";
-
-import Box from "@mui/material/Box";
-import List from "@mui/material/List";
-import Divider from "@mui/material/Divider";
-import ListItemText from "@mui/material/ListItemText";
-import Typography from "@mui/material/Typography";
-import ListItemIcon from "@mui/material/ListItemIcon";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import ShopIcon from "@mui/icons-material/Shop";
+import ArrowOutwardIcon from "@mui/icons-material/ArrowOutward";
 
-import {
-  faJs,
-  faNode,
-  faReact,
-  faAndroid,
-} from "@fortawesome/free-brands-svg-icons";
+import { faJs, faNode, faReact, faAndroid } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
 import { ReactComponent as FlutterLogo } from "../../icons/Google-flutter-logo.svg";
 
 const Projects = () => {
@@ -46,156 +31,75 @@ const Projects = () => {
   return (
     <motion.div
       className={styles.projectsContainer}
-      initial={{ opacity: 0, scale: 0.5 }}
+      initial={{ opacity: 0, scale: 0.95 }}
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.5 }}
     >
-      <div className={styles.projectsTitle}>
-        Things I’ve made trying to put my dent in the universe.
-      </div>
-      <div className={styles.projectsSubTitle}>
-        I've worked on varieties of personal projects over the years in
-        different programming languages and technology stacks. Many of these
-        projects are open-source and available on my GitHub. Below I've listed a
-        few of the completed ones.
-      </div>
+      <h2 className={styles.projectsTitle}>Things I’ve built</h2>
+      <p className={styles.projectsSubTitle}>
+        A collection of personal and open-source projects that reflect my journey
+        across different stacks and ideas.
+      </p>
 
       {isProjectsLoading ? (
-        <div style={{ display: "flex", justifyContent: "center" }}>
+        <div className={styles.center}>
           <CircularProgress />
         </div>
       ) : !projects?.length ? (
         <p>No Projects Found!</p>
       ) : (
-        <div className={styles.projectsList}>
-          <Box sx={{ width: "100%", bgcolor: "background.paper" }}>
-            <List component="nav">
-              {projects.map((each, index) => (
-                <>
-                  <ListItemButton
-                    onMouseEnter={() => setHoverIndex(index)}
-                    onMouseLeave={() => setHoverIndex(-1)}
-                  >
-                    <ListItem alignItems="flex-start">
-                      <NavLink
-                        to={each.github_url}
-                        target="_blank"
-                        rel="noreferrer"
-                      >
-                        <ListItemIcon>
-                          <GitHubIcon
-                            sx={{ p: 0 }}
-                            style={{
-                              color:
-                                hoverIndex === index
-                                  ? `var(--primary-color)`
-                                  : undefined,
-                            }}
-                          />
-                          ,
-                        </ListItemIcon>
-                      </NavLink>
+        <div className={styles.projectsGrid}>
+          {projects.map((each, index) => (
+            <motion.div
+              key={each.id || index}
+              className={`${styles.projectCard} ${hoverIndex === index ? styles.active : ""}`}
+              onMouseEnter={() => setHoverIndex(index)}
+              onMouseLeave={() => setHoverIndex(-1)}
+              initial={{ opacity: 0, y: 40 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: index * 0.15 }}
+            >
+              <div className={styles.cardHeader}>
+                <h3>{each.project_name}</h3>
+              </div>
 
-                      <ListItemText
-                        primary={each.project_name}
-                        secondary={
-                          <React.Fragment>
-                            <Typography
-                              sx={{ display: "inline" }}
-                              component="span"
-                              variant="body2"
-                              color="text.primary"
-                            >
-                              {each.project_description}
-                              <br />
-                              <br />
+              <p className={styles.description}>{each.project_description}</p>
 
-                              <Box display="flex" style={{ gap: 20 }}>
-                                {each.technology_tags.includes("flutter") && (
-                                  <FlutterLogo height={22} />
-                                )}
+              <div className={styles.techStack}>
+                {each.technology_tags.includes("flutter") && <FlutterLogo height={22} />}
+                {each.technology_tags.includes("react") && (
+                  <FontAwesomeIcon icon={faReact} style={{ color: "#5ED2F3" }} size="xl" />
+                )}
+                {each.technology_tags.includes("node") && (
+                  <FontAwesomeIcon icon={faNode} style={{ color: "#57A745" }} size="2xl" />
+                )}
+                {each.technology_tags.includes("javascript") && (
+                  <FontAwesomeIcon icon={faJs} style={{ color: "#F7DF1E" }} size="xl" />
+                )}
+                {each.technology_tags.includes("android") && (
+                  <FontAwesomeIcon icon={faAndroid} style={{ color: "#3DDC84" }} size="xl" />
+                )}
+              </div>
 
-                                {each.technology_tags.includes("react") && (
-                                  <FontAwesomeIcon
-                                    icon={faReact}
-                                    style={{ color: "#5ED2F3" }}
-                                    size="xl"
-                                  />
-                                )}
-
-                                {each.technology_tags.includes("node") && (
-                                  <FontAwesomeIcon
-                                    icon={faNode}
-                                    style={{ color: "#57A745" }}
-                                    size="2xl"
-                                  />
-                                )}
-
-                                {each.technology_tags.includes(
-                                  "javascript"
-                                ) && (
-                                  <FontAwesomeIcon
-                                    icon={faJs}
-                                    style={{ color: "#57A745" }}
-                                    size="xl"
-                                  />
-                                )}
-
-                                {each.technology_tags.includes("android") && (
-                                  <FontAwesomeIcon
-                                    icon={faAndroid}
-                                    style={{ color: "#57A745" }}
-                                    size="xl"
-                                  />
-                                )}
-                              </Box>
-                            </Typography>
-                          </React.Fragment>
-                        }
-                      />
-
-                      {each.play_store_url && (
-                        <NavLink
-                          to={each.play_store_url}
-                          target="_blank"
-                          rel="noreferrer"
-                        >
-                          <ShopIcon
-                            sx={{ pl: 1 }}
-                            style={{
-                              color:
-                                hoverIndex === index
-                                  ? `var(--primary-color)`
-                                  : undefined,
-                            }}
-                          />
-                        </NavLink>
-                      )}
-
-                      {each.web_url && (
-                        <NavLink
-                          to={each.web_url}
-                          target="_blank"
-                          rel="noreferrer"
-                        >
-                          <ArrowOutwardIcon
-                            sx={{ pl: 1 }}
-                            style={{
-                              color:
-                                hoverIndex === index
-                                  ? `var(--primary-color)`
-                                  : undefined,
-                            }}
-                          />
-                        </NavLink>
-                      )}
-                    </ListItem>
-                  </ListItemButton>
-                  <Divider variant="middle" component="li" />
-                </>
-              ))}
-            </List>
-          </Box>
+              <div className={styles.actions}>
+                {each.github_url && (
+                  <NavLink to={each.github_url} target="_blank" rel="noreferrer">
+                    <GitHubIcon />
+                  </NavLink>
+                )}
+                {each.play_store_url && (
+                  <NavLink to={each.play_store_url} target="_blank" rel="noreferrer">
+                    <ShopIcon />
+                  </NavLink>
+                )}
+                {each.web_url && (
+                  <NavLink to={each.web_url} target="_blank" rel="noreferrer">
+                    <ArrowOutwardIcon />
+                  </NavLink>
+                )}
+              </div>
+            </motion.div>
+          ))}
         </div>
       )}
     </motion.div>

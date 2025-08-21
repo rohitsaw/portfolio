@@ -1,30 +1,50 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { Link, useLocation, useParams } from "react-router-dom";
+import { motion } from "framer-motion";
 
 import styles from "./index.module.css";
 
 const Footer = () => {
+  const location = useLocation();
+  const { emailId } = useParams();
+
   const routes = [
-    { path: "/about", routeName: "About" },
-    { path: "/workExperience", routeName: "Work" },
-    { path: "/certification", routeName: "Certification" },
-    { path: "/projects", routeName: "Project" },
-    { path: "/contacts", routeName: "Contact" },
+    { path: `/${emailId}/about`, routeName: "About" },
+    { path: `/${emailId}/workexperience`, routeName: "Work" },
+    { path: `/${emailId}/certification`, routeName: "Certification" },
+    { path: `/${emailId}/projects`, routeName: "Projects" },
+    { path: `/${emailId}/contacts`, routeName: "Contact" },
   ];
 
   return (
-    <div className={styles.footerContainer}>
-      <div className={styles.footerBorder} />
-      <footer className={styles.navContainer}>
-        {routes.map((eachRoute, index) => (
-          <li key={index} className={styles.navItem}>
-            <NavLink to={eachRoute.path} className={styles.navLink}>
-              {eachRoute.routeName}
-            </NavLink>
-          </li>
-        ))}
-      </footer>
-    </div>
+    <footer className={styles.footerContainer}>
+      <ul className={styles.footerNavList}>
+        {routes.map((eachRoute, index) => {
+          const isActive = eachRoute.path === location.pathname;
+          return (
+            <li key={index} className={styles.footerNavItem}>
+              {isActive ? (
+                <motion.div layoutId="footerSelected">
+                  <Link
+                    to={eachRoute.path}
+                    className={`${styles.footerNavLink} ${styles.footerNavLinkActive}`}
+                  >
+                    {eachRoute.routeName}
+                  </Link>
+                </motion.div>
+              ) : (
+                <Link to={eachRoute.path} className={styles.footerNavLink}>
+                  {eachRoute.routeName}
+                </Link>
+              )}
+            </li>
+          );
+        })}
+      </ul>
+      <div className={styles.copyText}>
+        © {new Date().getFullYear()} @rsaw409
+      </div>
+    </footer>
   );
 };
 

@@ -1,175 +1,141 @@
 .pageContainer {
   display: flex;
-  flex-wrap: wrap;
-  gap: 24px;
-}
-
-.logoWrapper {
-  display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  max-width: 25%;
-
-  justify-content: space-around;
+  gap: 2rem;
+  padding: 2rem;
+  max-width: 900px;
+  margin: auto;
 }
 
-.img {
-  aspect-ratio: 19 / 20;
-  object-fit: contain;
-  width: 100%;
-  height: auto;
-  opacity: 1;
-  border-radius: 12%;
-  padding-bottom: 20px;
-  padding-right: 20px;
-  padding-top: 20px;
+/* Profile */
+.profileSection {
+  text-align: center;
 }
-
+.profileImg {
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  border: 4px solid #6c63ff;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+.userName {
+  margin-top: 1rem;
+  font-size: 1.6rem;
+  font-weight: 600;
+}
+.tagline {
+  color: #666;
+  margin-bottom: 1rem;
+}
 .socialLinks {
-  width: 100%;
-
   display: flex;
-  flex-direction: row;
-
-  justify-content: space-between;
-  cursor: pointer;
+  justify-content: center;
+  gap: 1rem;
+}
+.socialIcon {
+  font-size: 1.4rem;
+  color: #444;
+  transition: all 0.2s ease;
+}
+.socialIcon:hover {
+  color: #6c63ff;
 }
 
-a {
-  color: #65656d;
-}
-
-.socialLinks svg:not(:hover) {
-  transition: 1.4s;
-  transform: rotate(-360deg);
-}
-
-.socialLinks svg:hover {
-  color: var(--primary-color);
-  transition: 1.4s;
-  transform: rotate(360deg);
-}
-
+/* Card */
 .cardContainer {
-  max-width: 60%;
-  min-width: 260px;
-
-  opacity: 0.8;
-
-  height: max-content;
-  min-height: 180px;
-
-  padding-top: 22px;
-  padding-bottom: 16px;
-
-  padding-left: 32px;
-  padding-right: 32px;
-
-  border-radius: 20px;
-  outline: 2px solid #f4f4f5;
-
-  display: flex;
-  flex-direction: column;
+  background: #fff;
+  border-radius: 16px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  transition: transform 0.2s ease;
 }
-
 .cardContainer:hover {
-  background: #fafafa;
-  opacity: 1;
-  transition: background-color 0.3s ease-in-out;
-  cursor: pointer;
+  transform: translateY(-4px);
 }
-
 .cardTitle {
-  color: #27272a;
-  font-weight: 650;
-
-  display: flex;
-  flex-direction: row;
-  justify-self: flex-start;
-  column-gap: 14px;
-  align-items: center;
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  border-left: 4px solid #6c63ff;
+  padding-left: 0.5rem;
 }
-
-.cardContent {
-  margin-top: 16px;
-  font-size: 20px;
-  line-height: 22px;
-
-  color: #65656d;
-}
-
 .cardContent p {
-  font-size: 16px;
+  color: #333;
+  line-height: 1.6;
+}
+.center {
+  display: flex;
+  justify-content: center;
 }
 
-.navLink {
-  text-decoration: none;
-  color: #65656d;
-}
-
-.navLinkHover {
-  text-decoration: none;
-  color: var(--primary-color);
-}
-
-.cardContentList {
-  list-style: none;
-  margin-bottom: 0px;
-  padding-left: 0px;
-
+/* Timeline */
+.timeline {
   display: flex;
   flex-direction: column;
-  row-gap: 16px;
+  gap: 1.5rem;
+  position: relative;
+  margin-left: 1rem;
+}
+.timeline::before {
+  content: "";
+  position: absolute;
+  left: 8px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: #6c63ff;
+}
+.timelineItem {
+  position: relative;
+  padding-left: 2rem;
+}
+.timelineDot {
+  position: absolute;
+  left: -2px;
+  top: 5px;
+  width: 12px;
+  height: 12px;
+  background: #6c63ff;
+  border-radius: 50%;
+}
+.timelineContent h4 {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 600;
+}
+.institute {
+  color: #555;
+  font-size: 0.9rem;
+}
+.date {
+  font-size: 0.8rem;
+  color: #777;
+}
+.score {
+  font-size: 0.8rem;
+  color: #6c63ff;
+  margin-left: 1rem;
 }
 
-.item1 {
-  font-size: 18px;
-  line-height: 22px;
-  font-weight: 700;
-  color: #27272a;
+/* Skills */
+.skillsWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
 }
-
-.item10 {
-  font-size: 16px;
-  line-height: 18px;
+.skillCategory h4 {
+  margin-bottom: 0.5rem;
+  color: #333;
 }
-
-.item3 {
-  font-size: 14px;
-  line-height: 18px;
-  font-weight: 500;
-  color: #65656d;
+.skillChips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
 }
-
-@media only screen and (max-width: 600px) {
-  .logoWrapper {
-    max-width: 90%;
-    justify-content: space-between;
-    padding: 10px;
-  }
-
-  .cardContainer {
-    min-width: 90%;
-
-    padding-top: 18px;
-    padding-bottom: 12px;
-
-    padding-left: 12px;
-    padding-right: 12px;
-  }
-
-  .cardContent {
-    font-size: 18px;
-    line-height: 20px;
-  }
-
-  .item1 {
-    font-size: 16px;
-    line-height: 20px;
-  }
-
-  .item3 {
-    font-size: 12px;
-    line-height: 16px;
-  }
+.chip {
+  background: #f1f0ff;
+  color: #6c63ff;
+  padding: 0.4rem 0.8rem;
+  border-radius: 999px;
+  font-size: 0.85rem;
 }
