@@ -6,11 +6,11 @@ import {
   addDummyExperience,
   addExperience,
   deleteExperience,
+  removeDummyExperience,
 } from "../../../redux/action.js";
 
 import EditDetailsPage from "../index.jsx";
-import {formatDateYYYYMMDD} from "../../../utils/util.js";
-
+import { formatDateYYYYMMDD } from "../../../utils/util.js";
 
 const EditExperiences = ({ styles }) => {
   const dispatch = useDispatch();
@@ -28,6 +28,10 @@ const EditExperiences = ({ styles }) => {
 
   const setDummyRow = (id) => {
     dispatch(addDummyExperience(id));
+  };
+
+  const removeDummyRow = (id) => {
+    dispatch(removeDummyExperience(id));
   };
 
   const deleteRow = (row) => {
@@ -93,6 +97,7 @@ const EditExperiences = ({ styles }) => {
           else return { ...each, mui_id: randomId() };
         })}
         setDummyRow={setDummyRow}
+        removeDummyRow={removeDummyRow}
         columns={experience_columns}
         saveRowInServer={setRow}
         onProcessRowUpdateError={handleError}

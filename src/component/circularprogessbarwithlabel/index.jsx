@@ -4,7 +4,7 @@ import CircularProgress from "@mui/material/CircularProgress";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 
-function CircularProgressWithLabel({ value, label }) {
+function CircularProgressWithLabel({ value, label, size = 50, thickness = 4 }) {
   const [progress, setProgress] = useState(0);
 
   // Animate progress when value changes
@@ -22,13 +22,19 @@ function CircularProgressWithLabel({ value, label }) {
   }, [value]);
 
   return (
-    <Box sx={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
+    <Box
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+      }}
+    >
       <Box sx={{ position: "relative", display: "inline-flex" }}>
         <CircularProgress
           variant="determinate"
           value={progress}
-          size={90}
-          thickness={5}
+          size={size}
+          thickness={thickness}
           sx={{
             color: "var(--primary-color)",
             backgroundColor: "#f0f0f0",
@@ -48,9 +54,12 @@ function CircularProgressWithLabel({ value, label }) {
           }}
         >
           <Typography
-            variant="subtitle1"
             component="div"
-            sx={{ fontWeight: "bold", color: "var(--primary-color)" }}
+            sx={{
+              fontWeight: "bold",
+              color: "var(--primary-color)",
+              fontSize: `${size * 0.25}px`, // font scales with size
+            }}
           >
             {`${Math.round(progress)}%`}
           </Typography>
@@ -59,7 +68,12 @@ function CircularProgressWithLabel({ value, label }) {
       {label && (
         <Typography
           variant="body2"
-          sx={{ marginTop: 1, color: "text.secondary", textAlign: "center" }}
+          sx={{
+            marginTop: 0.5,
+            color: "text.secondary",
+            textAlign: "center",
+            fontSize: `${size * 0.2}px`, // scale label too
+          }}
         >
           {label}
         </Typography>
@@ -73,6 +87,10 @@ CircularProgressWithLabel.propTypes = {
   value: PropTypes.number.isRequired,
   /** Optional label under the circle */
   label: PropTypes.string,
+  /** Size of the circle (default 50px) */
+  size: PropTypes.number,
+  /** Thickness of the circle stroke */
+  thickness: PropTypes.number,
 };
 
 export default CircularProgressWithLabel;

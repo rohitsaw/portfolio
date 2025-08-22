@@ -12,6 +12,7 @@ import {
   addProject,
   addDummyProject,
   deleteProject,
+  removeDummyProject,
 } from "../../../redux/action.js";
 
 const EditProject = ({ styles }) => {
@@ -27,6 +28,10 @@ const EditProject = ({ styles }) => {
 
   const setDummyRow = (id) => {
     dispatch(addDummyProject(id));
+  };
+
+  const removeDummyRow = (id) => {
+    dispatch(removeDummyProject(id));
   };
 
   const deleteRow = (row) => {
@@ -156,6 +161,7 @@ const EditProject = ({ styles }) => {
           else return { ...each, mui_id: randomId() };
         })}
         setDummyRow={setDummyRow}
+        removeDummyRow={removeDummyRow}
         columns={project_columns}
         saveRowInServer={setRow}
         onProcessRowUpdateError={handleError}

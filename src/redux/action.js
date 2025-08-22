@@ -143,6 +143,41 @@ const addDummySkill = (mui_id) => async (dispatch) => {
   });
 };
 
+const removeDummySkill = (mui_id) => async (dispatch) => {
+  dispatch({
+    type: ACTIONS.REMOVE_DUMMY_SKILL,
+    payload: mui_id,
+  });
+};
+
+const removeDummyCertificate = (mui_id) => async (dispatch) => {
+  dispatch({
+    type: ACTIONS.REMOVE_DUMMY_CERTIFICATE,
+    payload: mui_id,
+  });
+};
+
+const removeDummyProject = (mui_id) => async (dispatch) => {
+  dispatch({
+    type: ACTIONS.REMOVE_DUMMY_PROJECT,
+    payload: mui_id,
+  });
+};
+
+const removeDummyEducation = (mui_id) => async (dispatch) => {
+  dispatch({
+    type: ACTIONS.REMOVE_DUMMY_EDUCATION,
+    payload: mui_id,
+  });
+};
+
+const removeDummyExperience = (mui_id) => async (dispatch) => {
+  dispatch({
+    type: ACTIONS.REMOVE_DUMMY_EXPERIENCE,
+    payload: mui_id,
+  });
+};
+
 const addSkill = (new_row, user_id) => async (dispatch) => {
   try {
     await addSkillInServer(new_row, user_id);
@@ -561,4 +596,9 @@ export {
   addDummyProject,
   deleteProject,
   updateUser,
+  removeDummySkill,
+  removeDummyExperience,
+  removeDummyCertificate,
+  removeDummyEducation,
+  removeDummyProject,
 };

@@ -3,7 +3,7 @@ import CircularProgressWithLabel from "../../../component/circularprogessbarwith
 import FullFeaturedCrudGrid from "../../../component/datatable.jsx";
 import { randomId } from "@mui/x-data-grid-generator";
 
-import { addDummySkill, addSkill, deleteSkill } from "../../../redux/action.js";
+import { addDummySkill, addSkill, deleteSkill, removeDummySkill } from "../../../redux/action.js";
 
 import EditDetailsPage from "../index.jsx";
 
@@ -20,6 +20,10 @@ const EditSkills = ({ styles }) => {
 
   const setDummyRow = (id) => {
     dispatch(addDummySkill(id));
+  };
+
+  const removeDummyRow = (id) => {
+    dispatch(removeDummySkill(id));
   };
 
   const deleteRow = (row) => {
@@ -70,6 +74,7 @@ const EditSkills = ({ styles }) => {
           else return { ...each, mui_id: randomId() };
         })}
         setDummyRow={setDummyRow}
+        removeDummyRow={removeDummyRow}
         columns={skill_columns}
         saveRowInServer={setRow}
         onProcessRowUpdateError={handleError}

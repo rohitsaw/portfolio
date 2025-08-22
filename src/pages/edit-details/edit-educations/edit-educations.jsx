@@ -7,6 +7,7 @@ import {
   addDummyEducation,
   addEducation,
   deleteEducation,
+  removeDummyEducation,
 } from "../../../redux/action.js";
 
 import EditDetailsPage from "../index.jsx";
@@ -24,6 +25,10 @@ const EditEducations = ({ styles }) => {
 
   const setDummyRow = (id) => {
     dispatch(addDummyEducation(id));
+  };
+
+  const removeDummyRow = (id) => {
+    dispatch(removeDummyEducation(id));
   };
 
   const deleteRow = (row) => {
@@ -95,6 +100,7 @@ const EditEducations = ({ styles }) => {
           else return { ...each, mui_id: randomId() };
         })}
         setDummyRow={setDummyRow}
+        removeDummyRow={removeDummyRow}
         columns={education_columns}
         saveRowInServer={setRow}
         onProcessRowUpdateError={handleError}

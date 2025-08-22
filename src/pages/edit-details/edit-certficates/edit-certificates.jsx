@@ -13,6 +13,7 @@ import {
   addDummyCertificate,
   addCertificate,
   deleteCertificate,
+  removeDummyCertificate,
 } from "../../../redux/action.js";
 
 const EditCertificates = ({ styles }) => {
@@ -28,6 +29,10 @@ const EditCertificates = ({ styles }) => {
 
   const setDummyRow = (id) => {
     dispatch(addDummyCertificate(id));
+  };
+
+  const removeDummyRow = (id) => {
+    dispatch(removeDummyCertificate(id));
   };
 
   const deleteRow = (row) => {
@@ -125,6 +130,7 @@ const EditCertificates = ({ styles }) => {
           else return { ...each, mui_id: randomId() };
         })}
         setDummyRow={setDummyRow}
+        removeDummyRow={removeDummyRow}
         columns={certificate_columns}
         saveRowInServer={setRow}
         onProcessRowUpdateError={handleError}

@@ -6,6 +6,11 @@ import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/DeleteOutlined";
 import SaveIcon from "@mui/icons-material/Save";
 import CancelIcon from "@mui/icons-material/Close";
+import Dialog from "@mui/material/Dialog";
+import DialogTitle from "@mui/material/DialogTitle";
+import DialogContent from "@mui/material/DialogContent";
+import DialogContentText from "@mui/material/DialogContentText";
+import DialogActions from "@mui/material/DialogActions";
 import {
   GridRowModes,
   DataGrid,
@@ -19,12 +24,14 @@ export default function FullFeaturedCrudGrid({
   ButtonName,
   rows,
   setDummyRow,
+  removeDummyRow,
   columns,
   saveRowInServer,
   deleteRowFromServer,
   onProcessRowUpdateError,
 }) {
   const [rowModesModel, setRowModesModel] = React.useState({});
+  const [deleteTarget, setDeleteTarget] = React.useState(null);
 
   const handleRowEditStop = (params, event) => {
     if (params.reason === GridRowEditStopReasons.rowFocusOut) {
@@ -33,33 +40,58 @@ export default function FullFeaturedCrudGrid({
   };
 
   const handleEditClick = (id) => () => {
-    setRowModesModel({
-      ...rowModesModel,
-      [id]: { mode: GridRowModes.Edit },
-    });
+    setRowModesModel({ ...rowModesModel, [id]: { mode: GridRowModes.Edit } });
   };
 
   const handleSaveClick = (id) => () => {
-    setRowModesModel({
-      ...rowModesModel,
-      [id]: { mode: GridRowModes.View },
-    });
+    setRowModesModel({ ...rowModesModel, [id]: { mode: GridRowModes.View } });
   };
 
-  const handleDeleteClick = (id) => async () => {
-    await deleteRowFromServer(rows.filter((row) => row.mui_id === id)?.at(0));
+  const handleDeleteClick = (id) => () => {
+    setDeleteTarget(id); // open confirmation dialog
   };
+
+  const confirmDelete = async () => {
+    if (deleteTarget) {
+      await deleteRowFromServer(
+        rows.find((row) => row.mui_id === deleteTarget)
+      );
+      setDeleteTarget(null);
+    }
+  };
+
+  //   // If user cancels edit on a new row → remove it
+  // if (params.reason === GridRowEditStopReasons.cancel) {
+  //   const row = rows.find((r) => r.id === params.id);
+  //   if (row?.isNew) {
+  //     setRows((prev) => prev.filter((r) => r.id !== params.id));
+  //     setRowModesModel((prev) => {
+  //       const { [params.id]: removed, ...rest } = prev;
+  //       return rest;
+  //     });
+  //   }
+  // }
 
   const handleCancelClick = (id) => () => {
-    setRowModesModel({
-      ...rowModesModel,
-      [id]: { mode: GridRowModes.View, ignoreModifications: true },
-    });
+
+    console.log("cancelling", id);
+    const isNew = id.toString().startsWith("new_"); // or however you mark temp rows
+
+    console.log("isNew", isNew);
+
+    if (isNew) {
+      removeDummyRow(id);
+    } else {
+      setRowModesModel({
+        ...rowModesModel,
+        [id]: { mode: GridRowModes.View, ignoreModifications: true },
+      });
+    }
   };
 
   const processRowUpdate = async (newRow, oldRow) => {
     try {
-      let updatedRow = await saveRowInServer(newRow, oldRow);
+      const updatedRow = await saveRowInServer(newRow, oldRow);
       return { ...updatedRow, isNew: false };
     } catch (error) {
       return oldRow;
@@ -76,7 +108,9 @@ export default function FullFeaturedCrudGrid({
       field: "actions",
       type: "actions",
       headerName: "Actions",
-      flex: 1,
+      headerAlign: "center",
+      align: "center",
+      width: 120,
       cellClassName: "actions",
       getActions: ({ id }) => {
         const isInEditMode = rowModesModel[id]?.mode === GridRowModes.Edit;
@@ -84,36 +118,36 @@ export default function FullFeaturedCrudGrid({
         if (isInEditMode) {
           return [
             <GridActionsCellItem
-              icon={<SaveIcon />}
+              key="save"
+              icon={<SaveIcon fontSize="small" />}
               label="Save"
-              sx={{
-                color: "primary.main",
-              }}
+              sx={{ color: "success.main" }}
               onClick={handleSaveClick(id)}
             />,
             <GridActionsCellItem
-              icon={<CancelIcon />}
+              key="cancel"
+              icon={<CancelIcon fontSize="small" />}
               label="Cancel"
-              className="textPrimary"
               onClick={handleCancelClick(id)}
-              color="inherit"
+              sx={{ color: "text.secondary" }}
             />,
           ];
         }
 
         return [
           <GridActionsCellItem
-            icon={<EditIcon />}
+            key="edit"
+            icon={<EditIcon fontSize="small" />}
             label="Edit"
-            className="textPrimary"
             onClick={handleEditClick(id)}
-            color="inherit"
+            sx={{ color: "primary.main" }}
           />,
           <GridActionsCellItem
-            icon={<DeleteIcon />}
+            key="delete"
+            icon={<DeleteIcon fontSize="small" />}
             label="Delete"
             onClick={handleDeleteClick(id)}
-            color="inherit"
+            sx={{ color: "error.main" }}
           />,
         ];
       },
@@ -124,11 +158,18 @@ export default function FullFeaturedCrudGrid({
     <Box
       sx={{
         width: "100%",
-        "& .actions": {
-          color: "text.secondary",
+        height: "100%",
+        "& .MuiDataGrid-root": {
+          borderRadius: 3,
+          border: "1px solid #e0e0e0",
+          boxShadow: "0 2px 6px rgba(0,0,0,0.05)",
+          backgroundColor: "#fff",
         },
-        "& .textPrimary": {
-          color: "text.primary",
+        "& .MuiDataGrid-cell": {
+          fontSize: "0.9rem",
+        },
+        "& .MuiDataGrid-row:hover": {
+          backgroundColor: "rgba(25, 118, 210, 0.04)",
         },
       }}
     >
@@ -137,50 +178,67 @@ export default function FullFeaturedCrudGrid({
         rows={rows}
         columns={new_columns}
         disableColumnMenu
+        autoHeight
+        density="comfortable"
         initialState={{
           columns: {
-            columnVisibilityModel: {
-              mui_id: false,
-            },
+            columnVisibilityModel: { mui_id: false },
           },
+          pagination: { paginationModel: { pageSize: 10 } },
         }}
+        pageSizeOptions={[5, 10, 20]}
         editMode="row"
         rowModesModel={rowModesModel}
         onRowModesModelChange={handleRowModesModelChange}
         onRowEditStop={handleRowEditStop}
         processRowUpdate={processRowUpdate}
         onProcessRowUpdateError={onProcessRowUpdateError}
-        slots={{
-          toolbar: EditToolbar,
-        }}
-        slotProps={{
-          toolbar: { ButtonName, setDummyRow, setRowModesModel },
-        }}
+        slots={{ toolbar: EditToolbar }}
+        slotProps={{ toolbar: { ButtonName, setDummyRow, setRowModesModel } }}
       />
+
+      {/* Delete confirmation dialog */}
+      <Dialog open={!!deleteTarget} onClose={() => setDeleteTarget(null)}>
+        <DialogTitle>Confirm Delete</DialogTitle>
+        <DialogContent>
+          <DialogContentText>
+            Are you sure you want to delete this record? This action cannot be
+            undone.
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={() => setDeleteTarget(null)} color="inherit">
+            Cancel
+          </Button>
+          <Button onClick={confirmDelete} color="error" variant="contained">
+            Delete
+          </Button>
+        </DialogActions>
+      </Dialog>
     </Box>
   );
 }
 
-function EditToolbar(props) {
-  const { ButtonName, setDummyRow, setRowModesModel } = props;
-
+function EditToolbar({ ButtonName, setDummyRow, setRowModesModel }) {
   const handleClick = () => {
-    const id = randomId();
+    const id = "new_"+ randomId();
     setDummyRow(id);
     setRowModesModel((oldModel) => ({
-      ...oldModel,
       [id]: { mode: GridRowModes.Edit, fieldToFocus: "skill_name" },
+      ...oldModel,
     }));
   };
 
   return (
-    <GridToolbarContainer>
+    <GridToolbarContainer sx={{ p: 1.5, justifyContent: "flex-end" }}>
       <Button
-        sx={{ color: `var(--primary-color)` }}
+        variant="contained"
+        color="primary"
         startIcon={<AddIcon />}
         onClick={handleClick}
+        sx={{ textTransform: "none", borderRadius: 2, fontWeight: 500 }}
       >
-        Add New {ButtonName}
+        Add {ButtonName}
       </Button>
     </GridToolbarContainer>
   );

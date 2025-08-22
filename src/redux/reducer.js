@@ -125,7 +125,14 @@ const reducer = (state = initialState, action) => {
     case ACTIONS.ADD_DUMMY_SKILL: {
       return {
         ...state,
-        skills: [...state.skills, action.payload],
+        skills: [action.payload, ...state.skills],
+      };
+    }
+
+    case ACTIONS.REMOVE_DUMMY_SKILL: {
+      return {
+        ...state,
+        skills: state.skills.filter((skill) => skill.mui_id !== action.payload),
       };
     }
 
@@ -141,28 +148,59 @@ const reducer = (state = initialState, action) => {
     case ACTIONS.ADD_DUMMY_CERTIFICATE: {
       return {
         ...state,
-        certificates: [...state.certificates, action.payload],
+        certificates: [action.payload, ...state.certificates],
+      };
+    }
+
+    case ACTIONS.REMOVE_DUMMY_CERTIFICATE: {
+      return {
+        ...state,
+        certificates: state.certificates.filter(
+          (e) => e.mui_id !== action.payload
+        ),
       };
     }
 
     case ACTIONS.ADD_DUMMY_EDUCATION: {
       return {
         ...state,
-        educations: [...state.educations, action.payload],
+        educations: [action.payload, ...state.educations],
+      };
+    }
+    case ACTIONS.REMOVE_DUMMY_EDUCATION: {
+      return {
+        ...state,
+        educations: state.educations.filter((e) => e.mui_id !== action.payload),
       };
     }
 
     case ACTIONS.ADD_DUMMY_EXPERIENCE: {
       return {
         ...state,
-        workExperiences: [...state.workExperiences, action.payload],
+        workExperiences: [action.payload, ...state.workExperiences],
+      };
+    }
+
+    case ACTIONS.REMOVE_DUMMY_EXPERIENCE: {
+      return {
+        ...state,
+        workExperiences: state.workExperiences.filter(
+          (e) => e.mui_id !== action.payload
+        ),
       };
     }
 
     case ACTIONS.ADD_DUMMY_PROJECT: {
       return {
         ...state,
-        projects: [...state.projects, action.payload],
+        projects: [action.payload, ...state.projects],
+      };
+    }
+
+    case ACTIONS.REMOVE_DUMMY_PROJECT: {
+      return {
+        ...state,
+        projects: state.projects.filter((e) => e.mui_id !== action.payload),
       };
     }
 
