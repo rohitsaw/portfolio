@@ -29,7 +29,14 @@ const Layout = () => {
                 const isActive = eachRoute.path === location.pathname;
                 return isActive ? (
                   <li key={index} className={styles.navItem}>
-                    <motion.div layoutId="selected">
+                    <motion.div
+                      // layoutId="selected"
+                      className={styles.footerHighlight}
+                      initial={{ scaleX: 0, opacity: 0 }}
+                      animate={{ scaleX: 1, opacity: 1 }}
+                      exit={{ scaleX: 0, opacity: 0 }}
+                      transition={{ duration: 0.2 }}
+                    >
                       <Link
                         key={eachRoute.path}
                         to={eachRoute.path}

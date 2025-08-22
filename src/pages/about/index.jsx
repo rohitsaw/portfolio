@@ -17,7 +17,7 @@ import {
   faGithub,
   faLinkedin,
 } from "@fortawesome/free-brands-svg-icons";
-import ErrorPage from "../ErrorPage/index.js";
+import ErrorPage from "../ErrorPage/index.jsx";
 import { transformSkills } from "../../utils/util.js";
 
 import styles from "./index.module.css";

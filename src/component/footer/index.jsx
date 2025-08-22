@@ -29,13 +29,17 @@ const Footer = () => {
                 }`}
               >
                 {eachRoute.routeName}
-                {isActive && (
-                  <motion.div
-                    layoutId="footerSelected"
-                    className={styles.footerHighlight}
-                  />
-                )}
               </Link>
+              {isActive && (
+                <motion.div
+                  // layoutId="footerSelected"
+                  className={styles.footerHighlight}
+                  initial={{ scaleX: 0, opacity: 0 }}
+                  animate={{ scaleX: 1, opacity: 1 }}
+                  exit={{ scaleX: 0, opacity: 0 }}
+                  transition={{ duration: 0.25 }}
+                />
+              )}
             </li>
           );
         })}

@@ -5,12 +5,12 @@ import Button from "@mui/material/Button";
 import GoogleIcon from "@mui/icons-material/Google";
 import { useNavigate } from "react-router-dom";
 
-import AnimateRoutes from "./component/routes";
-import Profile from "./component/profile";
+import AnimateRoutes from "./component/routes/index.jsx";
+import Profile from "./component/profile/index.jsx";
 
 import styles from "./app.module.css";
 import { useDispatch, useSelector } from "react-redux";
-import { setOpenSnackBar, setUserFromGoogle } from "../src/redux/action.js";
+import { setOpenSnackBar, setUserFromGoogle } from "./redux/action.js";
 import { base_url as serverAddress } from "./api/api.js";
 import { loadUser } from "./api/user.js";
 import { getUser } from "./redux/action.js";

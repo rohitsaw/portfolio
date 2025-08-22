@@ -1,10 +1,9 @@
-import EditDetailsPage from "../index.js";
+import EditDetailsPage from "../index.jsx";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import { useDispatch, useSelector } from "react-redux";
 import Grid from "@mui/material/Grid";
 import { Button } from "@mui/material";
-import Snackbar from "@mui/material/Snackbar";
 import { useState } from "react";
 import { updateUser } from "../../../redux/action.js";
 

@@ -5,7 +5,7 @@ import { NavLink } from "react-router-dom";
 import { motion } from "framer-motion";
 import { useSelector } from "react-redux";
 import { CircularProgress } from "@mui/material";
-import ErrorPage from "../ErrorPage/index.js";
+import ErrorPage from "../ErrorPage/index.jsx";
 
 import styles from "./index.module.css";
 

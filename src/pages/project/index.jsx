@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import { motion } from "framer-motion";
 import CircularProgress from "@mui/material/CircularProgress";
 
-import ErrorPage from "../ErrorPage/index.js";
+import ErrorPage from "../ErrorPage/index.jsx";
 import styles from "./index.module.css";
 
 import GitHubIcon from "@mui/icons-material/GitHub";
@@ -13,7 +13,8 @@ import ArrowOutwardIcon from "@mui/icons-material/ArrowOutward";
 
 import { faJs, faNode, faReact, faAndroid } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { ReactComponent as FlutterLogo } from "../../icons/Google-flutter-logo.svg";
+import  FlutterLogo  from "../../icons/Google-flutter-logo.svg?react";
+
 
 const Projects = () => {
   let { isProjectsLoading, projects, isValidView } = useSelector((state) => ({

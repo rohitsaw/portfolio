@@ -1,21 +1,21 @@
 import { Routes, Route, Navigate, useLocation } from "react-router-dom";
 
-import Layout from "../../component/layout";
-import Contact from "../../pages/contact";
+import Layout from "../layout/index.jsx";
+import Contact from "../../pages/contact/index.jsx";
 import About from "../../pages/about/index";
 import Projects from "../../pages/project/index";
 import Certification from "../../pages/certification/index";
 import WorkExperience from "../../pages/workexperience/index";
-import ErrorPage from "../../pages/ErrorPage/index.js";
+import ErrorPage from "../../pages/ErrorPage/index.jsx";
 
 import { AnimatePresence } from "framer-motion";
 
-import EditUserDetails from "../../pages/edit-details/edit-user-details/edit-user-details.js";
-import EditCertificates from "../../pages/edit-details/edit-certficates/edit-certificates.js";
-import EditExperiences from "../../pages/edit-details/edit-experiences/edit-experiences.js";
-import EditSkills from "../../pages/edit-details/edit-skills/edit-skills.js";
-import EditEducation from "../../pages/edit-details/edit-educations/edit-educations.js";
-import EditProjects from "../../pages/edit-details/edit-projects/edit-projects.js";
+import EditUserDetails from "../../pages/edit-details/edit-user-details/edit-user-details.jsx";
+import EditCertificates from "../../pages/edit-details/edit-certficates/edit-certificates.jsx";
+import EditExperiences from "../../pages/edit-details/edit-experiences/edit-experiences.jsx";
+import EditSkills from "../../pages/edit-details/edit-skills/edit-skills.jsx";
+import EditEducation from "../../pages/edit-details/edit-educations/edit-educations.jsx";
+import EditProjects from "../../pages/edit-details/edit-projects/edit-projects.jsx";
 
 const AnimateRoutes = ({ setOpenSnackBar }) => {
   const location = useLocation();

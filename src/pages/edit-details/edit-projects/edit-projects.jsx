@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 
-import EditDetailsPage from "../index.js";
-import FullFeaturedCrudGrid from "../../../component/datatable.js";
+import EditDetailsPage from "../index.jsx";
+import FullFeaturedCrudGrid from "../../../component/datatable.jsx";
 import { randomId } from "@mui/x-data-grid-generator";
 import { Chip, Stack } from "@mui/material";
 import Link from "@mui/material/Link";

@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import FullFeaturedCrudGrid from "../../../component/datatable.js";
+import FullFeaturedCrudGrid from "../../../component/datatable.jsx";
 import { randomId } from "@mui/x-data-grid-generator";
 import dayjs from "dayjs";
 import {
@@ -8,7 +8,7 @@ import {
   deleteExperience,
 } from "../../../redux/action.js";
 
-import EditDetailsPage from "../index.js";
+import EditDetailsPage from "../index.jsx";
 import {formatDateYYYYMMDD} from "../../../utils/util.js";
 
 

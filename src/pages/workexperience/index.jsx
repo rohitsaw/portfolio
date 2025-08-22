@@ -2,7 +2,7 @@ import { useSelector } from "react-redux";
 import CircularProgress from "@mui/material/CircularProgress";
 import dayjs from "dayjs";
 import Typography from "@mui/material/Typography";
-import ErrorPage from "../ErrorPage/index.js";
+import ErrorPage from "../ErrorPage/index.jsx";
 import { motion } from "framer-motion";
 
 import styles from "./index.module.css";

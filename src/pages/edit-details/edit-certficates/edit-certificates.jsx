@@ -1,6 +1,5 @@
-import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import FullFeaturedCrudGrid from "../../../component/datatable.js";
+import FullFeaturedCrudGrid from "../../../component/datatable.jsx";
 import { randomId } from "@mui/x-data-grid-generator";
 import { Chip, Stack } from "@mui/material";
 import Link from "@mui/material/Link";
@@ -8,7 +7,7 @@ import dayjs from "dayjs";
 import TextField from "@mui/material/TextField";
 import ArrowOutwardIcon from "@mui/icons-material/ArrowOutward";
 
-import EditDetailsPage from "../index.js";
+import EditDetailsPage from "../index.jsx";
 
 import {
   addDummyCertificate,

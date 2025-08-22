@@ -17,6 +17,17 @@
 
 .footerNavItem {
   display: inline-block;
+  position: relative;
+}
+
+.footerHighlight {
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--primary-color, #6c63ff);
+  border-radius: 2px;
 }
 
 .footerNavLink {
