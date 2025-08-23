@@ -64,6 +64,7 @@ const AnimateRoutes = ({ setOpenSnackBar }) => {
 
         if (parts.length === 0) {
           dispatch(getUser("rsaw409@gmail.com", null));
+          dispatch(setUserFromUrl("rsaw409@gmail.com"));
           navigate(`/rsaw409@gmail.com/about`, { replace: true });
           return;
         }
@@ -71,6 +72,7 @@ const AnimateRoutes = ({ setOpenSnackBar }) => {
         const [mayBeEmail] = parts;
         if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(mayBeEmail)) {
           dispatch(getUser("rsaw409@gmail.com", null));
+          dispatch(setUserFromUrl("rsaw409@gmail.com"));
           navigate(`/rsaw409@gmail.com/${parts.join("/")}`, { replace: true });
           return;
         } else {
