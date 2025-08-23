@@ -1,5 +1,4 @@
-# https://www.robotstxt.org/robotstxt.html
 User-agent: *
-Disallow:
+Allow: /
 
-Sitemap: https://portfolio-rsaw409.onrender.com/sitemap.txt
+Sitemap: https://portfolio.rsaw409.me/sitemap.xml
