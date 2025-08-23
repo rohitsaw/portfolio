@@ -66,6 +66,13 @@ const setUserFromGoogle = (user) => async (dispatch) => {
   });
 };
 
+const setUserFromUrl = (user_email) => async (dispatch) => {
+  dispatch({
+    type: ACTIONS.USER_FROM_URL,
+    payload: user_email,
+  });
+};
+
 const getAllSkills = (user_id) => async (dispatch) => {
   if (!user_id) return;
   dispatch({
@@ -601,4 +608,5 @@ export {
   removeDummyCertificate,
   removeDummyEducation,
   removeDummyProject,
+  setUserFromUrl
 };

@@ -122,6 +122,13 @@ const reducer = (state = initialState, action) => {
       };
     }
 
+    case ACTIONS.USER_FROM_URL: {
+      return {
+        ...state,
+        userFromUrl: action.payload,
+      };
+    }
+
     case ACTIONS.ADD_DUMMY_SKILL: {
       return {
         ...state,

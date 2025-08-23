@@ -32,7 +32,6 @@ const Footer = () => {
               </Link>
               {isActive && (
                 <motion.div
-                  // layoutId="footerSelected"
                   className={styles.footerHighlight}
                   initial={{ scaleX: 0, opacity: 0 }}
                   animate={{ scaleX: 1, opacity: 1 }}

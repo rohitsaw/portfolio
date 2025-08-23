@@ -1,4 +1,5 @@
-import { Routes, Route, Navigate, useLocation } from "react-router-dom";
+import { useEffect } from "react";
+import { Routes, Route, useLocation, useNavigate } from "react-router-dom";
 
 import Layout from "../layout/index.jsx";
 import Contact from "../../pages/contact/index.jsx";
@@ -17,70 +18,113 @@ import EditSkills from "../../pages/edit-details/edit-skills/edit-skills.jsx";
 import EditEducation from "../../pages/edit-details/edit-educations/edit-educations.jsx";
 import EditProjects from "../../pages/edit-details/edit-projects/edit-projects.jsx";
 
+import { loadUser } from "../../api/user.js";
+import {
+  getUser,
+  setUserFromGoogle,
+  setUserFromUrl,
+} from "../../redux/action.js";
+import { useDispatch } from "react-redux";
+
 const AnimateRoutes = ({ setOpenSnackBar }) => {
   const location = useLocation();
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
-  const fallbackEmailId = "rsaw409@gmail.com";
+  useEffect(() => {
+    const getLogedInUser = async () => {
+      try {
+        const resObject = await loadUser();
+        const email = resObject.user?.emails[0]?.value;
+        const displayName = resObject.user?.displayName;
+
+        dispatch(setUserFromGoogle(resObject.user));
+        dispatch(getUser(email, displayName));
+
+        const currentPath = window.location.pathname;
+        const parts = currentPath.split("/").filter(Boolean); // e.g. ["email", "projects"]
+
+        if (parts.length === 0) {
+          navigate(`/${email}/about`, { replace: true });
+          return;
+        }
+
+        const [mayBeEmail] = parts;
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(mayBeEmail)) {
+          navigate(`/${email}/${parts.join("/")}`, { replace: true });
+          return;
+        } else {
+          navigate(`/${email}/${parts.slice(1).join("/")}`, { replace: true });
+          return;
+        }
+      } catch (error) {
+        console.error("Error fetching logged-in user:", error);
+        const currentPath = window.location.pathname;
+        const parts = currentPath.split("/").filter(Boolean);
+
+        if (parts.length === 0) {
+          dispatch(getUser("rsaw409@gmail.com", null));
+          navigate(`/rsaw409@gmail.com/about`, { replace: true });
+          return;
+        }
+
+        const [mayBeEmail] = parts;
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(mayBeEmail)) {
+          dispatch(getUser("rsaw409@gmail.com", null));
+          navigate(`/rsaw409@gmail.com/${parts.join("/")}`, { replace: true });
+          return;
+        } else {
+          dispatch(getUser(mayBeEmail, null));
+          dispatch(setUserFromUrl(mayBeEmail));
+          navigate(`/${mayBeEmail}/${parts.slice(1).join("/")}`, {
+            replace: true,
+          });
+          return;
+        }
+      }
+    };
+
+    getLogedInUser();
+  }, []);
 
   return (
     <AnimatePresence mode="wait">
       <Routes location={location} key={location.pathname}>
-        <Route
-          path="about"
-          element={<Navigate to={`/${fallbackEmailId}/about`} />}
-        />
-        <Route
-          path="workexperience"
-          element={<Navigate to={`/${fallbackEmailId}/workexperience`} />}
-        />
-        <Route
-          path="certification"
-          element={<Navigate to={`/${fallbackEmailId}/certification`} />}
-        />
-        <Route
-          path="projects"
-          element={<Navigate to={`/${fallbackEmailId}/projects`} />}
-        />
-        <Route
-          path="contacts"
-          element={<Navigate to={`/${fallbackEmailId}/contacts`} />}
-        />
-
         <Route path="/:emailId" element={<Layout />}>
-          <Route path="about" element={<About />} />
-          <Route path="workexperience" element={<WorkExperience />} />
-          <Route path="certification" element={<Certification />} />
-          <Route path="projects" element={<Projects />} />
-          <Route path="contacts" element={<Contact />} />
-          <Route path="*" element={<ErrorPage />} />
-        </Route>
-        <Route path="/" element={<Layout />} />
-
-        <Route path="/edit">
           <Route
-            path="profile"
+            path="about/details/edit"
             element={<EditUserDetails setOpenSnackBar={setOpenSnackBar} />}
           />
           <Route
-            path="project"
-            element={<EditProjects setOpenSnackBar={setOpenSnackBar} />}
-          />
-          <Route
-            path="certificate"
-            element={<EditCertificates setOpenSnackBar={setOpenSnackBar} />}
-          />
-          <Route
-            path="education"
+            path="about/education/edit"
             element={<EditEducation setOpenSnackBar={setOpenSnackBar} />}
           />
           <Route
-            path="experience"
-            element={<EditExperiences setOpenSnackBar={setOpenSnackBar} />}
-          />
-          <Route
-            path="skill"
+            path="about/skill/edit"
             element={<EditSkills setOpenSnackBar={setOpenSnackBar} />}
           />
+          <Route path="about" element={<About />} />
+
+          <Route path="contacts" element={<Contact />} />
+
+          <Route
+            path="workexperience/edit"
+            element={<EditExperiences setOpenSnackBar={setOpenSnackBar} />}
+          />
+          <Route path="workexperience" element={<WorkExperience />} />
+
+          <Route
+            path="certificatation/edit"
+            element={<EditCertificates setOpenSnackBar={setOpenSnackBar} />}
+          />
+          <Route path="certification" element={<Certification />} />
+
+          <Route
+            path="projects/edit"
+            element={<EditProjects setOpenSnackBar={setOpenSnackBar} />}
+          />
+          <Route path="projects" element={<Projects />} />
+
           <Route path="*" element={<ErrorPage />} />
         </Route>
       </Routes>

@@ -37,12 +37,36 @@ const Profile = ({
   const navigate = useNavigate();
 
   const menuItems = [
-    { menu_name: "Edit User", routeName: "/edit/profile", icon: faUserCircle },
-    { menu_name: "Edit Project", routeName: "/edit/project", icon: faProjectDiagram },
-    { menu_name: "Edit Certificate", routeName: "/edit/certificate", icon: faCertificate },
-    { menu_name: "Edit Skill", routeName: "/edit/skill", icon: faCog },
-    { menu_name: "Edit Education", routeName: "/edit/education", icon: faGraduationCap },
-    { menu_name: "Edit Work", routeName: "/edit/experience", icon: faBriefcase },
+    {
+      menu_name: "Edit User",
+      routeName: `/${email}/about/details/edit`,
+      icon: faUserCircle,
+    },
+    {
+      menu_name: "Edit Project",
+      routeName: `/${email}/projects/edit`,
+      icon: faProjectDiagram,
+    },
+    {
+      menu_name: "Edit Certificate",
+      routeName: `/${email}/certificatation/edit`,
+      icon: faCertificate,
+    },
+    {
+      menu_name: "Edit Skill",
+      routeName: `/${email}/about/skill/edit`,
+      icon: faCog,
+    },
+    {
+      menu_name: "Edit Education",
+      routeName: `/${email}/about/education/edit`,
+      icon: faGraduationCap,
+    },
+    {
+      menu_name: "Edit Work",
+      routeName: `/${email}/workexperience/edit`,
+      icon: faBriefcase,
+    },
   ];
 
   const handleOpenUserMenu = (event) => setAnchorElUser(event.currentTarget);
@@ -96,7 +120,11 @@ const Profile = ({
         anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
       >
         {/* Profile header */}
-        <MenuItem disableRipple sx={{ "&:hover": { background: "transparent" } }}>
+        <MenuItem
+          disableRipple
+          sx={{ "&:hover": { background: "transparent" } }}
+          onClick={() => goToEditPage(`/${email}/about`)}
+        >
           <Avatar alt="Profile Picture" src={picture} />
           <Box sx={{ ml: 2 }}>
             <Typography variant="subtitle1" sx={{ fontWeight: 600 }}>
@@ -112,7 +140,10 @@ const Profile = ({
 
         {/* Dynamic edit items */}
         {menuItems.map((each) => (
-          <MenuItem key={each.routeName} onClick={() => goToEditPage(each.routeName)}>
+          <MenuItem
+            key={each.routeName}
+            onClick={() => goToEditPage(each.routeName)}
+          >
             <ListItemIcon>
               <FontAwesomeIcon icon={each.icon} fontSize={16} color="#555" />
             </ListItemIcon>
@@ -129,7 +160,10 @@ const Profile = ({
           <ListItemIcon>
             <LogoutIcon fontSize="small" sx={{ color: "#d32f2f" }} />
           </ListItemIcon>
-          <Typography variant="body2" sx={{ color: "#d32f2f", fontWeight: 500 }}>
+          <Typography
+            variant="body2"
+            sx={{ color: "#d32f2f", fontWeight: 500 }}
+          >
             Log out
           </Typography>
         </MenuItem>
