@@ -49,7 +49,7 @@ const Layout = ({ setOpenSnackBar }) => {
             {/* Desktop Nav */}
             <ul className={styles.navList}>
               {routes.map((eachRoute, index) => {
-                const isActive = eachRoute.path === location.pathname;
+                const isActive = location.pathname.includes(eachRoute.path);
                 return (
                   <li key={index} className={styles.navItem}>
                     <Link
